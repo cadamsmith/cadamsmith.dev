@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using PortfolioAPI.Data;
+using PortfolioAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,8 @@ builder.Services.AddDbContext<PortfolioEntities>(
 
 // helps capture database-related exceptions and display them for developer
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+builder.Services.AddScoped<IBlurbService, BlurbService>();
 
 var app = builder.Build();
 
