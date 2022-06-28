@@ -8,7 +8,7 @@ public abstract class BaseEntity
 {
     public BaseEntity()
     {
-        CreatedAt = LastModifiedAt = DateTime.Now;
+        CreatedAt = LastModifiedAt = DateTime.UtcNow;
         IsArchived = false;
     }
 
@@ -23,6 +23,6 @@ public abstract class BaseEntity
 
     public void UpdateMetadata()
     {
-        LastModifiedAt = DateTime.Now;
+        LastModifiedAt = DateTime.UtcNow;
     }
 }
