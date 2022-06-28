@@ -5,11 +5,7 @@ namespace PortfolioAPI.Models;
 
 public class Blurb : BaseEntity
 {
-    public Blurb(string name, string content) : base()
-    {
-        Name = name;
-        Content = content;
-    }
+    public Blurb() : base() {}
 
     [Required]
     public string Name { get; set; }
