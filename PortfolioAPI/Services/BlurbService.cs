@@ -62,7 +62,11 @@ public class BlurbService : IBlurbService
 
     public async Task<Blurb> CreateAsync(BlurbBaseData data, CancellationToken cancellationToken)
     {
-        var blurb = new Blurb(data.Name, data.Content);
+        var blurb = new Blurb
+        {
+            Name = data.Name,
+            Content = data.Content
+        };
 
         await _db.Blurbs.AddAsync(blurb);
         await _db.SaveChangesAsync(cancellationToken);
