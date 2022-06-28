@@ -4,9 +4,12 @@ using PortfolioAPI.Models.Common;
 
 namespace PortfolioAPI.Models;
 
-public class PersonalData : BaseEntity
+public class PersonalInfo : BaseEntity
 {
-    public PersonalData() : base() {}
+    public PersonalInfo() : base()
+    {
+        IsActive = false;
+    }
 
     [Required]
     public string FirstName { get; set; }

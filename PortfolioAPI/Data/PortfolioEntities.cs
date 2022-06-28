@@ -9,5 +9,5 @@ public class PortfolioEntities : DbContext
         : base(options) {}
 
     public DbSet<Blurb> Blurbs { get; set; }
-    public DbSet<PersonalData> PersonalData { get; set; }
+    public DbSet<PersonalInfo> PersonalInfos { get; set; }
 }
