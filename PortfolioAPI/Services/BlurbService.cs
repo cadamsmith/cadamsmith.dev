@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using PortfolioAPI.Data;
 using PortfolioAPI.Models;
 
@@ -115,6 +116,8 @@ public class BlurbBaseData
         Content = content;
     }
 
+    [Required]
     public string Name { get; set; }
+    [Required]
     public string Content { get; set; }
 }
