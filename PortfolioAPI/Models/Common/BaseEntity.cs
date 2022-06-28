@@ -20,4 +20,9 @@ public abstract class BaseEntity
     public DateTime LastModifiedAt { get; set; }
 
     public bool IsArchived { get; set; }
+
+    public void UpdateMetadata()
+    {
+        LastModifiedAt = DateTime.Now;
+    }
 }
