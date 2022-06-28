@@ -6,10 +6,7 @@ namespace PortfolioAPI.Models;
 
 public class PersonalInfo : BaseEntity
 {
-    public PersonalInfo() : base()
-    {
-        IsActive = false;
-    }
+    public PersonalInfo() : base() {}
 
     [Required]
     public string FirstName { get; set; }
@@ -21,6 +18,4 @@ public class PersonalInfo : BaseEntity
     public long PhoneNumber { get; set; }
     [Required]
     public string Address { get; set; }
-
-    public bool IsActive { get; set; }
 }

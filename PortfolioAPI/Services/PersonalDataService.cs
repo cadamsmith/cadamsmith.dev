@@ -7,14 +7,55 @@ namespace PortfolioAPI.Services;
 
 public interface IPersonalInfoService
 {
-    Task<IEnumerable<PersonalInfo>> GetAllAsync(CancellationToken cancellationToken);
-    Task<PersonalInfo> GetByIdAsync(int id, CancellationToken cancellationToken);
-    Task<PersonalInfo> GetActiveAsync(CancellationToken cancellationToken);
-    Task<bool> ExistsWithId(int id, CancellationToken cancellationToken);
-    Task<Blurb> CreateAsync(PersonalInfo data, CancellationToken cancellationToken);
-    Task<Blurb> UpdateAsync(int id, PersonalInfoBaseData data, CancellationToken cancellationToken);
-    Task<Blurb> ActivateAsync(int id, CancellationToken cancellationToken);
-    Task ArchiveAsync(int id, CancellationToken cancellationToken);
+    Task<PersonalInfo> GetAsync(CancellationToken cancellationToken);
+    Task<PersonalInfo> UpdateAsync(PersonalInfoBaseData data, CancellationToken cancellationToken);
+}
+
+public class PersonalInfoService : IPersonalInfoService
+{
+    private readonly PortfolioEntities _db;
+
+    public PersonalInfoService(PortfolioEntities db)
+    {
+        _db = db;
+    }
+
+    public async Task<PersonalInfo> GetAsync(CancellationToken cancellationToken)
+    {
+        try
+        {
+            var personalInfo = await _db.PersonalInfos.FirstAsync(cancellationToken);
+
+            return personalInfo;
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+
+    public async Task<PersonalInfo> UpdateAsync(PersonalInfoBaseData data, CancellationToken cancellationToken)
+    {
+        try
+        {
+            var personalInfo = await _db.PersonalInfos.FirstAsync(cancellationToken);
+
+            personalInfo.FirstName = data.FirstName;
+            personalInfo.LastName = data.LastName;
+            personalInfo.Email = data.Email;
+            personalInfo.PhoneNumber = data.PhoneNumber;
+            personalInfo.Address = data.Address;
+            personalInfo.UpdateMetadata();
+
+            await _db.SaveChangesAsync(cancellationToken);
+
+            return personalInfo;
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
 }
 
 public class PersonalInfoBaseData
