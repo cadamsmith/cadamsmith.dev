@@ -62,7 +62,7 @@ public class BlurbController : ControllerBase
         try
         {
             Blurb createdBlurb = await _blurbService.CreateAsync(data, cancellationToken);
-            return CreatedAtAction("GetAsync", new { id = createdBlurb.Id }, createdBlurb);
+            return CreatedAtAction("Get", new { id = createdBlurb.Id }, createdBlurb);
         }
         catch (Exception)
         {
