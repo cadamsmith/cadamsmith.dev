@@ -39,15 +39,15 @@ public class BlurbController : ControllerBase
     {
         try
         {
-            bool blurbExists = await _blurbService.ExistsWithId(id, cancellationToken);
+            bool blurbExists = await _blurbService.ExistsAsync(id, cancellationToken);
             if (!blurbExists)
             {
                 return NotFound();
             }
 
-            var result = await _blurbService.GetByIdAsync(id, cancellationToken);
+            var blurb = await _blurbService.GetByIdAsync(id, cancellationToken);
 
-            return Ok(result);
+            return Ok(blurb);
         }
         catch (InvalidOperationException)
         {
@@ -77,7 +77,7 @@ public class BlurbController : ControllerBase
     {
         try
         {
-            bool blurbExists = await _blurbService.ExistsWithId(id, cancellationToken);
+            bool blurbExists = await _blurbService.ExistsAsync(id, cancellationToken);
             if (!blurbExists)
             {
                 return NotFound();
@@ -99,7 +99,7 @@ public class BlurbController : ControllerBase
     {
         try
         {
-            bool blurbExists = await _blurbService.ExistsWithId(id, cancellationToken);
+            bool blurbExists = await _blurbService.ExistsAsync(id, cancellationToken);
             if (!blurbExists)
             {
                 return NotFound();

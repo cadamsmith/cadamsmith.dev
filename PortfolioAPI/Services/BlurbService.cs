@@ -9,7 +9,7 @@ public interface IBlurbService
 {
     Task<IEnumerable<Blurb>> GetAllAsync(CancellationToken cancellationToken);
     Task<Blurb> GetByIdAsync(int id, CancellationToken cancellationToken);
-    Task<bool> ExistsWithId(int id, CancellationToken cancellationToken);
+    Task<bool> ExistsAsync(int id, CancellationToken cancellationToken);
     Task<Blurb> CreateAsync(BlurbBaseData data, CancellationToken cancellationToken);
     Task<Blurb> UpdateAsync(int id, BlurbBaseData data, CancellationToken cancellationToken);
     Task ArchiveAsync(int id, CancellationToken cancellationToken);
@@ -46,7 +46,7 @@ public class BlurbService : IBlurbService
         }
     }
 
-    public async Task<bool> ExistsWithId(int id, CancellationToken cancellationToken)
+    public async Task<bool> ExistsAsync(int id, CancellationToken cancellationToken)
     {
         try
         {

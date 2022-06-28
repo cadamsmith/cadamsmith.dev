@@ -8,7 +8,9 @@ namespace PortfolioAPI.Services;
 public interface IPersonalInfoService
 {
     Task<PersonalInfo> GetAsync(CancellationToken cancellationToken);
+    Task<bool> ExistsAsync(CancellationToken cancellationToken);
     Task<PersonalInfo> UpdateAsync(PersonalInfoBaseData data, CancellationToken cancellationToken);
+    Task<PersonalInfo> CreateAsync(PersonalInfoBaseData data, CancellationToken cancellationToken);
 }
 
 public class PersonalInfoService : IPersonalInfoService
@@ -27,6 +29,20 @@ public class PersonalInfoService : IPersonalInfoService
             var personalInfo = await _db.PersonalInfos.FirstAsync(cancellationToken);
 
             return personalInfo;
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+
+    public async Task<bool> ExistsAsync(CancellationToken cancellationToken)
+    {
+        try
+        {
+            bool personalInfoExists = await _db.PersonalInfos.AnyAsync(cancellationToken);
+
+            return personalInfoExists;
         }
         catch (Exception)
         {
@@ -55,6 +71,23 @@ public class PersonalInfoService : IPersonalInfoService
         {
             throw;
         }
+    }
+
+    public async Task<PersonalInfo> CreateAsync(PersonalInfoBaseData data, CancellationToken cancellationToken)
+    {
+        var personalInfo = new PersonalInfo
+        {
+            FirstName = data.FirstName,
+            LastName = data.LastName,
+            Email = data.Email,
+            PhoneNumber = data.PhoneNumber,
+            Address = data.Address
+        };
+
+        await _db.PersonalInfos.AddAsync(personalInfo);
+        await _db.SaveChangesAsync(cancellationToken);
+
+        return personalInfo;
     }
 }
 
