@@ -18,4 +18,6 @@ public class PersonalData : BaseEntity
     public long PhoneNumber { get; set; }
     [Required]
     public string Address { get; set; }
+
+    public bool IsActive { get; set; }
 }
