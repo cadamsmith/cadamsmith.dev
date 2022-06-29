@@ -17,7 +17,7 @@ public class PersonalInfoController : ControllerBase
         _personalInfoService = personalInfoService;
     }
 
-    [HttpGet("{id}")]
+    [HttpGet]
     [ProducesResponseType(typeof(PersonalInfo), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetAsync(CancellationToken cancellationToken = default)
@@ -55,21 +55,6 @@ public class PersonalInfoController : ControllerBase
 
             PersonalInfo personalInfo = await _personalInfoService.UpdateAsync(data, cancellationToken);
             return Ok(personalInfo);
-        }
-        catch (Exception)
-        {
-            throw;
-        }
-    }
-
-    [HttpPost]
-    [ProducesResponseType(typeof(PersonalInfo), StatusCodes.Status201Created)]
-    public async Task<IActionResult> PostAsync([FromBody] PersonalInfoBaseData data, CancellationToken cancellationToken = default)
-    {
-        try
-        {
-            PersonalInfo createdPersonalInfo = await _personalInfoService.CreateAsync(data, cancellationToken);
-            return CreatedAtAction("Get", new { id = createdPersonalInfo.Id }, createdPersonalInfo);
         }
         catch (Exception)
         {

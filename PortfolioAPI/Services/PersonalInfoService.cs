@@ -10,7 +10,6 @@ public interface IPersonalInfoService
     Task<PersonalInfo> GetAsync(CancellationToken cancellationToken);
     Task<bool> ExistsAsync(CancellationToken cancellationToken);
     Task<PersonalInfo> UpdateAsync(PersonalInfoBaseData data, CancellationToken cancellationToken);
-    Task<PersonalInfo> CreateAsync(PersonalInfoBaseData data, CancellationToken cancellationToken);
 }
 
 public class PersonalInfoService : IPersonalInfoService
@@ -26,7 +25,7 @@ public class PersonalInfoService : IPersonalInfoService
     {
         try
         {
-            var personalInfo = await _db.PersonalInfos.FirstAsync(cancellationToken);
+            var personalInfo = await _db.PersonalInfos.OrderBy(p => p.Id).FirstAsync(cancellationToken);
 
             return personalInfo;
         }
@@ -54,7 +53,7 @@ public class PersonalInfoService : IPersonalInfoService
     {
         try
         {
-            var personalInfo = await _db.PersonalInfos.FirstAsync(cancellationToken);
+            var personalInfo = await GetAsync(cancellationToken);
 
             personalInfo.FirstName = data.FirstName;
             personalInfo.LastName = data.LastName;
@@ -71,23 +70,6 @@ public class PersonalInfoService : IPersonalInfoService
         {
             throw;
         }
-    }
-
-    public async Task<PersonalInfo> CreateAsync(PersonalInfoBaseData data, CancellationToken cancellationToken)
-    {
-        var personalInfo = new PersonalInfo
-        {
-            FirstName = data.FirstName,
-            LastName = data.LastName,
-            Email = data.Email,
-            PhoneNumber = data.PhoneNumber,
-            Address = data.Address
-        };
-
-        await _db.PersonalInfos.AddAsync(personalInfo);
-        await _db.SaveChangesAsync(cancellationToken);
-
-        return personalInfo;
     }
 }
 
