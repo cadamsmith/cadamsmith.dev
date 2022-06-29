@@ -21,6 +21,7 @@ builder.Services.AddDbContext<PortfolioEntities>(
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddScoped<IBlurbService, BlurbService>();
+builder.Services.AddScoped<IPersonalInfoService, PersonalInfoService>();
 
 var app = builder.Build();
 
