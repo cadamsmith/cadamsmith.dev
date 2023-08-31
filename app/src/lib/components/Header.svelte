@@ -31,12 +31,11 @@
 			<li>
 				<a href="/blog">Blog</a>
 			</li>
-			<li>
-				<a href="/about">About</a>
-			</li>
+			❖
 			<li>
 				<a href="/about">Portfolio</a>
 			</li>
+			❖
 			<li>
 				<a href="/contact">Contact</a>
 			</li>
@@ -59,24 +58,61 @@
 		margin: 0;
 		list-style-type: none;
 		display: flex;
-		gap: 1rem;
+		align-items: center;
+		gap: 0.4rem;
 	}
 
 	a {
 		text-decoration: none;
 		color: inherit;
+		padding: 0.5em;
+		color: #fff;
+		font-weight: bold;
+		box-sizing: border-box;
+	}
+
+	a:hover {
+		border-color: #000;
+		text-decoration: underline;
 	}
 
 	.nav-brand {
 		display: inline-flex;
 		align-items: center;
 		text-transform: uppercase;
-		gap: 1em;
+		background-color: #000;
+		gap: 0.5em;
+		color: white;
+		padding: unset;
+		padding-right: 0.5em;
+		margin-top: 0.7em;
+		margin-bottom: 0.7em;
+		font-size: 1.4em;
+		margin-left: 0.6em;
+		border-color: #000;
+
+		&:hover {
+			border-color: #fff;
+		}
 
 		& img {
-			width: 5em;
-			height: 5em;
+			width: 3.5em;
+			height: 3.5em;
 			border-radius: 50%;
+			margin-top: -0.7em;
+			margin-bottom: -0.7em;
+			margin-left: -0.6em;
+		}
+	}
+
+	@media (max-width: 600px) {
+		header {
+			flex-direction: column;
+			gap: 0.5em;
+		}
+
+		ul {
+			padding-left: 0;
 		}
 	}
 </style>
