@@ -1,6 +1,9 @@
-import adapter from '@sveltejs/adapter-auto';
+import adapter from '@sveltejs/adapter-static';
 import preprocess from 'svelte-preprocess';
 import { mdsvex } from 'mdsvex';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import autoprefixer from 'autoprefixer';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -16,11 +19,18 @@ const config = {
 	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
 	// for more information about preprocessors
 	preprocess: [
-		preprocess({ typescript: true, scss: true }),
+		preprocess({
+			typescript: true,
+			scss: true,
+			postcss: {
+				plugins: [autoprefixer]
+			}
+		}),
 		mdsvex({
-			extensions: ['.md']
+			extensions: ['.md'],
+			rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings]
 		})
-	],
+	]
 };
 
 export default config;
