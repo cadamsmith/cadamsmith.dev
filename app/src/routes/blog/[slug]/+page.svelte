@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	export let data;
 	const { title, date, categories, Content } = data;
 </script>
