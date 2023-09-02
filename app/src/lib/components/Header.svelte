@@ -2,16 +2,18 @@
 	const defaultProfileImgPath = '/images/profile.png';
 	const altProfileImgPath = '/images/profile-alt.png';
 
-	let profileImgPath = defaultProfileImgPath;
+	const defaultProfileImgURL = new URL(defaultProfileImgPath, import.meta.url).href;
 
-	$: profileImgURL = new URL(profileImgPath, import.meta.url).href;
+	const altProfileImgURL = new URL(altProfileImgPath, import.meta.url).href;
+
+	let useDefaultProfileImg = true;
 
 	function setAltProfilePhoto() {
-		profileImgPath = altProfileImgPath;
+		useDefaultProfileImg = false;
 	}
 
 	function setDefaultProfilePhoto() {
-		profileImgPath = defaultProfileImgPath;
+		useDefaultProfileImg = true;
 	}
 </script>
 
@@ -22,7 +24,10 @@
 		on:mouseenter={setAltProfilePhoto}
 		on:mouseleave={setDefaultProfilePhoto}
 	>
-		<img src={profileImgURL} alt="Adam Smith" />
+		<div>
+			<img src={defaultProfileImgURL} class={useDefaultProfileImg ? '' : 'hide'} alt="Adam Smith" />
+			<img src={altProfileImgURL} class={useDefaultProfileImg ? 'hide' : ''} alt="Adam Smith" />
+		</div>
 		Adam Smith
 	</a>
 
@@ -74,6 +79,7 @@
 	a:hover {
 		border-color: #000;
 		text-decoration: underline;
+		color: #3da5d9;
 	}
 
 	.nav-brand {
@@ -95,13 +101,23 @@
 			border-color: #fff;
 		}
 
-		& img {
+		& div {
 			width: 3.5em;
 			height: 3.5em;
-			border-radius: 50%;
+
 			margin-top: -0.7em;
 			margin-bottom: -0.7em;
 			margin-left: -0.6em;
+			position: relative;
+		}
+
+		& div img {
+			width: 100%;
+			height: 100%;
+			border-radius: 50%;
+			color: black;
+			position: absolute;
+			background-color: white;
 		}
 	}
 
@@ -114,5 +130,9 @@
 		ul {
 			padding-left: 0;
 		}
+	}
+
+	.hide {
+		visibility: hidden;
 	}
 </style>
