@@ -21,8 +21,25 @@ body {
   
 main {
   margin-top: 1rem;
-  padding: 1rem;
   flex-grow: 1;
+
+  display: grid;
+  grid-template-columns:
+    [full-start] 1rem [wrapper-start]
+    minmax(0, 70rem) [wrapper-end] 1rem [full-end];
+  grid-template-rows: min-content;
+  
+  /* Optional gap */
+  column-gap: var(--pad, 1rem);
+}
+
+main > * {
+  grid-column: wrapper;
+}
+
+main > .full-width {
+  grid-column: full;
+  padding: 1rem;
 }
 
 :where(h2, h3, h4, h5, h6) {
