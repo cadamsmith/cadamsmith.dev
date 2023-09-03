@@ -18,9 +18,8 @@ body {
 }
   
 main {
+  margin-top: 1rem;
   padding: 1rem;
-  margin: 2rem auto;
-  max-width: 40rem;
 }
 
 :where(h2, h3, h4, h5, h6) {
