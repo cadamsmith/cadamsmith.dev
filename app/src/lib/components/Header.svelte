@@ -125,10 +125,22 @@
 		header {
 			flex-direction: column;
 			gap: 0.5em;
+			background-image: linear-gradient(to right, #352e48, #352e48);
+			padding-bottom: 0;
+			padding-left: 0;
+			padding-right: 0;
 		}
 
 		ul {
 			padding-left: 0;
+		}
+
+		nav {
+			background-color: #584c77;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			padding: 1rem;
 		}
 	}
 
