@@ -25,8 +25,16 @@
 		on:mouseleave={setDefaultProfilePhoto}
 	>
 		<div>
-			<img src={defaultProfileImgURL} class={useDefaultProfileImg ? '' : 'hide'} alt="Adam Smith" />
-			<img src={altProfileImgURL} class={useDefaultProfileImg ? 'hide' : ''} alt="Adam Smith" />
+			<img
+				src={defaultProfileImgURL}
+				alt="t-rex profile pic"
+				class={useDefaultProfileImg ? '' : 'hide'}
+			/>
+			<img
+				src={altProfileImgURL}
+				class={useDefaultProfileImg ? 'hide' : ''}
+				alt="t-rex profile pic, with mouth open"
+			/>
 		</div>
 		Adam Smith
 	</a>
