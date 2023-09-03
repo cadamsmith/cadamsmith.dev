@@ -8,7 +8,10 @@
 		<a href="https://kit.svelte.dev/" target="_blank">Sveltekit</a>.
 	</p>
 	<div>
-		<a href="https://github.com/cadamsmith/cadamsmith.dev">View Source Code</a>
+		<a href="https://github.com/cadamsmith/cadamsmith.dev" target="_blank">
+			View Source Code
+			<img src="/images/github-mark-white.svg" alt="test" />
+		</a>
 	</div>
 </footer>
 
@@ -28,6 +31,11 @@
 
 	a {
 		color: white;
+
+		& img {
+			height: 1em;
+			margin-left: 0.2em;
+		}
 	}
 
 	@media (max-width: 600px) {
