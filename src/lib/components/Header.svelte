@@ -46,7 +46,7 @@
 			</li>
 			❖
 			<li>
-				<a href="/about">Portfolio</a>
+				<a href="/portfolio">Portfolio</a>
 			</li>
 			❖
 			<li>
