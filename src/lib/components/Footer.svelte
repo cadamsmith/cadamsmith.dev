@@ -5,12 +5,15 @@
 <footer>
 	<p>
 		@ {currentYear} Adam Smith. Generated with
-		<a href="https://kit.svelte.dev/" target="_blank">Sveltekit</a>.
+		<a class="sveltekit-link" href="https://kit.svelte.dev/" target="_blank">
+			<span class="sr-only">Sveltekit</span>
+			<iconify-icon icon="logos:svelte-kit" />
+		</a>.
 	</p>
 	<div>
 		<a href="https://github.com/cadamsmith/cadamsmith.dev" target="_blank">
 			View Source Code
-			<img src="/images/github-mark-white.svg" alt="test" />
+			<iconify-icon icon="mdi:github" />
 		</a>
 	</div>
 </footer>
@@ -31,11 +34,25 @@
 
 	a {
 		color: white;
+		text-decoration: none;
+	}
 
-		& img {
-			height: 1em;
-			margin-left: 0.2em;
+	.sveltekit-link {
+		background-color: white;
+		color: black;
+		padding: 0.1em;
+		margin-right: 0.2em;
+		border-radius: 2em;
+		border: 0.2em solid white;
+
+		& iconify-icon {
+			vertical-align: middle;
+			height: 100%;
 		}
+	}
+
+	.sveltekit-link:hover {
+		border-color: #3da5d9;
 	}
 
 	@media (max-width: 600px) {

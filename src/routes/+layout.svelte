@@ -3,6 +3,7 @@
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import '$lib/styles/style.scss';
+	import 'iconify-icon';
 
 	export let data;
 </script>
