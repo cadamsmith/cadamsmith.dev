@@ -15,7 +15,7 @@
 		DevOps.
 	</p>
 
-	<a href="/resume">Resume</a>
+	<a href="/resume.pdf" target="_blank">Resume</a>
 </section>
 
 <section>
