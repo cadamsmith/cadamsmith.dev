@@ -34,7 +34,7 @@
 					<div class="command">{command}</div>
 				{/if}
 
-				<pre class="output">{output}</pre>
+				<pre class="output">{output.content}</pre>
 			</div>
 		{/each}
 	</div>

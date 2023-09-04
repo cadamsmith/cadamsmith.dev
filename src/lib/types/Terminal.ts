@@ -1,3 +1,4 @@
+import { Commands } from './Commands';
 import { Session } from './Session';
 
 export class Terminal {
@@ -57,15 +58,13 @@ export class Terminal {
 
 		switch (command) {
 			case 'welcome':
-				session.output = `┻━┻ ︵ヽ(\`Д´)ﾉ ︵ ┻━┻\n
-                    Welcome to my website!\n
-                    Enter \`help\` to see all terminal commands`;
+				Commands.welcome(session.output);
 				break;
 			case 'help':
-				session.output = 'Available commands: welcome, clear, help';
+				Commands.help(session.output);
 				break;
 			default:
-				session.output = 'Command not found';
+				session.output.content = 'Command not found';
 				break;
 		}
 
