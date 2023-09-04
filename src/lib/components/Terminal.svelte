@@ -4,7 +4,6 @@
 	let isUserTyping = false;
 
 	let history: string[] = [];
-
 	let sessions: Session[] = [];
 
 	function init() {
@@ -101,15 +100,18 @@
 <style>
 	.terminal {
 		margin: 1rem;
+		flex-grow: 1;
 		display: flex;
 		flex-direction: column;
 		border-radius: 1em;
 		overflow: hidden;
+		height: 0;
 	}
 
 	.terminal-header {
 		background-color: #fff;
 		height: 2em;
+		min-height: 2em;
 	}
 
 	.terminal-body {
