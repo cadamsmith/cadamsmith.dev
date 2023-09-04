@@ -7,7 +7,13 @@
 
 	let sessions: Session[] = [];
 
-	function reset() {
+	function init() {
+		prompt();
+		sessions[0].command = 'welcome';
+		executeCommand();
+	}
+
+	function clear() {
 		sessions = [];
 		prompt();
 	}
@@ -20,11 +26,9 @@
 	function handlePromptKeydown(e: KeyboardEvent) {
 		if (e.key === 'Enter') {
 			e.preventDefault();
-
-			const session = sessions[sessions.length - 1];
 			isUserTyping = false;
 
-			executeCommand(session.command);
+			executeCommand();
 		} else if (e.key === 'ArrowUp') {
 			if (history.length > 0) {
 				sessions[sessions.length - 1].command = history[history.length - 1];
@@ -32,15 +36,30 @@
 		}
 	}
 
-	function executeCommand(command: string) {
+	function executeCommand() {
 		const session = sessions[sessions.length - 1];
+		const command = session.command.trim();
 
-		if (command.trim() === 'clear') {
-			reset();
+		if (command === 'clear') {
+			clear();
 			return;
 		}
 
-		session.output = 'Command not found';
+		switch (command) {
+			case 'welcome':
+				session.output = `┻━┻ ︵ヽ(\`Д´)ﾉ ︵ ┻━┻\n
+					Welcome to my website!\n
+					Enter \`help\` to see all terminal commands
+				`;
+				break;
+			case 'help':
+				session.output = 'Available commands: welcome, clear, help';
+				break;
+			default:
+				session.output = 'Command not found';
+				break;
+		}
+
 		history = [...history, command];
 		prompt();
 	}
@@ -49,42 +68,58 @@
 		input.focus();
 	}
 
-	prompt();
+	init();
 </script>
 
 <div class="terminal">
-	{#each sessions as { prompt, command, output }, i}
-		<div class="session">
-			<div class="prompt">{prompt}</div>
+	<div class="terminal-header" />
+	<div class="terminal-body">
+		{#each sessions as { prompt, command, output }, i}
+			<div class="session">
+				<div class="prompt">{prompt}</div>
 
-			{#if i === sessions.length - 1 && isUserTyping}
-				<div
-					class="command"
-					contenteditable
-					bind:innerText={command}
-					on:keydown={handlePromptKeydown}
-					role="textbox"
-					tabindex="0"
-					use:callFocus
-				/>
-			{:else}
-				<div class="command">{command}</div>
-			{/if}
+				{#if i === sessions.length - 1 && isUserTyping}
+					<div
+						class="command"
+						contenteditable
+						bind:innerText={command}
+						on:keydown={handlePromptKeydown}
+						role="textbox"
+						tabindex="0"
+						use:callFocus
+					/>
+				{:else}
+					<div class="command">{command}</div>
+				{/if}
 
-			<div class="output">{output}</div>
-		</div>
-	{/each}
+				<pre class="output">{output}</pre>
+			</div>
+		{/each}
+	</div>
 </div>
 
 <style>
 	.terminal {
+		margin: 1rem;
+		display: flex;
+		flex-direction: column;
+		border-radius: 1em;
+		overflow: hidden;
+	}
+
+	.terminal-header {
+		background-color: #fff;
+		height: 2em;
+	}
+
+	.terminal-body {
 		background-color: black;
 		color: white;
 		padding: 1em;
 		overflow-x: hidden;
 		font-family: monospace;
 
-		margin: 1rem;
+		flex-grow: 1;
 	}
 
 	.session {
@@ -112,5 +147,7 @@
 
 	.session .output {
 		grid-column: 1 / span 2;
+		white-space: pre-line;
+		line-height: 0.7em;
 	}
 </style>
