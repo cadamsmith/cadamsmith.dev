@@ -2,6 +2,9 @@
 	import { Session } from '../types/Session';
 
 	let isUserTyping = false;
+
+	let history: string[] = [];
+
 	let sessions: Session[] = [];
 
 	function reset() {
@@ -22,6 +25,10 @@
 			isUserTyping = false;
 
 			executeCommand(session.command);
+		} else if (e.key === 'ArrowUp') {
+			if (history.length > 0) {
+				sessions[sessions.length - 1].command = history[history.length - 1];
+			}
 		}
 	}
 
@@ -34,6 +41,7 @@
 		}
 
 		session.output = 'Command not found';
+		history = [...history, command];
 		prompt();
 	}
 
