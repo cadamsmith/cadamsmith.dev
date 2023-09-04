@@ -1,8 +1,15 @@
 <script lang="ts">
 	import { Terminal as TerminalType } from '../types/Terminal';
 
+	let activeInput: HTMLDivElement;
 	function callFocus(input: HTMLElement) {
 		input.focus();
+	}
+
+	function focusActiveInput() {
+		if (activeInput) {
+			activeInput.focus();
+		}
 	}
 
 	function handlePromptKeydown(e: KeyboardEvent) {
@@ -10,10 +17,23 @@
 		terminal.sessions = terminal.sessions;
 	}
 
+	function handleTerminalKeydown(e: KeyboardEvent) {
+		// Handle keyboard interaction here, e.g., trigger the same functionality as the click event.
+		if (e.key === 'Enter') {
+			focusActiveInput();
+		}
+	}
+
 	const terminal = new TerminalType();
 </script>
 
-<div class="terminal">
+<div
+	class="terminal"
+	on:click={focusActiveInput}
+	on:keydown={handleTerminalKeydown}
+	tabindex="-1"
+	role="presentation"
+>
 	<div class="terminal-header" />
 	<div class="terminal-body">
 		{#each terminal.sessions as { prompt, command, output }, i}
@@ -29,6 +49,7 @@
 						role="textbox"
 						tabindex="0"
 						use:callFocus
+						bind:this={activeInput}
 					/>
 				{:else}
 					<div class="command">{command}</div>
