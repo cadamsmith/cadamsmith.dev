@@ -2,6 +2,10 @@
 	import Terminal from '$lib/components/Terminal.svelte';
 </script>
 
+<svelte:head>
+	<title>Adam Smith</title>
+</svelte:head>
+
 <section class="hero full-width">
 	<div>
 		<h1>Hello there, I'm Adam.</h1>

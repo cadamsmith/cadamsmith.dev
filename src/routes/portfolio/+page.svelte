@@ -5,7 +5,7 @@
 </script>
 
 <svelte:head>
-	<title>My blog - Adam Smith</title>
+	<title>Portfolio - Adam Smith</title>
 </svelte:head>
 
 {#if inConstruction}
