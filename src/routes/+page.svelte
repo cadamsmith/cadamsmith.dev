@@ -4,7 +4,7 @@
 
 <section class="hero full-width">
 	<div>
-		<h1>Hey, I'm Adam</h1>
+		<h1>Hello there, I'm Adam.</h1>
 		<p>
 			I'm a software engineer. I'm currently working as a technical lead for
 			<a href="https://cws.auburn.edu/cws" target="_blank">Campus Web Solutions</a> at Auburn University.
