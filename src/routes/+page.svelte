@@ -20,12 +20,17 @@
 			DevOps.
 		</p>
 
-		<a href="/resume.pdf" target="_blank">Resume</a>
+		<div class="hero-links">
+			<a href="/resume.pdf" target="_blank">Resume</a>
+
+			<div>
+				<a href="https://github.com/cadamsmith" target="_blank">GitHub</a>
+				<a href="https://linkedin.com/in/cadamsmithdev" target="_blank">LinkedIn</a>
+			</div>
+		</div>
 	</div>
 
-	<div>
-		<Terminal />
-	</div>
+	<Terminal />
 </section>
 
 <section>
@@ -36,9 +41,19 @@
 </section>
 
 <style>
+	h1 {
+		font-size: 2.2em;
+	}
+
 	.hero {
 		background-color: #b0c4de;
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.hero-links {
+		display: flex;
+		justify-content: space-between;
+		gap: 1em;
 	}
 </style>

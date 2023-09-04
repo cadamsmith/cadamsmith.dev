@@ -4,7 +4,7 @@
 
 <footer>
 	<p>
-		@ {currentYear} Adam Smith. Generated with
+		@ {currentYear} Adam Smith. Powered by
 		<a class="sveltekit-link" href="https://kit.svelte.dev/" target="_blank">
 			<span class="sr-only">Sveltekit</span>
 			<iconify-icon icon="logos:svelte-kit" />

@@ -84,7 +84,7 @@
 		overflow-x: hidden;
 		font-family: monospace;
 
-		height: 20rem;
+		margin: 1rem;
 	}
 
 	.session {
