@@ -1,3 +1,3 @@
 <h1>Get in touch</h1>
 
-<p><a href="mailto:me@my.tld">Email me!</a></p>
+<p><a href="mailto:cadamsmith.dev@gmail.com">Email me!</a></p>
