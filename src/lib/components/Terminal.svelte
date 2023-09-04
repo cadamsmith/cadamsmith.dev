@@ -1,83 +1,26 @@
 <script lang="ts">
-	import { Session } from '../types/Session';
-
-	let isUserTyping = false;
-
-	let history: string[] = [];
-	let sessions: Session[] = [];
-
-	function init() {
-		prompt();
-		sessions[0].command = 'welcome';
-		executeCommand();
-	}
-
-	function clear() {
-		sessions = [];
-		prompt();
-	}
-
-	function prompt() {
-		sessions = [...sessions, new Session('$')];
-		isUserTyping = true;
-	}
-
-	function handlePromptKeydown(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			e.preventDefault();
-			isUserTyping = false;
-
-			executeCommand();
-		} else if (e.key === 'ArrowUp') {
-			if (history.length > 0) {
-				sessions[sessions.length - 1].command = history[history.length - 1];
-			}
-		}
-	}
-
-	function executeCommand() {
-		const session = sessions[sessions.length - 1];
-		const command = session.command.trim();
-
-		if (command === 'clear') {
-			clear();
-			return;
-		}
-
-		switch (command) {
-			case 'welcome':
-				session.output = `┻━┻ ︵ヽ(\`Д´)ﾉ ︵ ┻━┻\n
-					Welcome to my website!\n
-					Enter \`help\` to see all terminal commands
-				`;
-				break;
-			case 'help':
-				session.output = 'Available commands: welcome, clear, help';
-				break;
-			default:
-				session.output = 'Command not found';
-				break;
-		}
-
-		history = [...history, command];
-		prompt();
-	}
+	import { Terminal as TerminalType } from '../types/Terminal';
 
 	function callFocus(input: HTMLElement) {
 		input.focus();
 	}
 
-	init();
+	function handlePromptKeydown(e: KeyboardEvent) {
+		terminal.handlePromptKeydown(e);
+		terminal.sessions = terminal.sessions;
+	}
+
+	const terminal = new TerminalType();
 </script>
 
 <div class="terminal">
 	<div class="terminal-header" />
 	<div class="terminal-body">
-		{#each sessions as { prompt, command, output }, i}
+		{#each terminal.sessions as { prompt, command, output }, i}
 			<div class="session">
 				<div class="prompt">{prompt}</div>
 
-				{#if i === sessions.length - 1 && isUserTyping}
+				{#if i === terminal.sessions.length - 1 && terminal.isUserTyping}
 					<div
 						class="command"
 						contenteditable
