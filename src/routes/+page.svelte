@@ -30,7 +30,9 @@
 		</div>
 	</div>
 
-	<Terminal />
+	<div class="terminal-wrapper">
+		<Terminal />
+	</div>
 </section>
 
 <section>
@@ -49,6 +51,7 @@
 		background-color: #b0c4de;
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: 1fr;
 		column-gap: 1em;
 	}
 
@@ -56,5 +59,21 @@
 		display: flex;
 		justify-content: space-between;
 		gap: 1em;
+	}
+
+	.terminal-wrapper {
+		display: flex;
+		flex-direction: column;
+		height: auto;
+	}
+
+	@media (max-width: 800px) {
+		.hero {
+			grid-template-columns: 1fr;
+		}
+
+		.terminal-wrapper {
+			display: none;
+		}
 	}
 </style>
