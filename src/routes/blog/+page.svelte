@@ -6,26 +6,28 @@
 	<title>Blog - Adam Smith</title>
 </svelte:head>
 
-<h1>Blog</h1>
+<section>
+	<h1>Blog</h1>
 
-<ol>
-	{#each data.posts as post}
-		<li>
-			<h2>
-				<a href={post.path}>
-					{post.meta.title}
-				</a>
-			</h2>
-			<p>Published: {post.meta.date}</p>
+	<ol>
+		{#each data.posts as post}
+			<li>
+				<h2>
+					<a href={post.path}>
+						{post.meta.title}
+					</a>
+				</h2>
+				<p>Published: {post.meta.date}</p>
 
-			{#each post.meta.categories as category}
-				<a href={`blog/category/${category}`} class="category-link">
-					{category}
-				</a>
-			{/each}
-		</li>
-	{/each}
-</ol>
+				{#each post.meta.categories as category}
+					<a href={`blog/category/${category}`} class="category-link">
+						{category}
+					</a>
+				{/each}
+			</li>
+		{/each}
+	</ol>
+</section>
 
 <style>
 	ol {
