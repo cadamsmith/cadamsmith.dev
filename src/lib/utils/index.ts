@@ -1,4 +1,7 @@
-export const fetchMarkdownPosts = async () => {
+import type { Post } from '$lib/types/Post';
+import type { PostMetadata } from '$lib/types/PostMetadata';
+
+export const fetchMarkdownPosts = async (): Promise<Post[]> => {
 	const allPostFiles = import.meta.glob('/src/routes/blog/*.md');
 	const iterablePostFiles = Object.entries(allPostFiles);
 
@@ -16,10 +19,3 @@ export const fetchMarkdownPosts = async () => {
 
 	return allPosts;
 };
-
-interface PostMetadata {
-	title: string;
-	description: string;
-	date: Date;
-	categories: string[];
-}
