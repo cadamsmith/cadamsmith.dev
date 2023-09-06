@@ -9,7 +9,7 @@
 </svelte:head>
 
 <section>
-	<h1>Posts with Category: {data.category}</h1>
+	<h1>Posts from Year: {data.year}</h1>
 
 	<PostGrid posts={data.posts} />
 </section>
