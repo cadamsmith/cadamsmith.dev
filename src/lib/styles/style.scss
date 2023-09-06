@@ -20,8 +20,6 @@ body {
 }
   
 main {
-  flex-grow: 1;
-
   display: grid;
   grid-template-columns:
     [full-start] 1rem [wrapper-start]
@@ -90,4 +88,12 @@ html {
 
 .big-icon {
   font-size: 10rem;
+}
+
+a {
+  color: #800020;
+}
+
+a:hover, a:active {
+  color: #a60029;
 }
