@@ -10,10 +10,28 @@
 
 <Header />
 
-{#key data.currentRoute}
-	<main in:fade={{ duration: 150, delay: 150 }} out:fade={{ duration: 150 }}>
-		<slot />
-	</main>
-{/key}
-
+<div class="transition-outer">
+	{#key data.currentRoute}
+		<main
+			in:fade={{ duration: 150, delay: 150 }}
+			out:fade={{ duration: 150 }}
+			class="transition-inner"
+		>
+			<slot />
+		</main>
+	{/key}
+</div>
 <Footer />
+
+<style>
+	.transition-outer {
+		display: grid;
+		grid-template: 1fr 1fr;
+		flex-grow: 1;
+	}
+
+	.transition-inner {
+		grid-row: 1;
+		grid-column: 1;
+	}
+</style>
