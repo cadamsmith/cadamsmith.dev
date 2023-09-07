@@ -22,7 +22,7 @@
 	footer {
 		margin-top: 1rem;
 		padding: 1rem;
-		background-image: linear-gradient(to right, #352e48, #584c77);
+		background-image: linear-gradient(to right, var(--color-a), var(--color-b));
 		color: white;
 		display: flex;
 		justify-content: space-between;
@@ -58,14 +58,14 @@
 
 	@media (max-width: 600px) {
 		footer {
-			background-image: linear-gradient(to right, #584c77, #584c77);
+			background-image: linear-gradient(to right, var(--color-a), var(--color-a));
 			text-align: center;
 			flex-direction: column;
 			padding: 1rem 0 0 0;
 		}
 
 		div {
-			background-color: #352e48;
+			background-color: var(--color-b);
 			padding: 1rem;
 		}
 	}

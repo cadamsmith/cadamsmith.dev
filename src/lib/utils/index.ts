@@ -1,25 +1,21 @@
-export const fetchMarkdownPosts = async () => {
-	const allPostFiles = import.meta.glob('/src/routes/blog/*.md');
+import type { Post } from '$lib/types/Post';
+import type { PostMetadata } from '$lib/types/PostMetadata';
+
+export const fetchMarkdownPosts = async (): Promise<Post[]> => {
+	const allPostFiles = import.meta.glob('/posts/*.md');
 	const iterablePostFiles = Object.entries(allPostFiles);
 
 	const allPosts = await Promise.all(
 		iterablePostFiles.map(async ([path, resolver]) => {
 			const { metadata } = (await resolver()) as { metadata: PostMetadata };
-			const postPath = path.slice(11, -3);
+			const slug = (path.split('/').pop() ?? '').split('.')[0];
 
 			return {
 				meta: metadata,
-				path: postPath
+				path: `/blog/${slug}`
 			};
 		})
 	);
 
 	return allPosts;
 };
-
-interface PostMetadata {
-	title: string;
-	description: string;
-	date: Date;
-	categories: string[];
-}

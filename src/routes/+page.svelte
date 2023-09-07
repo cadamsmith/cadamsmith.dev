@@ -52,7 +52,7 @@
 	}
 
 	.hero {
-		background-color: #b0c4de;
+		background-color: var(--color-e);
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		grid-template-rows: 1fr;

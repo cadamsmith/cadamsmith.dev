@@ -1,4 +1,6 @@
 <script>
+	import PostGrid from '$lib/components/PostGrid.svelte';
+
 	export let data;
 </script>
 
@@ -6,19 +8,14 @@
 	<title>Blog - Adam Smith</title>
 </svelte:head>
 
-<section>
+<section class="hero full-width">
 	<h1>Blog</h1>
 
-	<ul>
-		{#each data.posts as post}
-			<li>
-				<h2>
-					<a href={post.path}>
-						{post.meta.title}
-					</a>
-				</h2>
-				Published {post.meta.date}
-			</li>
-		{/each}
-	</ul>
+	<p>Adam Smith writes about programming, mathematics, and other topics he is actively learning.</p>
+
+	<p>He provides <a href="/rss" target="_blank">an RSS feed</a> for those interested.</p>
+</section>
+
+<section>
+	<PostGrid posts={data.posts} />
 </section>
