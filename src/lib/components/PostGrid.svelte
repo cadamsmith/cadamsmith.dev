@@ -1,15 +1,8 @@
 <script lang="ts">
-	import type { Post } from '$lib/types/Post';
+	import type { Post as PostType } from '$lib/types/Post';
+	import Post from './Post.svelte';
 
-	export let posts: Post[];
-
-	function formatPostDate(date: any) {
-		date = new Date(date);
-
-		const month = date.toLocaleString('default', { month: 'short' });
-		const yearLink = `<a href="/blog/year/${date.getFullYear()}">${date.getFullYear()}</a>`;
-		return `${month} ${date.getDate()}, ${yearLink}`;
-	}
+	export let posts: PostType[];
 </script>
 
 <svelte:head>
@@ -18,20 +11,7 @@
 
 <ol>
 	{#each posts as post}
-		<li>
-			<h2>
-				<a href={post.path}>
-					{post.meta.title}
-				</a>
-			</h2>
-			<p>Published: {@html formatPostDate(post.meta.date)}</p>
-
-			{#each post.meta.categories as category}
-				<a href={`/blog/category/${category}`} class="category-link">
-					{category}
-				</a>
-			{/each}
-		</li>
+		<Post {post} />
 	{/each}
 </ol>
 
@@ -41,13 +21,6 @@
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
 		grid-gap: 1rem;
-	}
-
-	li {
-		padding: 0.5em;
-	}
-
-	.category-link {
-		margin-right: 0.5rem;
+		padding-left: 0;
 	}
 </style>

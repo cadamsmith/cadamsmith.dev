@@ -1,5 +1,16 @@
+:root {
+  /* I am bad at color palettes */
+  --color-a: #352E48;
+  --color-b: #584c77;
+  --color-c: #B3001B;
+  --color-d: #00ff00;
+  --color-e: #C5D4E7;
+  --color-f: #EFF6E0;
+  --color-g: #E6E6E6;
+}
+
 html {
-  background-color: #EFF6E0;
+  background-color: var(--color-f);
   min-height: 100vh;
   height: 100%;
   display: flex;
@@ -91,9 +102,10 @@ html {
 }
 
 a {
-  color: #800020;
+  color: var(--color-c);
+  font-weight: bold;
 }
 
-a:hover, a:active {
-  color: #a60029;
+section.hero {
+  background-color: var(--color-e);
 }

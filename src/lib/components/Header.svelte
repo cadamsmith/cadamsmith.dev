@@ -59,7 +59,7 @@
 <style>
 	header {
 		padding: 1rem;
-		background-image: linear-gradient(to right, #352e48, #584c77);
+		background-image: linear-gradient(to right, var(--color-a), var(--color-b));
 		color: white;
 		display: flex;
 		flex-wrap: wrap;
