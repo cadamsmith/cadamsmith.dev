@@ -7,7 +7,7 @@
 </svelte:head>
 
 <section class="hero full-width">
-	<div>
+	<div class="hero-content">
 		<h1>Hello there, I'm Adam.</h1>
 		<p>
 			I'm a software engineer. I'm currently working as a technical lead for
@@ -71,6 +71,10 @@
 		grid-template-columns: repeat(2, 1fr);
 		grid-template-rows: 1fr;
 		column-gap: 1em;
+	}
+
+	.hero-content {
+		padding-left: 1em;
 	}
 
 	.hero-links {
