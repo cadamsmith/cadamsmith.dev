@@ -101,9 +101,20 @@ html {
   font-size: 10rem;
 }
 
+p {
+  line-height: 1.3;
+}
+
 a {
   color: var(--color-c);
   font-weight: bold;
+  transition: all .3s ease-in-out;
+  text-decoration-color: var(--color-c);
+}
+
+a:hover {
+  color: white;
+  box-shadow: inset 200px 0 0 0 var(--color-c);
 }
 
 section.hero {
