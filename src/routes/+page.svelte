@@ -28,8 +28,22 @@
 			<a href="/resume.pdf" target="_blank">Resume</a>
 
 			<div>
-				<a href="https://github.com/cadamsmith" target="_blank">GitHub</a>
-				<a href="https://linkedin.com/in/cadamsmithdev" target="_blank">LinkedIn</a>
+				<a
+					class="icon-link"
+					href="https://github.com/cadamsmith"
+					target="_blank"
+					aria-label="GitHub"
+				>
+					<iconify-icon icon="skill-icons:github-dark" />
+				</a>
+				<a
+					class="icon-link"
+					href="https://linkedin.com/in/cadamsmithdev"
+					target="_blank"
+					aria-label="LinkedIn"
+				>
+					<iconify-icon icon="skill-icons:linkedin" />
+				</a>
 			</div>
 		</div>
 	</div>
@@ -63,12 +77,22 @@
 		display: flex;
 		justify-content: space-between;
 		gap: 1em;
+
+		& a {
+			height: min-content;
+			align-self: flex-end;
+		}
 	}
 
 	.terminal-wrapper {
 		display: flex;
 		flex-direction: column;
 		height: auto;
+	}
+
+	.icon-link {
+		--border-color: var(--color-c);
+		font-size: 1.5em;
 	}
 
 	@media (max-width: 800px) {
