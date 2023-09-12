@@ -7,7 +7,7 @@
 </svelte:head>
 
 <section class="hero full-width">
-	<div>
+	<div class="hero-content">
 		<h1>Hello there, I'm Adam.</h1>
 		<p>
 			I'm a software engineer. I'm currently working as a technical lead for
@@ -28,8 +28,22 @@
 			<a href="/resume.pdf" target="_blank">Resume</a>
 
 			<div>
-				<a href="https://github.com/cadamsmith" target="_blank">GitHub</a>
-				<a href="https://linkedin.com/in/cadamsmithdev" target="_blank">LinkedIn</a>
+				<a
+					class="icon-link"
+					href="https://github.com/cadamsmith"
+					target="_blank"
+					aria-label="GitHub"
+				>
+					<iconify-icon icon="skill-icons:github-dark" />
+				</a>
+				<a
+					class="icon-link"
+					href="https://linkedin.com/in/cadamsmithdev"
+					target="_blank"
+					aria-label="LinkedIn"
+				>
+					<iconify-icon icon="skill-icons:linkedin" />
+				</a>
 			</div>
 		</div>
 	</div>
@@ -59,16 +73,30 @@
 		column-gap: 1em;
 	}
 
+	.hero-content {
+		padding-left: 1em;
+	}
+
 	.hero-links {
 		display: flex;
 		justify-content: space-between;
 		gap: 1em;
+
+		& a {
+			height: min-content;
+			align-self: flex-end;
+		}
 	}
 
 	.terminal-wrapper {
 		display: flex;
 		flex-direction: column;
 		height: auto;
+	}
+
+	.icon-link {
+		--border-color: var(--color-c);
+		font-size: 1.5em;
 	}
 
 	@media (max-width: 800px) {

@@ -25,16 +25,8 @@
 		on:mouseleave={setDefaultProfilePhoto}
 	>
 		<div>
-			<img
-				src={defaultProfileImgURL}
-				alt="t-rex profile pic"
-				class={useDefaultProfileImg ? '' : 'hide'}
-			/>
-			<img
-				src={altProfileImgURL}
-				class={useDefaultProfileImg ? 'hide' : ''}
-				alt="t-rex profile pic, with mouth open"
-			/>
+			<img src={defaultProfileImgURL} alt="" class={useDefaultProfileImg ? '' : 'hide'} />
+			<img src={altProfileImgURL} class={useDefaultProfileImg ? 'hide' : ''} alt="" />
 		</div>
 		Adam Smith
 	</a>
@@ -113,6 +105,8 @@
 		& div {
 			width: 3.5em;
 			height: 3.5em;
+			overflow: hidden;
+			border-radius: 50%;
 
 			margin-top: -0.7em;
 			margin-bottom: -0.7em;
@@ -123,7 +117,6 @@
 		& div img {
 			width: 100%;
 			height: 100%;
-			border-radius: 50%;
 			color: black;
 			position: absolute;
 			background-color: white;

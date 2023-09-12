@@ -1,10 +1,24 @@
 import { Commands } from './Commands';
 import { Session } from './Session';
+import type { Option } from './shared/Option';
+import { Some } from './shared/Some';
+import { None } from './shared/None';
 
 export class Terminal {
 	history: string[] = [];
+	historyIndex = -1;
+
 	sessions: Session[] = [];
 	isUserTyping = false;
+
+	get currentHistory(): Option<string> {
+		if (this.historyIndex < 0) {
+			return new None();
+		}
+
+		const command = this.history[this.history.length - this.historyIndex - 1];
+		return new Some(command);
+	}
 
 	constructor() {
 		this.init();
@@ -22,7 +36,6 @@ export class Terminal {
 	}
 
 	handlePromptKeydown(e: KeyboardEvent) {
-		console.log(e);
 		switch (e.key) {
 			case 'Enter': {
 				e.preventDefault();
@@ -32,19 +45,45 @@ export class Terminal {
 				break;
 			}
 			case 'ArrowUp': {
-				if (this.history.length > 0) {
-					this.recallHistory();
-				}
+				this.recallPrevHistory();
+				break;
+			}
+			case 'ArrowDown': {
+				this.recallNextHistory();
 				break;
 			}
 			default: {
+				// Reset historyIndex
+				this.historyIndex = -1;
 				break;
 			}
 		}
 	}
 
-	recallHistory() {
-		this.sessions[this.sessions.length - 1].command = this.history[this.history.length - 1];
+	recallPrevHistory() {
+		if (this.historyIndex >= this.history.length - 1) {
+			return;
+		}
+
+		this.historyIndex++;
+
+		if (!(this.currentHistory instanceof None)) {
+			const currentHistory = <Some<string>>this.currentHistory;
+			this.sessions[this.sessions.length - 1].command = currentHistory.value;
+		}
+	}
+
+	recallNextHistory() {
+		if (this.historyIndex < 1) {
+			return;
+		}
+
+		this.historyIndex--;
+
+		if (!(this.currentHistory instanceof None)) {
+			const currentHistory = <Some<string>>this.currentHistory;
+			this.sessions[this.sessions.length - 1].command = currentHistory.value;
+		}
 	}
 
 	executeCommand() {
@@ -69,6 +108,7 @@ export class Terminal {
 		}
 
 		this.history = [...this.history, command];
+		this.historyIndex = -1;
 		this.prompt();
 	}
 
