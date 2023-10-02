@@ -1,5 +1,8 @@
 <script lang="ts">
 	const currentYear = new Date().getFullYear();
+
+	export const deploySha = import.meta.env.CF_PAGES_COMMIT_SHA;
+	export const deployBranch = import.meta.env.CF_PAGES_BRANCH;
 </script>
 
 <footer>
@@ -11,6 +14,12 @@
 		</a>.
 	</p>
 	<div>
+		{#if deploySha && deployBranch}
+			<a href="https://github.com/cadamsmith/cadamsmith.dev/commit/{deploySha}" target="_blank">
+				{deployBranch} @ {deploySha.slice(0, 7)}
+			</a>
+		{/if}
+
 		<a class="icon-link" href="https://github.com/cadamsmith/cadamsmith.dev" target="_blank">
 			<iconify-icon inline icon="skill-icons:github-dark" />
 			Source Code
