@@ -1,5 +1,8 @@
 <script lang="ts">
 	const currentYear = new Date().getFullYear();
+
+	const deploySha = import.meta.env.VITE_DEPLOY_COMMIT_SHA;
+	const deployBranch = import.meta.env.VITE_DEPLOY_COMMIT_BRANCH;
 </script>
 
 <footer>
@@ -11,6 +14,16 @@
 		</a>.
 	</p>
 	<div>
+		{#if deploySha && deployBranch}
+			<a
+				class="deploy-info-link"
+				href="https://github.com/cadamsmith/cadamsmith.dev/commit/{deploySha}"
+				target="_blank"
+			>
+				{deployBranch} @ {deploySha.slice(0, 7)}
+			</a>
+		{/if}
+
 		<a class="icon-link" href="https://github.com/cadamsmith/cadamsmith.dev" target="_blank">
 			<iconify-icon inline icon="skill-icons:github-dark" />
 			Source Code
@@ -37,7 +50,11 @@
 		margin: 0;
 	}
 
-	@media (max-width: 600px) {
+	.deploy-info-link {
+		color: white;
+	}
+
+	@media (max-width: 700px) {
 		footer {
 			background-image: linear-gradient(to right, var(--color-a), var(--color-a));
 			text-align: center;

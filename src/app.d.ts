@@ -8,6 +8,8 @@ declare global {
 		interface Platform {
 			env: {
 				COUNTER: DurableObjectNamespace;
+				CF_PAGES_COMMIT_SHA: string;
+				CF_PAGES_BRANCH: string;
 			};
 			context: {
 				waitUntil(promise: Promise<unknown>): void;
