@@ -1,8 +1,8 @@
 <script lang="ts">
 	const currentYear = new Date().getFullYear();
 
-	export const deploySha = import.meta.env.VITE_CF_PAGES_COMMIT_SHA;
-	export const deployBranch = import.meta.env.VITE_CF_PAGES_BRANCH;
+	export const deploySha = import.meta.env.VITE_DEPLOY_COMMIT_SHA;
+	export const deployBranch = import.meta.env.VITE_DEPLOY_COMMIT_BRANCH;
 </script>
 
 <footer>
