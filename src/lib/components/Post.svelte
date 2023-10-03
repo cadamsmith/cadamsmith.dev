@@ -24,7 +24,7 @@
 
 		{#each post.meta.categories as category}
 			<a href={`/blog/category/${category}`} class="category-link">
-				{category}
+				#{category}
 			</a>
 		{/each}
 	</div>

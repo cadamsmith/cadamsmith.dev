@@ -71,10 +71,6 @@
 		column-gap: 1em;
 	}
 
-	.hero-content {
-		padding-left: 1em;
-	}
-
 	.hero-links {
 		display: flex;
 		justify-content: space-between;

@@ -48,7 +48,7 @@ main > * {
 
 main > .full-width {
   grid-column: full;
-  padding: 1rem;
+  padding: 1rem 2rem;
 }
 
 :where(h2, h3, h4, h5, h6) {
