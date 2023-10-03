@@ -17,7 +17,7 @@
 			Powered by
 			<a class="icon-link sveltekit-link" href="https://kit.svelte.dev/" target="_blank">
 				<iconify-icon inline icon="skill-icons:svelte" />
-				<span>Sveltekit</span>
+				<span>SvelteKit</span>
 			</a>
 		</span>
 	</div>
