@@ -31,7 +31,7 @@
 					{deployBranch} @ {deploySha.slice(0, 7)}
 				</a>
 			{:else}
-				<span>LOCAL BLAH BLAH BLAH</span>
+				<span>LOCAL</span>
 			{/if}
 
 			<a href="{githubUrl}/releases/tag/v{appVersion}" target="_blank">
