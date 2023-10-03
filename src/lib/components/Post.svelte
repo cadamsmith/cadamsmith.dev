@@ -19,7 +19,7 @@
 		</a>
 	</h2>
 
-	<div class="post-body">
+	<div class="body">
 		<p>Published: {@html formatPostDate(post.meta.date)}</p>
 
 		{#each post.meta.categories as category}
@@ -34,6 +34,8 @@
 	li {
 		background-color: var(--color-g);
 		border: 0.1em solid black;
+		display: flex;
+		flex-direction: column;
 	}
 
 	h2 {
@@ -44,8 +46,9 @@
 		margin-right: 0.5rem;
 	}
 
-	.post-body {
+	.body {
 		background-color: #fff;
 		padding: 0.5em;
+		flex-grow: 1;
 	}
 </style>

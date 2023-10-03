@@ -17,6 +17,8 @@
 	li {
 		background-color: var(--color-g);
 		border: 0.1em solid black;
+		display: flex;
+		flex-direction: column;
 	}
 
 	h2 {
@@ -30,5 +32,6 @@
 	.body {
 		background-color: #fff;
 		padding: 0.5em;
+		flex-grow: 1;
 	}
 </style>
