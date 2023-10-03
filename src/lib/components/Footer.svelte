@@ -3,6 +3,8 @@
 
 	const deploySha = import.meta.env.VITE_DEPLOY_COMMIT_SHA;
 	const deployBranch = import.meta.env.VITE_DEPLOY_COMMIT_BRANCH;
+
+	const appVersion = import.meta.env.VITE_APP_VERSION;
 </script>
 
 <footer>
@@ -13,16 +15,20 @@
 			<span>Sveltekit</span>
 		</a>.
 	</p>
-	<div>
-		{#if deploySha && deployBranch}
-			<a
-				class="deploy-info-link"
-				href="https://github.com/cadamsmith/cadamsmith.dev/commit/{deploySha}"
-				target="_blank"
-			>
-				{deployBranch} @ {deploySha.slice(0, 7)}
-			</a>
-		{/if}
+	<div class="source-info">
+		<span>
+			<strong>v{appVersion}</strong>
+
+			{#if deploySha && deployBranch}
+				<a
+					class="deploy-info-link"
+					href="https://github.com/cadamsmith/cadamsmith.dev/commit/{deploySha}"
+					target="_blank"
+				>
+					{deployBranch} @ {deploySha.slice(0, 7)}
+				</a>
+			{/if}
+		</span>
 
 		<a class="icon-link" href="https://github.com/cadamsmith/cadamsmith.dev" target="_blank">
 			<iconify-icon inline icon="skill-icons:github-dark" />
@@ -54,6 +60,12 @@
 		color: white;
 	}
 
+	.source-info {
+		display: flex;
+		gap: 1em;
+		align-items: center;
+	}
+
 	@media (max-width: 700px) {
 		footer {
 			background-image: linear-gradient(to right, var(--color-a), var(--color-a));
@@ -70,6 +82,10 @@
 		div {
 			background-color: var(--color-b);
 			padding: 0.75em 1em 1em 1em;
+		}
+
+		.source-info {
+			justify-content: space-between;
 		}
 	}
 </style>
