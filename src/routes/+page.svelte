@@ -1,5 +1,10 @@
 <script>
 	import Terminal from '$lib/components/Terminal.svelte';
+
+	const linkedInUrl = 'https://linkedin.com/in/cadamsmithdev';
+	const githubUrl = 'https://github.com/cadamsmith';
+	const cwsWebsiteUrl = 'https://cws.auburn.edu/cws';
+	const emailAddress = 'cadamsmith.dev@gmail.com';
 </script>
 
 <svelte:head>
@@ -11,7 +16,7 @@
 		<h1>Hello there, I'm Adam.</h1>
 		<p>
 			I'm a software engineer. I'm currently working as a technical lead for
-			<a href="https://cws.auburn.edu/cws" target="_blank">Campus Web Solutions</a> at Auburn University.
+			<a href={cwsWebsiteUrl} target="_blank">Campus Web Solutions</a> at Auburn University.
 		</p>
 
 		<p>
@@ -20,28 +25,21 @@
 		</p>
 
 		<p>
-			I also do a lot of internal tooling and automation. I'm a big fan of GitHub Actions and Azure
-			DevOps.
+			I enjoy working on internal tooling, automating stuff, and making things easier. I find joy in
+			debugging and solving problems. I'm a big fan of code reviewing and improving code quality.
 		</p>
 
 		<div class="hero-links">
-			<a href="/resume.pdf" target="_blank">Resume</a>
+			<div class="hero-links-left">
+				<a href="mailto:{emailAddress}">Email me!</a>
+				<a href="/resume.pdf" target="_blank">Resume</a>
+			</div>
 
-			<div>
-				<a
-					class="icon-link"
-					href="https://github.com/cadamsmith"
-					target="_blank"
-					aria-label="GitHub"
-				>
+			<div class="hero-links-right">
+				<a class="icon-link" href={githubUrl} target="_blank" aria-label="GitHub">
 					<iconify-icon icon="skill-icons:github-dark" />
 				</a>
-				<a
-					class="icon-link"
-					href="https://linkedin.com/in/cadamsmithdev"
-					target="_blank"
-					aria-label="LinkedIn"
-				>
+				<a class="icon-link" href={linkedInUrl} target="_blank" aria-label="LinkedIn">
 					<iconify-icon icon="skill-icons:linkedin" />
 				</a>
 			</div>
@@ -82,9 +80,12 @@
 		justify-content: space-between;
 		gap: 1em;
 
-		& a {
+		& .hero-links-left {
 			height: min-content;
 			align-self: flex-end;
+
+			display: flex;
+			gap: 1em;
 		}
 	}
 
