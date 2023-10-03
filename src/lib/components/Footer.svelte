@@ -25,19 +25,19 @@
 	</div>
 
 	<div class="source-info">
-		<span>
-			<strong>
-				<a href="{githubUrl}/releases/tag/v{appVersion}" target="_blank">
-					v{appVersion}
-				</a>
-			</strong>
-
+		<div class="versioning-info">
 			{#if deploySha && deployBranch}
 				<a class="deploy-info-link" href="{githubUrl}/commit/{deploySha}" target="_blank">
 					{deployBranch} @ {deploySha.slice(0, 7)}
 				</a>
+			{:else}
+				<span>LOCAL</span>
 			{/if}
-		</span>
+
+			<a href="{githubUrl}/releases/tag/v{appVersion}" target="_blank">
+				<strong>v{appVersion}</strong>
+			</a>
+		</div>
 
 		<a class="icon-link" href={githubUrl} target="_blank">
 			<iconify-icon inline icon="skill-icons:github-dark" />
@@ -73,6 +73,15 @@
 		align-items: center;
 	}
 
+	.versioning-info {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25em;
+		font-size: 0.8em;
+
+		align-items: flex-end;
+	}
+
 	.info {
 		margin: 0;
 	}
@@ -95,6 +104,10 @@
 		.source-info {
 			background-color: var(--color-b);
 			padding: 0.75em 1em 1em 1em;
+		}
+
+		.versioning-info {
+			align-items: flex-start;
 		}
 
 		.info,
