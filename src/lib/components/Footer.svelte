@@ -5,6 +5,8 @@
 	const deployBranch = import.meta.env.VITE_DEPLOY_COMMIT_BRANCH;
 
 	const appVersion = import.meta.env.VITE_APP_VERSION;
+
+	const githubUrl = 'https://github.com/cadamsmith/cadamsmith.dev';
 </script>
 
 <footer>
@@ -24,20 +26,20 @@
 
 	<div class="source-info">
 		<span>
-			<strong>v{appVersion}</strong>
+			<strong>
+				<a href="{githubUrl}/releases/tag/v{appVersion}" target="_blank">
+					v{appVersion}
+				</a>
+			</strong>
 
 			{#if deploySha && deployBranch}
-				<a
-					class="deploy-info-link"
-					href="https://github.com/cadamsmith/cadamsmith.dev/commit/{deploySha}"
-					target="_blank"
-				>
+				<a class="deploy-info-link" href="{githubUrl}/commit/{deploySha}" target="_blank">
 					{deployBranch} @ {deploySha.slice(0, 7)}
 				</a>
 			{/if}
 		</span>
 
-		<a class="icon-link" href="https://github.com/cadamsmith/cadamsmith.dev" target="_blank">
+		<a class="icon-link" href={githubUrl} target="_blank">
 			<iconify-icon inline icon="skill-icons:github-dark" />
 			Source Code
 		</a>
@@ -60,7 +62,7 @@
 		display: inline-block;
 	}
 
-	.deploy-info-link {
+	a:not(.icon-link) {
 		color: white;
 	}
 
