@@ -8,13 +8,20 @@
 </script>
 
 <footer>
-	<p>
-		@ {currentYear} Adam Smith. Powered by
-		<a class="icon-link sveltekit-link" href="https://kit.svelte.dev/" target="_blank">
-			<iconify-icon inline icon="skill-icons:svelte" />
-			<span>Sveltekit</span>
-		</a>.
-	</p>
+	<div class="info">
+		<span>
+			<strong>@ {currentYear} Adam Smith</strong>
+		</span>
+
+		<span>
+			Powered by
+			<a class="icon-link sveltekit-link" href="https://kit.svelte.dev/" target="_blank">
+				<iconify-icon inline icon="skill-icons:svelte" />
+				<span>Sveltekit</span>
+			</a>
+		</span>
+	</div>
+
 	<div class="source-info">
 		<span>
 			<strong>v{appVersion}</strong>
@@ -50,20 +57,22 @@
 
 	.icon-link {
 		--border-color: var(--color-h);
-	}
-
-	p {
-		margin: 0;
+		display: inline-block;
 	}
 
 	.deploy-info-link {
 		color: white;
 	}
 
+	.info,
 	.source-info {
 		display: flex;
 		gap: 1em;
 		align-items: center;
+	}
+
+	.info {
+		margin: 0;
 	}
 
 	@media (max-width: 700px) {
@@ -75,15 +84,18 @@
 			gap: 0;
 		}
 
-		p {
+		.info {
 			margin-bottom: 0.75em;
+			padding-left: 1em;
+			padding-right: 1em;
 		}
 
-		div {
+		.source-info {
 			background-color: var(--color-b);
 			padding: 0.75em 1em 1em 1em;
 		}
 
+		.info,
 		.source-info {
 			justify-content: space-between;
 		}
