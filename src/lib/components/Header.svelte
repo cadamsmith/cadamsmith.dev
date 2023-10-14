@@ -54,6 +54,7 @@
 		justify-content: space-between;
 		align-items: center;
 		margin-bottom: 1rem;
+		overflow-x: hidden;
 	}
 
 	ul {
@@ -103,6 +104,7 @@
 			height: 3.5em;
 			overflow: hidden;
 			border-radius: 50%;
+			flex-shrink: 0;
 
 			margin-top: -0.7em;
 			margin-bottom: -0.7em;

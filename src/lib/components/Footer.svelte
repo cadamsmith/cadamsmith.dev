@@ -12,10 +12,6 @@
 <footer>
 	<div class="info">
 		<span>
-			<strong>@ {currentYear} Adam Smith</strong>
-		</span>
-
-		<span>
 			Powered by
 			<a class="icon-link sveltekit-link" href="https://kit.svelte.dev/" target="_blank">
 				<iconify-icon inline icon="skill-icons:svelte" />
@@ -55,6 +51,7 @@
 		display: flex;
 		justify-content: space-between;
 		gap: 0.5em;
+		overflow-x: hidden;
 	}
 
 	.icon-link {
@@ -71,6 +68,7 @@
 		display: flex;
 		gap: 1em;
 		align-items: center;
+		flex-wrap: wrap;
 	}
 
 	.versioning-info {
@@ -84,6 +82,7 @@
 
 	.info {
 		margin: 0;
+		justify-content: center;
 	}
 
 	@media (max-width: 700px) {
@@ -110,7 +109,6 @@
 			align-items: flex-start;
 		}
 
-		.info,
 		.source-info {
 			justify-content: space-between;
 		}
