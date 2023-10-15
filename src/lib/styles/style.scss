@@ -36,15 +36,20 @@ main {
   grid-template-columns:
     [full-start] 1rem [wrapper-start]
     minmax(0, 70rem) [wrapper-end] 1rem [full-end];
-  grid-template-rows: min-content;
+  grid-auto-rows: min-content;
   
   /* Optional gap */
   column-gap: var(--pad, 1rem);
   overflow-x: hidden;
+
+  background-image: url(/images/bg-lego.svg);
+  background-repeat: repeat;
 }
 
 main > * {
-  grid-column: wrapper;
+  grid-column: full;
+  background-color: white;
+  padding: 0 2rem;
 }
 
 main > .full-width {
