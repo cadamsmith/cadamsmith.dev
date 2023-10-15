@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { fade } from 'svelte/transition';
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
@@ -6,9 +6,21 @@
 	import 'iconify-icon';
 
 	export let data;
+
+	let crazyMode = false;
+
+	let cursor = 0;
+	const KONAMI_CODE = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+	function onKeydown(e: KeyboardEvent) {
+		cursor = (e.keyCode == KONAMI_CODE[cursor]) ? cursor + 1 : 0;
+		if (cursor == KONAMI_CODE.length) {
+			crazyMode = true;
+			console.log('you found the easter egg!');
+		}
+	}
 </script>
 
-<Header />
+<Header {crazyMode} />
 
 <div class="transition-outer">
 	{#key data.currentRoute}
@@ -35,3 +47,5 @@
 		grid-column: 1;
 	}
 </style>
+
+<svelte:window on:keydown|preventDefault={onKeydown} />

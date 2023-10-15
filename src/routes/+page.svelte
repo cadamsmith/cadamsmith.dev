@@ -1,5 +1,6 @@
 <script>
-	import Terminal from '$lib/components/Terminal.svelte';
+	import Spotify from '$lib/components/Spotify.svelte';
+import Terminal from '$lib/components/Terminal.svelte';
 
 	const linkedInUrl = 'https://linkedin.com/in/cadamsmithdev';
 	const githubUrl = 'https://github.com/cadamsmith';

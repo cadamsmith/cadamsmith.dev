@@ -1,35 +1,11 @@
 <script lang="ts">
-	const defaultProfileImgPath = '/images/profile.png';
-	const altProfileImgPath = '/images/profile-alt.png';
+	import NavBrand from "./NavBrand.svelte";
 
-	const defaultProfileImgURL = new URL(defaultProfileImgPath, import.meta.url).href;
-
-	const altProfileImgURL = new URL(altProfileImgPath, import.meta.url).href;
-
-	let useDefaultProfileImg = true;
-
-	function setAltProfilePhoto() {
-		useDefaultProfileImg = false;
-	}
-
-	function setDefaultProfilePhoto() {
-		useDefaultProfileImg = true;
-	}
+	export let crazyMode: boolean;
 </script>
 
 <header>
-	<a
-		class="nav-brand"
-		href="/"
-		on:mouseenter={setAltProfilePhoto}
-		on:mouseleave={setDefaultProfilePhoto}
-	>
-		<div>
-			<img src={defaultProfileImgURL} alt="" class={useDefaultProfileImg ? '' : 'hide'} />
-			<img src={altProfileImgURL} class={useDefaultProfileImg ? 'hide' : ''} alt="" />
-		</div>
-		Adam Smith
-	</a>
+	<NavBrand {crazyMode} />
 
 	<nav>
 		<ul>
@@ -80,47 +56,6 @@
 		color: #3da5d9;
 	}
 
-	.nav-brand {
-		display: inline-flex;
-		align-items: center;
-		text-transform: uppercase;
-		background-color: #000;
-		gap: 0.5em;
-		color: white;
-		padding: unset;
-		padding-right: 0.5em;
-		margin-top: 0.7em;
-		margin-bottom: 0.7em;
-		font-size: 1.4em;
-		margin-left: 0.6em;
-		border-color: #000;
-
-		&:hover {
-			border-color: #fff;
-		}
-
-		& div {
-			width: 3.5em;
-			height: 3.5em;
-			overflow: hidden;
-			border-radius: 50%;
-			flex-shrink: 0;
-
-			margin-top: -0.7em;
-			margin-bottom: -0.7em;
-			margin-left: -0.6em;
-			position: relative;
-		}
-
-		& div img {
-			width: 100%;
-			height: 100%;
-			color: black;
-			position: absolute;
-			background-color: white;
-		}
-	}
-
 	@media (max-width: 700px) {
 		header {
 			flex-direction: column;
@@ -141,10 +76,12 @@
 			display: flex;
 			justify-content: center;
 			padding: 1rem;
-		}
-	}
 
-	.hide {
-		visibility: hidden;
+			overflow: hidden;
+			width: max-content;
+			align-self: flex-start;
+			justify-content: center;
+			width: 100%;
+		}
 	}
 </style>
