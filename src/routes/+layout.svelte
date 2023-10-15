@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { fade } from 'svelte/transition';
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
@@ -8,7 +8,7 @@
 	export let data;
 </script>
 
-<Header />
+<Header crazyMode={false} />
 
 <div class="transition-outer">
 	{#key data.currentRoute}

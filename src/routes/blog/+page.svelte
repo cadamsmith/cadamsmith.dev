@@ -11,7 +11,7 @@
 <section class="hero full-width">
 	<h1>Blog</h1>
 
-	<p>Adam Smith writes about programming, mathematics, and other topics he is actively learning.</p>
+	<p>Adam Smith's going to give this blogging thing a try and see how it goes.</p>
 
 	<p>He provides <a href="/rss" target="_blank">an RSS feed</a> for those interested.</p>
 </section>

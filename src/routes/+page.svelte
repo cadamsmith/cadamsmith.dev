@@ -74,13 +74,15 @@
 	.hero-links {
 		display: flex;
 		justify-content: space-between;
+		flex-wrap: wrap;
 		gap: 1em;
 
-		& .hero-links-left {
+		& > * {
 			height: min-content;
 			align-self: flex-end;
 
 			display: flex;
+			justify-content: center;
 			gap: 1em;
 		}
 	}
