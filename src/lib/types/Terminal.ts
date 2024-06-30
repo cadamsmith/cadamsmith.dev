@@ -3,6 +3,8 @@ import { Session } from './Session';
 import type { Option } from './shared/Option';
 import { Some } from './shared/Some';
 import { None } from './shared/None';
+import { TwentyFortyEight } from './TwentyFortyEight';
+import { Direction } from './Direction';
 
 export class Terminal {
 	history: string[] = [];
@@ -10,6 +12,9 @@ export class Terminal {
 
 	sessions: Session[] = [];
 	isUserTyping = false;
+
+	twentyFortyEightGame = new TwentyFortyEight();
+	isPlaying2048 = false;
 
 	get currentHistory(): Option<string> {
 		if (this.historyIndex < 0) {
@@ -36,6 +41,10 @@ export class Terminal {
 	}
 
 	handlePromptKeydown(e: KeyboardEvent) {
+		if (this.isPlaying2048) {
+			return this.handlePromptKeydownIn2048(e);
+		}
+
 		switch (e.key) {
 			case 'Enter': {
 				e.preventDefault();
@@ -57,6 +66,51 @@ export class Terminal {
 				this.historyIndex = -1;
 				break;
 			}
+		}
+	}
+
+	handlePromptKeydownIn2048(e: KeyboardEvent) {
+		const session = this.sessions[this.sessions.length - 2];
+
+		switch (e.key) {
+			case 'Enter': {
+				e.preventDefault();
+
+				this.executeCommand();
+				break;
+			}
+			case 'ArrowUp': {
+				session.output.content = `Use your arrow keys (↑, ↓, ←, →) to play.\n
+            		Enter \"q\" to quit the game\n
+					${this.twentyFortyEightGame.shift(Direction.Up)}`;
+				break;
+			}
+			case 'ArrowDown': {
+				session.output.content = `Use your arrow keys (↑, ↓, ←, →) to play.\n
+            		Enter \"q\" to quit the game\n
+					${this.twentyFortyEightGame.shift(Direction.Down)}`;
+				break;
+			}
+			case 'ArrowLeft': {
+				session.output.content = `Use your arrow keys (↑, ↓, ←, →) to play.\n
+            		Enter \"q\" to quit the game\n
+					${this.twentyFortyEightGame.shift(Direction.Left)}`;
+				break;
+			}
+			case 'ArrowRight': {
+				session.output.content = `Use your arrow keys (↑, ↓, ←, →) to play.\n
+            		Enter \"q\" to quit the game\n
+					${this.twentyFortyEightGame.shift(Direction.Right)}`;
+				break;
+			}
+			default: {
+				break;
+			}
+		}
+
+		if (this.twentyFortyEightGame.hasWon) {
+			this.isPlaying2048 = false;
+			session.output.content += '\n\nYou win! Thanks for playing!';
 		}
 	}
 
@@ -87,6 +141,10 @@ export class Terminal {
 	}
 
 	executeCommand() {
+		if (this.isPlaying2048) {
+			return this.executeCommandIn2048();
+		}
+
 		const session = this.sessions[this.sessions.length - 1];
 		const command = session.command.trim();
 
@@ -102,6 +160,12 @@ export class Terminal {
 			case 'help':
 				Commands.help(session.output);
 				break;
+			case '2048':
+				this.isPlaying2048 = true;
+				session.output.content = `Use your arrow keys (↑, ↓, ←, →) to play.\n
+            		Enter \"q\" to quit the game\n
+					${this.twentyFortyEightGame.init()}`;
+				break;
 			default:
 				session.output.content = 'Command not found';
 				break;
@@ -110,6 +174,21 @@ export class Terminal {
 		this.history = [...this.history, command];
 		this.historyIndex = -1;
 		this.prompt();
+	}
+
+	executeCommandIn2048() {
+		const session = this.sessions[this.sessions.length - 1];
+		const command = session.command.trim();
+
+		switch (command) {
+			case 'q':
+				this.isPlaying2048 = false;
+				session.output.content = 'You quit the game. Thanks for playing!';
+				this.prompt();
+				break;
+			default:
+				break;
+		}
 	}
 
 	clear() {
