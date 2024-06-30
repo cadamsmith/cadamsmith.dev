@@ -117,13 +117,12 @@ p {
 main a {
   color: var(--color-c);
   font-weight: bold;
-  transition: all .3s ease-in-out;
   text-decoration-color: var(--color-c);
 }
 
 main a:hover {
-  color: white;
-  box-shadow: inset 200px 0 0 0 var(--color-c);
+  color: #000;
+  text-decoration-color: #000;
 }
 
 section.hero {
@@ -139,6 +138,13 @@ section.hero {
   margin-right: 0.2em;
   border-radius: 0.4em;
   font-weight: bold;
+  height: min-content;
+  align-self: flex-end;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .2em;
 
   font-size: 1.05em;
   white-space: nowrap;
@@ -149,8 +155,12 @@ section.hero {
   }
 }
 
+.iconify-icon {
+  font-size: 1.25em;
+}
+
 .icon-link:hover {
   background-color: #fff;
   box-shadow: none;
-  border-color: var(--border-color);
+  border-color: var(--color-h);
 }

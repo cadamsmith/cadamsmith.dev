@@ -1,20 +1,37 @@
 <script lang="ts">
 	import NavBrand from "./NavBrand.svelte";
 
-	export let crazyMode: boolean;
+	const linkedInUrl = 'https://linkedin.com/in/cadamsmithdev';
+	const githubUrl = 'https://github.com/cadamsmith';
+	const emailAddress = 'cadamsmith.dev@gmail.com';
 </script>
 
 <header>
-	<NavBrand {crazyMode} />
+	<NavBrand />
 
 	<nav>
 		<ul>
 			<li>
-				<a href="/blog">Blog</a>
+				<a class="icon-link" href={githubUrl} target="_blank" aria-label="GitHub">
+					<iconify-icon class="iconify-icon" icon="skill-icons:github-dark" />
+				</a>
 			</li>
-			❖
 			<li>
-				<a href="/portfolio">Portfolio</a>
+				<a class="icon-link" href={linkedInUrl} target="_blank" aria-label="LinkedIn">
+					<iconify-icon class="iconify-icon" icon="skill-icons:linkedin" />
+				</a>
+			</li>
+			<li>
+				<a class="icon-link resume-link" href="/resume.pdf" target="_blank">
+					<iconify-icon class="iconify-icon" inline icon="icon-park:doc-detail" />
+					<span>Resume</span>
+				</a>
+			</li>
+			<li>
+				<a class="icon-link email-link" href="mailto:{emailAddress}">
+					<iconify-icon class="iconify-icon" inline icon="icon-park:email-block" />
+					<span>Contact</span>
+				</a>
 			</li>
 		</ul>
 	</nav>
@@ -41,7 +58,7 @@
 		gap: 0.4rem;
 	}
 
-	a {
+	a:not(.icon-link) {
 		text-decoration: none;
 		color: inherit;
 		padding: 0.5em;
@@ -50,7 +67,7 @@
 		box-sizing: border-box;
 	}
 
-	a:hover {
+	a:not(.icon-link):hover {
 		border-color: #000;
 		text-decoration: underline;
 		color: #3da5d9;

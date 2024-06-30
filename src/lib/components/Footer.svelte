@@ -1,6 +1,4 @@
 <script lang="ts">
-	const currentYear = new Date().getFullYear();
-
 	const deploySha = import.meta.env.VITE_DEPLOY_COMMIT_SHA;
 	const deployBranch = import.meta.env.VITE_DEPLOY_COMMIT_BRANCH;
 
@@ -14,8 +12,16 @@
 		<span>
 			Powered by
 			<a class="icon-link sveltekit-link" href="https://kit.svelte.dev/" target="_blank">
-				<iconify-icon inline icon="skill-icons:svelte" />
+				<iconify-icon class="iconify-icon" inline icon="skill-icons:svelte" />
 				<span>SvelteKit</span>
+			</a>
+			
+		</span>
+		<span>
+			on
+			<a class="icon-link cloudflare-link" href="https://pages.cloudflare.com/" target="_blank">
+				<iconify-icon class="iconify-icon" inline icon="skill-icons:cloudflare-dark" />
+				<span>Cloudflare Pages</span>
 			</a>
 		</span>
 	</div>
@@ -36,7 +42,7 @@
 		</div>
 
 		<a class="icon-link" href={githubUrl} target="_blank">
-			<iconify-icon inline icon="skill-icons:github-dark" />
+			<iconify-icon class="iconify-icon" inline icon="skill-icons:github-dark" />
 			Source Code
 		</a>
 	</div>
@@ -66,9 +72,13 @@
 	.info,
 	.source-info {
 		display: flex;
-		gap: 1em;
 		align-items: center;
 		flex-wrap: wrap;
+		row-gap: .5em;
+	}
+
+	.source-info {
+		gap: 1em;
 	}
 
 	.versioning-info {
