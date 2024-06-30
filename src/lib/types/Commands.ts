@@ -8,6 +8,6 @@ export class Commands {
 	}
 
 	static help(output: Output) {
-		output.content = 'Available commands: welcome, clear, help';
+		output.content = 'Available commands: welcome, clear, 2048, help';
 	}
 }

@@ -8,6 +8,10 @@ export class TwentyFortyEight {
         [0, 0, 0, 0]
     ];
 
+    hasWon = false;
+
+    winValue = 64;
+
     public init() : string {
         this.reset();
         this.initialSeed();
@@ -37,10 +41,19 @@ export class TwentyFortyEight {
         // filter out zeroes
         let values = this.board[row].filter(n => n !== 0);
 
+        if (direction === Direction.Right) {
+            values = values.reverse();
+        }
+
         // combine adjacent equal values
         for (let i = 0; i < values.length - 1; i++) {
             if (values[i] === values[i + 1]) {
-                values[i] *= 2;
+                const sum = values[i] * 2;
+                if (sum >= this.winValue) {
+                    this.hasWon = true;
+                }
+
+                values[i] = sum;
                 values[i + 1] = 0;
             }
         }
@@ -55,7 +68,7 @@ export class TwentyFortyEight {
 
         // Reverse the values if the direction is right
         if (direction === Direction.Right) {
-            values.reverse();
+            values = values.reverse();
         }
 
         this.board[row] = values;
@@ -72,10 +85,19 @@ export class TwentyFortyEight {
             values.push(this.board[row][col])
         }
 
+        if (direction === Direction.Down) {
+            values = values.reverse();
+        }
+
         // combine adjacent equal values
         for (let i = 0; i < values.length - 1; i++) {
             if (values[i] === values[i + 1]) {
-                values[i] *= 2;
+                const sum = values[i] * 2;
+                if (sum >= this.winValue) {
+                    this.hasWon = true;
+                }
+
+                values[i] = sum;
                 values[i + 1] = 0;
             }
         }
@@ -99,18 +121,20 @@ export class TwentyFortyEight {
 
     public toString(): string {
         return this.board.map(
-                row => row.map(n => this.prettyPrintValue(n)).join(' ')
+                row => row.map(n => this.prettyPrintValue(n)).join(' | ')
             )
-            .join('\n\n');
+            .join('\n\n-------------------------\n\n');
     }
 
     prettyPrintValue(value: number): string {
-        const stringValue = value.toString().padEnd(4, '.')
+        const stringValue = value.toString().padStart(4, ' ')
 
         return `<span class=\"game-cell game-cell-${value}\">${stringValue}</span>`;
     }
 
     reset() {
+        this.hasWon = false;
+
         for (let row = 0; row < this.board.length; row++) {
             for (let col = 0; col < this.board[row].length; col++) {
                 this.board[row][col] = 0;

@@ -80,24 +80,37 @@ export class Terminal {
 				break;
 			}
 			case 'ArrowUp': {
-				session.output.content = this.twentyFortyEightGame.shift(Direction.Up);
+				session.output.content = `Use your arrow keys (↑, ↓, ←, →) to play.\n
+            		Enter \"q\" to quit the game\n
+					${this.twentyFortyEightGame.shift(Direction.Up)}`;
 				break;
 			}
 			case 'ArrowDown': {
-				session.output.content = this.twentyFortyEightGame.shift(Direction.Down);
+				session.output.content = `Use your arrow keys (↑, ↓, ←, →) to play.\n
+            		Enter \"q\" to quit the game\n
+					${this.twentyFortyEightGame.shift(Direction.Down)}`;
 				break;
 			}
 			case 'ArrowLeft': {
-				session.output.content = this.twentyFortyEightGame.shift(Direction.Left);
+				session.output.content = `Use your arrow keys (↑, ↓, ←, →) to play.\n
+            		Enter \"q\" to quit the game\n
+					${this.twentyFortyEightGame.shift(Direction.Left)}`;
 				break;
 			}
 			case 'ArrowRight': {
-				session.output.content = this.twentyFortyEightGame.shift(Direction.Right);
+				session.output.content = `Use your arrow keys (↑, ↓, ←, →) to play.\n
+            		Enter \"q\" to quit the game\n
+					${this.twentyFortyEightGame.shift(Direction.Right)}`;
 				break;
 			}
-			case 'q': {
-				this.isPlaying2048 = false;
+			default: {
+				break;
 			}
+		}
+
+		if (this.twentyFortyEightGame.hasWon) {
+			this.isPlaying2048 = false;
+			session.output.content += '\n\nYou win! Thanks for playing!';
 		}
 	}
 
@@ -149,7 +162,9 @@ export class Terminal {
 				break;
 			case '2048':
 				this.isPlaying2048 = true;
-				session.output.content = this.twentyFortyEightGame.init();
+				session.output.content = `Use your arrow keys (↑, ↓, ←, →) to play.\n
+            		Enter \"q\" to quit the game\n
+					${this.twentyFortyEightGame.init()}`;
 				break;
 			default:
 				session.output.content = 'Command not found';
@@ -168,6 +183,7 @@ export class Terminal {
 		switch (command) {
 			case 'q':
 				this.isPlaying2048 = false;
+				session.output.content = 'You quit the game. Thanks for playing!';
 				this.prompt();
 				break;
 			default:
