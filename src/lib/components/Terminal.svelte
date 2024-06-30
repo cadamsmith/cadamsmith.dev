@@ -63,13 +63,13 @@
 
 <style>
 	.terminal {
-		margin: 1rem;
 		flex-grow: 1;
 		display: flex;
 		flex-direction: column;
 		border-radius: 1em;
 		overflow: hidden;
 		height: 0;
+		margin-top: 1rem;
 	}
 
 	.terminal-header {

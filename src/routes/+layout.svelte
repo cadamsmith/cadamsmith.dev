@@ -8,7 +8,7 @@
 	export let data;
 </script>
 
-<Header crazyMode={false} />
+<Header />
 
 <div class="transition-outer">
 	{#key data.currentRoute}

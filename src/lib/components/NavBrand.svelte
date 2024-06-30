@@ -1,10 +1,6 @@
 <script lang="ts">
-    const defaultProfileImgPath = '/images/profile.jpg';
-	const altProfileImgPath = '/images/profile-alt.jpg';
-
-	const defaultProfileImgURL = new URL(defaultProfileImgPath, import.meta.url).href;
-
-	const altProfileImgURL = new URL(altProfileImgPath, import.meta.url).href;
+    const defaultImg = '/images/profile.jpg';
+	const altImg = '/images/profile-alt.jpg';
 
     let useDefaultProfileImg = true;
 
@@ -15,13 +11,11 @@
 	function setDefaultProfilePhoto() {
 		useDefaultProfileImg = true;
 	}
-
-    export let crazyMode: boolean;
 </script>
 
 <svelte:head>
-	<link rel="preload" as="image" href="{defaultProfileImgPath}" />
-	<link rel="preload" as="image" href="{altProfileImgPath}" />
+	<link rel="preload" as="image" href="{defaultImg}" />
+	<link rel="preload" as="image" href="{altImg}" />
 </svelte:head>
 
 <a
@@ -30,9 +24,9 @@
     on:mouseenter={setAltProfilePhoto}
     on:mouseleave={setDefaultProfilePhoto}
 >
-    <div class="dino" class:crazy={crazyMode}>
-        <img src={defaultProfileImgURL} alt="" class={useDefaultProfileImg ? '' : 'hide'} />
-        <img src={altProfileImgURL} class={useDefaultProfileImg ? 'hide' : ''} alt="" />
+    <div class="dino">
+        <img src={defaultImg} alt="" class={useDefaultProfileImg ? '' : 'hide'} />
+        <img src={altImg} class={useDefaultProfileImg ? 'hide' : ''} alt="" />
     </div>
     Adam Smith
 </a>
