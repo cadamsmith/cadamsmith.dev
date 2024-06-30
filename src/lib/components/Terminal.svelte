@@ -55,7 +55,7 @@
 					<div class="command">{command}</div>
 				{/if}
 
-				<pre class="output">{output.content}</pre>
+				<pre class="output">{@html output.content}</pre>
 			</div>
 		{/each}
 	</div>

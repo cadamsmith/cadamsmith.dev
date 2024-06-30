@@ -164,3 +164,62 @@ section.hero {
   box-shadow: none;
   border-color: var(--color-h);
 }
+
+.game-cell {
+  font-weight: bold;
+}
+
+.game-cell-2 {
+  background-color: #eee4da;
+  color: #000;
+}
+
+.game-cell-4 {
+  background-color: #eee1c9;
+  color: #000;
+}
+
+.game-cell-8 {
+  background-color: #eee1c9;
+  color: #000;
+}
+
+.game-cell-16 {
+  background-color: #f69664;
+  color: #fff;
+}
+
+.game-cell-32 {
+  background-color: #f77c5f;
+  color: #fff;
+}
+
+.game-cell-64 {
+  background-color: #f75f3b;
+  color: #fff;
+}
+
+.game-cell-128 {
+  background-color: #edd073;
+  color: #000;
+}
+
+.game-cell-256 {
+  background-color: #edcc62;
+  color: #000;
+}
+
+.game-cell-512 {
+  background-color: #edc950;
+  color: #000;
+}
+
+.game-cell-1024 {
+  background-color: #edc53f;
+  color: #000;
+}
+
+.game-cell-2048 {
+  background-color: #edc22e;
+  color: #000;
+}
