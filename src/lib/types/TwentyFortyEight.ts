@@ -10,7 +10,7 @@ export class TwentyFortyEight {
 
     hasWon = false;
 
-    winValue = 64;
+    winValue = 2048;
 
     public init() : string {
         this.reset();
