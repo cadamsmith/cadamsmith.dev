@@ -1,5 +1,5 @@
 ---
-name: "SQL Server"
+name: "SQL"
 group: "Languages"
 order: 2
 imageFileName: "sql.svg"
