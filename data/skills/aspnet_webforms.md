@@ -3,5 +3,5 @@ name: "ASP.NET Web Forms"
 group: "Libraries and Frameworks"
 order: 0
 imageFileName: "dotnet_framework.svg"
-url: "https://dotnet.microsoft.com/en-us/learn/dotnet/what-is-dotnet"
+url: "https://learn.microsoft.com/en-us/aspnet/web-forms/"
 ---
