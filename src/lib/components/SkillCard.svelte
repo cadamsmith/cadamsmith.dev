@@ -6,7 +6,7 @@
 </script>
 
 <a class="skill-card" href={skill.url} class:selected={selected} target="_blank">
-    <img src={skill.imageUrl} alt={skill.name} />
+    <img src={skill.imageUrl} alt="{skill.name} logo" />
     <div class="skill-card-footer">
         <p>{skill.name}</p>
     </div>
