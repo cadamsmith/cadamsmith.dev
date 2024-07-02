@@ -4,6 +4,8 @@
 	const linkedInUrl = 'https://linkedin.com/in/cadamsmithdev';
 	const githubUrl = 'https://github.com/cadamsmith';
 	const emailAddress = 'cadamsmith.dev@gmail.com';
+
+	const resumeUrl = 'https://drive.google.com/file/d/1J1hP-a2mQrQiw9494O5273dMo3JGmtMK/view?usp=sharing';
 </script>
 
 <header>
@@ -22,7 +24,7 @@
 				</a>
 			</li>
 			<li>
-				<a class="icon-link resume-link" href="/resume.pdf" target="_blank">
+				<a class="icon-link resume-link" href={resumeUrl} target="_blank">
 					<iconify-icon class="iconify-icon" inline icon="icon-park:doc-detail" />
 					<span>Resume</span>
 				</a>

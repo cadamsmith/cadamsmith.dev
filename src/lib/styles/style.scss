@@ -167,6 +167,11 @@ section.hero {
 
 .game-cell {
   font-weight: bold;
+  white-space: pre;
+}
+
+.game-cell-0 {
+  visibility: hidden;
 }
 
 .game-cell-2 {
@@ -222,8 +227,4 @@ section.hero {
 .game-cell-2048 {
   background-color: #edc22e;
   color: #000;
-}
-
-.game-cell {
-  white-space: preserve-spaces;
 }
