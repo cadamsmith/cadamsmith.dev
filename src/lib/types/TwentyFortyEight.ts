@@ -88,7 +88,11 @@ export class TwentyFortyEight {
         let values: number[] = [];
 
         for (let row = 0; row < 4; row++) {
-            values.push(this.board[row][col])
+            const value = this.board[row][col];
+
+            if (value !== 0) {
+                values.push(this.board[row][col]);
+            }
         }
 
         if (direction === Direction.Down) {
