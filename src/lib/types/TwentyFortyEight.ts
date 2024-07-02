@@ -25,9 +25,15 @@ export class TwentyFortyEight {
             this.shiftRow(i, direction);
         }
 
+        // every move, a random available cell is filled (if any cells are available)
         const [x, y] = this.getRandomAvailableSpace();
         if (x !== -1) {
-            this.setSpace([x, y], 2);
+            // 10% chance of spawning a 4
+            // 90% chance of spawning a 2
+            const isFour = Math.random() < 0.1;
+            const cellValue = isFour ? 4 : 2;
+
+            this.setSpace([x, y], cellValue);
         }
 
         return this.toString();
@@ -82,7 +88,11 @@ export class TwentyFortyEight {
         let values: number[] = [];
 
         for (let row = 0; row < 4; row++) {
-            values.push(this.board[row][col])
+            const value = this.board[row][col];
+
+            if (value !== 0) {
+                values.push(this.board[row][col]);
+            }
         }
 
         if (direction === Direction.Down) {
