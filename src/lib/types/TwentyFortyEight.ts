@@ -123,11 +123,11 @@ export class TwentyFortyEight {
         return this.board.map(
                 row => row.map(n => this.prettyPrintValue(n)).join(' | ')
             )
-            .join('\n\n-------------------------\n\n');
+            .join('\n\n---------------------------------\n\n');
     }
 
     prettyPrintValue(value: number): string {
-        const stringValue = value.toString().padStart(4, ' ')
+        const stringValue = ` ${value.toString().padStart(4, ' ')} `;
 
         return `<span class=\"game-cell game-cell-${value}\">${stringValue}</span>`;
     }
