@@ -13,7 +13,7 @@
 
 <section class="hero full-width">
 	<div class="hero-content">
-		<h1>Hello there, I'm Adam.</h1>
+		<h1>Adam Smith</h1>
 		<p>
 			I'm a software engineer. I'm currently working as a technical lead for
 			<a href={cwsWebsiteUrl} target="_blank">Campus Web Solutions</a> at Auburn University.
