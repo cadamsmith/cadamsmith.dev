@@ -10,6 +10,6 @@ export const load = async ({ fetch }) => {
 		};
 	} catch (error) {
 		console.error('Failed to fetch skills:', error);
-		throw error; // Or handle the error appropriately
+		throw error;
 	}
 };

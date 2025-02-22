@@ -69,6 +69,9 @@ export class Terminal {
 	handlePromptKeydownIn2048(e: KeyboardEvent) {
 		const session = this.sessions[this.sessions.length - 2];
 
+		const header = `Get to 2048! Use your arrow keys (↑, ↓, ←, →)`;
+		const footer = `Enter \"q\" to quit the game`;
+
 		switch (e.key) {
 			case 'Enter': {
 				e.preventDefault();
@@ -77,31 +80,27 @@ export class Terminal {
 				break;
 			}
 			case 'ArrowUp': {
-				session.output.content = `Use your arrow keys (↑, ↓, ←, →) to move the tiles.\n
-					Join the tiles, get to 2048!\n
+				session.output.content = `${header}\n
 					${this.twentyFortyEightGame.shift(Direction.Up)}\n
-					Enter \"q\" to quit the game`;
+					${footer}`;
 				break;
 			}
 			case 'ArrowDown': {
-				session.output.content = `Use your arrow keys (↑, ↓, ←, →) to move the tiles.\n
-					Join the tiles, get to 2048!\n
+				session.output.content = `${header}\n
 					${this.twentyFortyEightGame.shift(Direction.Down)}\n
-					Enter \"q\" to quit the game`;
+					${footer}`;
 				break;
 			}
 			case 'ArrowLeft': {
-				session.output.content = `Use your arrow keys (↑, ↓, ←, →) to move the tiles.\n
-					Join the tiles, get to 2048!\n
+				session.output.content = `${header}\n
 					${this.twentyFortyEightGame.shift(Direction.Left)}\n
-					Enter \"q\" to quit the game`;
+					${footer}`;
 				break;
 			}
 			case 'ArrowRight': {
-				session.output.content = `Use your arrow keys (↑, ↓, ←, →) to move the tiles.\n
-					Join the tiles, get to 2048!\n
+				session.output.content = `${header}\n
 					${this.twentyFortyEightGame.shift(Direction.Right)}\n
-					Enter \"q\" to quit the game`;
+					${footer}`;
 				break;
 			}
 			default: {
@@ -163,8 +162,7 @@ export class Terminal {
 				break;
 			case '2048':
 				this.isPlaying2048 = true;
-				session.output.content = `Use your arrow keys (↑, ↓, ←, →) to move the tiles.\n
-					Join the tiles, get to 2048!\n
+				session.output.content = `Get to 2048! Use your arrow keys (↑, ↓, ←, →)\n
 					${this.twentyFortyEightGame.init()}\n
 					Enter \"q\" to quit the game`;
 				break;
