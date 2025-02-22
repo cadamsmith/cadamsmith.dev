@@ -1,7 +1,7 @@
 ---
-name: "Bootstrap"
-group: "Libraries and Frameworks"
+name: 'Bootstrap'
+group: 'Libraries and Frameworks'
 order: 3
-imageFileName: "bootstrap.svg"
-url: "https://getbootstrap.com/"
+imageFileName: 'bootstrap.svg'
+url: 'https://getbootstrap.com/'
 ---

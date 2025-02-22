@@ -1,7 +1,7 @@
 ---
-name: "Git"
-group: "Tools and Platforms"
+name: 'Git'
+group: 'Tools and Platforms'
 order: 0
-imageFileName: "git.svg"
-url: "https://git-scm.com/"
+imageFileName: 'git.svg'
+url: 'https://git-scm.com/'
 ---

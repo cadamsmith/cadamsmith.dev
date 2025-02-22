@@ -1,7 +1,10 @@
 <script lang="ts">
-	import { Terminal as TerminalType } from '../types/Terminal';
+	import { Terminal } from '../types/Terminal';
 
 	let activeInput: HTMLDivElement;
+
+	const terminal = new Terminal();
+
 	function callFocus(input: HTMLElement) {
 		input.focus();
 	}
@@ -23,18 +26,16 @@
 			focusActiveInput();
 		}
 	}
-
-	const terminal = new TerminalType();
 </script>
 
 <div
 	class="terminal"
-	on:click={focusActiveInput}
-	on:keydown={handleTerminalKeydown}
+	onclick={focusActiveInput}
+	onkeydown={handleTerminalKeydown}
 	tabindex="-1"
 	role="presentation"
 >
-	<div class="terminal-header" />
+	<div class="terminal-header"></div>
 	<div class="terminal-body">
 		{#each terminal.sessions as { prompt, command, output }, i}
 			<div class="session">
@@ -45,12 +46,12 @@
 						class="command"
 						contenteditable
 						bind:innerText={command}
-						on:keydown={handlePromptKeydown}
+						onkeydown={handlePromptKeydown}
 						role="textbox"
 						tabindex="0"
 						use:callFocus
 						bind:this={activeInput}
-					/>
+					></div>
 				{:else}
 					<div class="command">{command}</div>
 				{/if}

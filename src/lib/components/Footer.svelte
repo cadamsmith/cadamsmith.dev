@@ -12,15 +12,14 @@
 		<span>
 			Powered by
 			<a class="icon-link sveltekit-link" href="https://kit.svelte.dev/" target="_blank">
-				<iconify-icon class="iconify-icon" inline icon="skill-icons:svelte" />
+				<iconify-icon class="iconify-icon" inline icon="skill-icons:svelte"></iconify-icon>
 				<span>SvelteKit</span>
 			</a>
-			
 		</span>
 		<span>
 			on
 			<a class="icon-link cloudflare-link" href="https://pages.cloudflare.com/" target="_blank">
-				<iconify-icon class="iconify-icon" inline icon="skill-icons:cloudflare-dark" />
+				<iconify-icon class="iconify-icon" inline icon="skill-icons:cloudflare-dark"></iconify-icon>
 				<span>Cloudflare Pages</span>
 			</a>
 		</span>
@@ -42,7 +41,7 @@
 		</div>
 
 		<a class="icon-link" href={githubUrl} target="_blank">
-			<iconify-icon class="iconify-icon" inline icon="skill-icons:github-dark" />
+			<iconify-icon class="iconify-icon" inline icon="skill-icons:github-dark"></iconify-icon>
 			Source Code
 		</a>
 	</div>
@@ -52,7 +51,7 @@
 	footer {
 		margin-top: 1rem;
 		padding: 1rem;
-		background-image: linear-gradient(to right, var(--color-a), var(--color-b));
+		background-color: var(--color-a);
 		color: white;
 		display: flex;
 		justify-content: space-between;
@@ -74,7 +73,7 @@
 		display: flex;
 		align-items: center;
 		flex-wrap: wrap;
-		row-gap: .5em;
+		row-gap: 0.5em;
 	}
 
 	.source-info {
