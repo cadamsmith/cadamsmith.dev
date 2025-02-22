@@ -92,13 +92,13 @@
 </section>
 
 <section>
-	<h2>Experience</h2>
-
-	<h3>Technologies</h3>
+	<h2>Technologies</h2>
 
 	<SkillsWidget skills={data.skills} />
+</section>
 
-	<h3>My Journey</h3>
+<section class="bg-color">
+	<h2>My Journey</h2>
 
 	<div class="journey-split">
 		<div class="map-wrapper">
@@ -110,17 +110,6 @@
 			<Timeline timeline={data.timeline} />
 		</div>
 	</div>
-</section>
-
-<section class="bg-color">
-	<h2>Projects</h2>
-
-	<p>lorem ipsum dolor sit amet</p>
-	<p>lorem ipsum dolor sit amet</p>
-	<p>lorem ipsum dolor sit amet</p>
-	<p>lorem ipsum dolor sit amet</p>
-	<p>lorem ipsum dolor sit amet</p>
-	<p>lorem ipsum dolor sit amet</p>
 </section>
 
 <section>
@@ -192,6 +181,14 @@
 		}
 
 		.terminal-wrapper {
+			display: none;
+		}
+
+		.map-wrapper {
+			display: none;
+		}
+
+		.contact-split .right {
 			display: none;
 		}
 	}

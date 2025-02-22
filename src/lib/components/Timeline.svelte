@@ -48,7 +48,7 @@
             </div>
             <div class="timeline-item-right">
                 <p>{formatTimelineRange(timelineItem.dates)}</p>
-                <h4>{timelineItem.company}</h4>
+                <h3>{timelineItem.company}</h3>
                 <p>{timelineItem.title}</p>
             </div>
         </div>
@@ -85,7 +85,8 @@
         color: #fff;
     }
     
-    h4 {
+    h3 {
+        font-size: 1.05em;
         margin: 0;
         text-transform: uppercase;
     }

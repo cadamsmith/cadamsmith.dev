@@ -1,7 +1,7 @@
 :root {
   /* I am bad at color palettes */
   --color-a: #584c77;
-  --color-b: #584c77;
+  --color-b: #352e48;
   --color-c: #B3001B;
   --color-d: #00ff00;
   --color-e: #C5D4E7;
@@ -151,6 +151,12 @@ section.hero {
   & iconify-icon:not([inline]) {
     vertical-align: middle;
     height: 100%;
+  }
+}
+
+@media (max-width: 800px) {
+  .icon-link {
+    font-size: .9em;
   }
 }
 

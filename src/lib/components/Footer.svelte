@@ -51,7 +51,7 @@
 	footer {
 		margin-top: 1rem;
 		padding: 1rem;
-		background-image: linear-gradient(to right, var(--color-a), var(--color-b));
+		background-color: var(--color-a);
 		color: white;
 		display: flex;
 		justify-content: space-between;
