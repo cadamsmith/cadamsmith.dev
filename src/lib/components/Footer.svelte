@@ -73,7 +73,7 @@
 		display: flex;
 		align-items: center;
 		flex-wrap: wrap;
-		row-gap: .5em;
+		row-gap: 0.5em;
 	}
 
 	.source-info {

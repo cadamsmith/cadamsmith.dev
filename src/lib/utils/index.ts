@@ -9,14 +9,14 @@ export const fetchMarkdownSkills = async (): Promise<Skill[]> => {
 		iterableFiles.map(async ([_, resolver]) => {
 			const { metadata } = (await resolver()) as {
 				metadata: {
-					name: string,
-					group: string,
-					order: number,
-					imageFileName: string,
-					url: string
-				}
+					name: string;
+					group: string;
+					order: number;
+					imageFileName: string;
+					url: string;
+				};
 			};
-			
+
 			const imageUrl = metadata.imageFileName
 				? `/images/skills/${metadata.imageFileName}`
 				: '/images/generic_skill.svg';
@@ -42,22 +42,20 @@ export const fetchMarkdownTimelineItems = async (): Promise<TimelineItem[]> => {
 		iterableFiles.map(async ([_, resolver]) => {
 			const { metadata } = (await resolver()) as {
 				metadata: {
-					title: string,
-					company: string,
-					group: string,
-					dates: string,
-					order: number,
-					url: string
-				}
+					title: string;
+					company: string;
+					group: string;
+					dates: string;
+					order: number;
+					url: string;
+				};
 			};
 
 			// split date ranges into an array of [startDate, endDate]
-			const dates = metadata.dates.split(',').map(date => {
+			const dates = metadata.dates.split(',').map((date) => {
 				const [startDate, endDate] = date.trim().split(' - ');
 
-				const realEndDate = endDate === 'Present'
-					? new Date()
-					: new Date(endDate);
+				const realEndDate = endDate === 'Present' ? new Date() : new Date(endDate);
 
 				return [new Date(startDate), realEndDate] as [Date, Date];
 			});

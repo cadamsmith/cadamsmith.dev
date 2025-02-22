@@ -4,7 +4,7 @@
 	let activeInput: HTMLDivElement;
 
 	const terminal = new Terminal();
-	
+
 	function callFocus(input: HTMLElement) {
 		input.focus();
 	}

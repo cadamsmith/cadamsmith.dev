@@ -1,8 +1,8 @@
 <script lang="ts">
-    const defaultImg = '/images/profile.jpg';
+	const defaultImg = '/images/profile.jpg';
 	const altImg = '/images/profile_alt.jpg';
 
-    let useDefaultProfileImg = $state(true);
+	let useDefaultProfileImg = $state(true);
 
 	function setAltProfilePhoto() {
 		useDefaultProfileImg = false;
@@ -14,25 +14,25 @@
 </script>
 
 <svelte:head>
-	<link rel="preload" as="image" href="{defaultImg}" />
-	<link rel="preload" as="image" href="{altImg}" />
+	<link rel="preload" as="image" href={defaultImg} />
+	<link rel="preload" as="image" href={altImg} />
 </svelte:head>
 
 <a
-    class="nav-brand"
-    href="/"
-    onmouseenter={setAltProfilePhoto}
-    onmouseleave={setDefaultProfilePhoto}
+	class="nav-brand"
+	href="/"
+	onmouseenter={setAltProfilePhoto}
+	onmouseleave={setDefaultProfilePhoto}
 >
-    <div class="dino">
-        <img src={defaultImg} alt="" class={useDefaultProfileImg ? '' : 'hide'} />
-        <img src={altImg} class={useDefaultProfileImg ? 'hide' : ''} alt="" />
-    </div>
-    Adam Smith
+	<div class="dino">
+		<img src={defaultImg} alt="" class={useDefaultProfileImg ? '' : 'hide'} />
+		<img src={altImg} class={useDefaultProfileImg ? 'hide' : ''} alt="" />
+	</div>
+	Adam Smith
 </a>
 
 <style>
-    a {
+	a {
 		text-decoration: none;
 		color: inherit;
 		padding: 0.5em;

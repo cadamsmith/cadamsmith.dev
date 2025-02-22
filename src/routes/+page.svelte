@@ -10,15 +10,16 @@
 	// get years of work experience in 0.5 year increments
 	const now = new Date();
 	const startDate = new Date(2023, 0, 1); // January 1, 2023
-	const monthsDiff = (now.getFullYear() - startDate.getFullYear()) * 12 + (now.getMonth() - startDate.getMonth());
-	const yearsOfWorkExperience = (Math.floor(monthsDiff / 6) / 2) + 1; // Round to nearest 0.5
+	const monthsDiff =
+		(now.getFullYear() - startDate.getFullYear()) * 12 + (now.getMonth() - startDate.getMonth());
+	const yearsOfWorkExperience = Math.floor(monthsDiff / 6) / 2 + 1; // Round to nearest 0.5
 
 	let LocationMap: any = $state(null);
 
 	onMount(async () => {
-        // Dynamically import LocationMap only in the browser
-        LocationMap = (await import('$lib/components/LocationMap.svelte')).default;
-    });
+		// Dynamically import LocationMap only in the browser
+		LocationMap = (await import('$lib/components/LocationMap.svelte')).default;
+	});
 
 	let { data } = $props();
 </script>
@@ -30,35 +31,36 @@
 <section class="hero bg-color full-width">
 	<h1>Adam Smith</h1>
 
-			<div class="hero-info-tag-list">
-				<span class="hero-info-tag">
-					<iconify-icon class="iconify-icon" icon="mdi:build"></iconify-icon>
-					<span class="hero-info-tag-text">Software Engineer</span>
-				</span>
-				<span class="hero-info-tag">
-					<iconify-icon class="iconify-icon" icon="mdi:location"></iconify-icon>
-					<span class="hero-info-tag-text">Auburn, AL</span>
-				</span>
-				<span class="hero-info-tag">
-					<iconify-icon class="iconify-icon" icon="mdi:code-braces"></iconify-icon>
-					<span class="hero-info-tag-text">Full-Stack Web Developer</span>
-				</span>
-				<span class="hero-info-tag">
-					<iconify-icon class="iconify-icon" icon="mdi:clock"></iconify-icon>
-					<span class="hero-info-tag-text">{yearsOfWorkExperience} Years Work Experience</span>
-				</span>
-				<span class="hero-info-tag">
-					<iconify-icon class="iconify-icon" icon="mdi:people"></iconify-icon>
-					<span class="hero-info-tag-text">Team Player</span>
-				</span>
-				<span class="hero-info-tag">
-					<iconify-icon class="iconify-icon" icon="mdi:check-bold"></iconify-icon>
-					<span class="hero-info-tag-text">Code Quality Enthusiast</span>
-				</span>
-				<span class="hero-info-tag">
-					<iconify-icon class="iconify-icon" icon="mdi:school"></iconify-icon>
-					<span class="hero-info-tag-text">Life-Long Learner</span>
-			</div>
+	<div class="hero-info-tag-list">
+		<span class="hero-info-tag">
+			<iconify-icon class="iconify-icon" icon="mdi:build"></iconify-icon>
+			<span class="hero-info-tag-text">Software Engineer</span>
+		</span>
+		<span class="hero-info-tag">
+			<iconify-icon class="iconify-icon" icon="mdi:location"></iconify-icon>
+			<span class="hero-info-tag-text">Auburn, AL</span>
+		</span>
+		<span class="hero-info-tag">
+			<iconify-icon class="iconify-icon" icon="mdi:code-braces"></iconify-icon>
+			<span class="hero-info-tag-text">Full-Stack Web Developer</span>
+		</span>
+		<span class="hero-info-tag">
+			<iconify-icon class="iconify-icon" icon="mdi:clock"></iconify-icon>
+			<span class="hero-info-tag-text">{yearsOfWorkExperience} Years Work Experience</span>
+		</span>
+		<span class="hero-info-tag">
+			<iconify-icon class="iconify-icon" icon="mdi:people"></iconify-icon>
+			<span class="hero-info-tag-text">Team Player</span>
+		</span>
+		<span class="hero-info-tag">
+			<iconify-icon class="iconify-icon" icon="mdi:check-bold"></iconify-icon>
+			<span class="hero-info-tag-text">Code Quality Enthusiast</span>
+		</span>
+		<span class="hero-info-tag">
+			<iconify-icon class="iconify-icon" icon="mdi:school"></iconify-icon>
+			<span class="hero-info-tag-text">Life-Long Learner</span>
+		</span>
+	</div>
 
 	<div class="hero-split">
 		<div class="hero-content">
@@ -76,10 +78,10 @@
 
 			<p>
 				In addition to development, I enjoy working on internal tooling, automating development
-				processes, and debugging production problems. I'm a big fan of code reviewing and improving code
-				quality.
+				processes, and debugging production problems. I'm a big fan of code reviewing and improving
+				code quality.
 			</p>
-		
+
 			<p>
 				I write documentation and train new developers. I am a reliable hard worker and team player.
 			</p>
@@ -124,7 +126,10 @@
 					<iconify-icon class="iconify-icon" icon="mdi:email"></iconify-icon>
 					Email
 				</a>
-				<a href="https://drive.google.com/file/d/1J1hP-a2mQrQiw9494O5273dMo3JGmtMK/view?usp=sharing" target="_blank">
+				<a
+					href="https://drive.google.com/file/d/1J1hP-a2mQrQiw9494O5273dMo3JGmtMK/view?usp=sharing"
+					target="_blank"
+				>
 					<iconify-icon class="iconify-icon" icon="mdi:file-pdf"></iconify-icon>
 					Resume
 				</a>
@@ -141,11 +146,16 @@
 			<p>Thanks for visiting my site!</p>
 		</div>
 		<div class="right">
-			<iframe width="344" height="210"
+			<iframe
+				width="344"
+				height="210"
 				src="https://www.youtube.com/embed/videoseries?si=Bj5MQ5Jhzk0TRKtJ&amp;list=PLOnKIDPOvtO2Nz8G2Qsz6VYafKAzvD0xD"
-				title="YouTube video player" frameborder="0"
+				title="YouTube video player"
+				frameborder="0"
 				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-				referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+				referrerpolicy="strict-origin-when-cross-origin"
+				allowfullscreen
+			>
 			</iframe>
 		</div>
 	</div>
@@ -225,7 +235,7 @@
 	.journey-content {
 		flex-grow: 1;
 	}
-	
+
 	.contact-links {
 		display: flex;
 		flex-wrap: wrap;
@@ -259,4 +269,3 @@
 		margin: 1rem 0;
 	}
 </style>
-
