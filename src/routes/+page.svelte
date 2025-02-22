@@ -124,14 +124,42 @@
 </section>
 
 <section>
-	<h2>Contact Me</h2>
+	<div class="contact-split">
+		<div class="left">
+			<h2>Contact Me</h2>
 
-	<p>lorem ipsum dolor sit amet</p>
-	<p>lorem ipsum dolor sit amet</p>
-	<p>lorem ipsum dolor sit amet</p>
-	<p>lorem ipsum dolor sit amet</p>
-	<p>lorem ipsum dolor sit amet</p>
-	<p>lorem ipsum dolor sit amet</p>
+			<p>I'm open to new opportunities! Reach out to me if you'd like to connect.</p>
+
+			<div class="contact-links">
+				<a href="mailto:cadamsmith.dev@gmail.com">
+					<iconify-icon class="iconify-icon" icon="mdi:email"></iconify-icon>
+					Email
+				</a>
+				<a href="https://drive.google.com/file/d/1J1hP-a2mQrQiw9494O5273dMo3JGmtMK/view?usp=sharing" target="_blank">
+					<iconify-icon class="iconify-icon" icon="mdi:file-pdf"></iconify-icon>
+					Resume
+				</a>
+				<a href="https://www.linkedin.com/in/adam-smith-auburn/" target="_blank">
+					<iconify-icon class="iconify-icon" icon="mdi:linkedin"></iconify-icon>
+					LinkedIn
+				</a>
+				<a href="https://github.com/cadamsmith" target="_blank">
+					<iconify-icon class="iconify-icon" icon="mdi:github"></iconify-icon>
+					GitHub
+				</a>
+			</div>
+
+			<p>Thanks for visiting my site!</p>
+		</div>
+		<div class="right">
+			<iframe width="344" height="210"
+				src="https://www.youtube.com/embed/videoseries?si=Bj5MQ5Jhzk0TRKtJ&amp;list=PLOnKIDPOvtO2Nz8G2Qsz6VYafKAzvD0xD"
+				title="YouTube video player" frameborder="0"
+				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+				referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+			</iframe>
+		</div>
+	</div>
 </section>
 
 <style>
@@ -189,10 +217,11 @@
 	.journey-split {
 		display: flex;
 		gap: 2em;
+		margin-bottom: 1rem;
 	}
 
 	.map-wrapper {
-		width: 15rem;
+		width: 18rem;
 		height: 15rem;
 	}
 
@@ -200,5 +229,37 @@
 		flex-grow: 1;
 	}
 	
+	.contact-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.3em;
+		margin-bottom: 1rem;
+	}
 
+	.contact-links > a {
+		background-color: var(--color-c);
+		color: #fff;
+		padding: 0.2em 0.5em;
+		border-radius: 0.2em;
+
+		display: flex;
+		align-items: center;
+		gap: 0.2em;
+		vertical-align: middle;
+	}
+
+	.contact-links > a:hover {
+		background-color: #000;
+	}
+
+	.contact-split {
+		display: flex;
+		gap: 2em;
+		justify-content: space-between;
+	}
+
+	.contact-split .right {
+		margin: 1rem 0;
+	}
 </style>
+

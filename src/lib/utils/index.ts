@@ -62,6 +62,8 @@ export const fetchMarkdownTimelineItems = async (): Promise<TimelineItem[]> => {
 				return [new Date(startDate), realEndDate] as [Date, Date];
 			});
 
+			console.log(dates);
+
 			return {
 				title: metadata.title,
 				company: metadata.company,

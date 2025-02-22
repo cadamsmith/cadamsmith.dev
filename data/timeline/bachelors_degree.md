@@ -1,5 +1,5 @@
 ---
-title: "BS in Software Engineering"
+title: "Bachelor of Software Engineering"
 company: "Auburn University"
 group: "Education"
 dates: "08/01/2018 - 12/31/2022"

@@ -6,7 +6,7 @@
     let currentGroup = $state('Work');
 
     // format date range to be in the format of "Jan 2024 - Mar 2025"
-    function formatDate(start: string, end: string) {
+    function formatDateRange(start: string, end: string) {
         const currentDate = new Date();
         const startDate = new Date(start);
         const endDate = new Date(end);
@@ -21,6 +21,10 @@
             return startDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) + ' - Present';
         }
         return startDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) + ' - ' + endDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+    }
+
+    function formatTimelineRange(dateRanges: [string, string][]){
+        return dateRanges.map(dateRange => formatDateRange(dateRange[0], dateRange[1])).join(', ');
     }
 
     function handleGroupChange(group: string) {
@@ -43,9 +47,7 @@
                 </div>
             </div>
             <div class="timeline-item-right">
-                {#each timelineItem.dates as dateRange}
-                    <span>{formatDate(dateRange[0], dateRange[1])}</span>
-                {/each}
+                <p>{formatTimelineRange(timelineItem.dates)}</p>
                 <h4>{timelineItem.company}</h4>
                 <p>{timelineItem.title}</p>
             </div>
@@ -57,10 +59,11 @@
     .timeline-selector {
         width: 100%;
         display: flex;
-        gap: 1em;
+        gap: .5em;
         border: 2px solid #000;
         padding: .2rem;
         margin-bottom: .5rem;
+        background-color: #d3d3d3;
     }
 
     .timeline-selector button {
@@ -84,6 +87,7 @@
     
     h4 {
         margin: 0;
+        text-transform: uppercase;
     }
 
     p {
@@ -94,6 +98,8 @@
         border: 2px solid #000;
         padding: 0 1rem;
         width: 100%;
+        background-color: #2F4B26;
+        color: #fff;
     }
 
     .timeline-item {
@@ -122,14 +128,14 @@
         left: 50%;
         width: 2px;
         height: 100%;
-        background-color: #000;
+        background-color: #fff;
     }
 
     .timeline-item .img-wrapper {
         width: 2rem;
         height: 2rem;
-        background-color: #fff;
-        border: 2px solid #000;
+        background-color: #000;
+        border: 2px solid #fff;
         border-radius: 50%;
         padding: 0.3rem;
         z-index: 1;
