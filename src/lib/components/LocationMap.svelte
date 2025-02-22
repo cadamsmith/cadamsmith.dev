@@ -1,7 +1,7 @@
 <script lang="ts">
     import {onMount} from 'svelte';
     import {browser} from '$app/environment';
-    import {CircleMarker, GeoJSON, LeafletMap, TileLayer} from 'svelte-leafletjs';
+    import {Marker, GeoJSON, LeafletMap, TileLayer} from 'svelte-leafletjs';
     import type {GeoJSONOptions, MapOptions, TileLayerOptions} from 'leaflet';
     import 'leaflet/dist/leaflet.css';
 
@@ -15,8 +15,8 @@
         if (!browser) return;
 
         mapOptions = {
-            center: [1.250111, 103.830933],
-            zoom: 13,
+            center: [32.60986, -85.48059],
+            zoom: 12,
         };
         
         tileUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
@@ -52,7 +52,7 @@
         <LeafletMap bind:this={leafletMap} options={mapOptions}>
             <TileLayer url={tileUrl} options={tileLayerOptions}/>
             <GeoJSON options={geoJsonOptions}/>
-            <CircleMarker latLng={[1.2461196,103.8298412]}></CircleMarker>
+            <Marker latLng={[32.60986, -85.48059]}></Marker>
         </LeafletMap>
     {/if}
 </div>

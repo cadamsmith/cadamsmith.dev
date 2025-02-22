@@ -3,6 +3,7 @@
 
 	import SkillsWidget from '$lib/components/SkillsWidget.svelte';
 	import TerminalWidget from '$lib/components/TerminalWidget.svelte';
+	import Timeline from '$lib/components/Timeline.svelte';
 
 	const cwsWebsiteUrl = 'https://cws.auburn.edu/cws';
 
@@ -99,9 +100,16 @@
 
 	<h3>My Journey</h3>
 
-	{#if LocationMap}
-		<LocationMap />
-	{/if}
+	<div class="journey-split">
+		<div class="map-wrapper">
+			{#if LocationMap}
+				<LocationMap />
+			{/if}
+		</div>
+		<div class="journey-content">
+			<Timeline timeline={data.timeline} />
+		</div>
+	</div>
 </section>
 
 <section class="bg-color">
@@ -177,4 +185,20 @@
 		gap: 0.2em;
 		vertical-align: middle;
 	}
+
+	.journey-split {
+		display: flex;
+		gap: 2em;
+	}
+
+	.map-wrapper {
+		width: 15rem;
+		height: 15rem;
+	}
+
+	.journey-content {
+		flex-grow: 1;
+	}
+	
+
 </style>
