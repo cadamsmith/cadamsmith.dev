@@ -2,10 +2,10 @@
 	import { fade } from 'svelte/transition';
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
-	import '$lib/styles/style.scss';
+	import '$lib/styles/global.scss';
 	import 'iconify-icon';
 
-	export let data;
+	let { data, children } = $props();
 </script>
 
 <Header />
@@ -17,10 +17,13 @@
 			out:fade={{ duration: 150 }}
 			class="transition-inner"
 		>
-			<slot />
+			{@render children()}
+
+			<div class="content-spacer"></div>
 		</main>
 	{/key}
 </div>
+
 <Footer />
 
 <style>

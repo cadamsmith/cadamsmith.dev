@@ -1,7 +1,7 @@
 ---
-name: "HTML"
-group: "Languages"
+name: 'HTML'
+group: 'Languages'
 order: 3
-imageFileName: "html.svg"
-url: "https://developer.mozilla.org/en-US/docs/Web/HTML"
+imageFileName: 'html.svg'
+url: 'https://developer.mozilla.org/en-US/docs/Web/HTML'
 ---

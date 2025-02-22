@@ -1,0 +1,242 @@
+:root {
+	/* I am bad at color palettes */
+	--color-a: #584c77;
+	--color-b: #352e48;
+	--color-c: #b3001b;
+	--color-d: #00ff00;
+	--color-e: #c5d4e7;
+	--color-f: #eff6e0;
+	--color-g: #e6e6e6;
+	--color-h: #3da5d9;
+}
+
+html {
+	background-color: var(--color-f);
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	margin: 0 min(5vw, 25px);
+}
+
+body {
+	margin: min(5vw, 25px) auto;
+	background: white;
+	color: #333;
+	font-family: sans-serif;
+	max-width: 1080px;
+	box-shadow: 0 0 10px rgba(50, 50, 50, 0.17);
+	width: 100%;
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+main {
+	display: grid;
+	grid-template-columns: [full-start] 1rem [wrapper-start] minmax(
+			0,
+			70rem
+		) [wrapper-end] 1rem [full-end];
+	grid-auto-rows: min-content;
+
+	/* Optional gap */
+	column-gap: var(--pad, 1rem);
+	overflow-x: hidden;
+
+	background-image: url(/images/bg_lego.svg);
+	background-repeat: repeat;
+}
+
+main > * {
+	grid-column: full;
+	background-color: white;
+	padding: 0 2rem;
+}
+
+main > .full-width {
+	grid-column: full;
+	padding: 1rem 2rem;
+}
+
+:where(h2, h3, h4, h5, h6) {
+	.icon-link {
+		position: relative;
+
+		&::before {
+			content: '#';
+			position: absolute;
+			left: -1ch;
+			top: 0;
+			line-height: 1;
+			opacity: 0;
+			text-decoration: underline;
+		}
+	}
+
+	&:hover .icon-link::before {
+		opacity: 1;
+	}
+}
+
+html {
+	box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+.sr-only {
+	border: 0 !important;
+	clip: rect(1px, 1px, 1px, 1px) !important;
+	/* 1 */
+	-webkit-clip-path: inset(50%) !important;
+	clip-path: inset(50%) !important;
+	/* 2 */
+	height: 0px !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	padding: 0 !important;
+	position: absolute !important;
+	width: 0px !important;
+	white-space: nowrap !important;
+	/* 3 */
+
+	font-size: 0;
+}
+
+.big-icon {
+	font-size: 10rem;
+}
+
+p {
+	line-height: 1.5;
+}
+
+main a {
+	color: var(--color-c);
+	font-weight: bold;
+	text-decoration-color: var(--color-c);
+}
+
+main a:hover {
+	color: #000;
+	text-decoration-color: #000;
+}
+
+section.hero {
+	background-color: var(--color-e);
+}
+
+.icon-link {
+	background-color: #fff;
+	border: 5px solid white;
+	padding: 2.5px;
+	text-decoration: none;
+	color: black;
+	margin-right: 0.2em;
+	border-radius: 0.4em;
+	font-weight: bold;
+	height: min-content;
+	align-self: flex-end;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.2em;
+
+	font-size: 1.05em;
+	white-space: nowrap;
+
+	& iconify-icon:not([inline]) {
+		vertical-align: middle;
+		height: 100%;
+	}
+}
+
+@media (max-width: 800px) {
+	.icon-link {
+		font-size: 0.9em;
+	}
+}
+
+.iconify-icon {
+	font-size: 1.25em;
+}
+
+.icon-link:hover {
+	background-color: #fff;
+	box-shadow: none;
+	border-color: var(--color-h);
+}
+
+.game-cell {
+	font-weight: bold;
+	white-space: pre;
+}
+
+.game-cell-0 {
+	visibility: hidden;
+}
+
+.game-cell-2 {
+	background-color: #eee4da;
+	color: #000;
+}
+
+.game-cell-4 {
+	background-color: #eee1c9;
+	color: #000;
+}
+
+.game-cell-8 {
+	background-color: #eee1c9;
+	color: #000;
+}
+
+.game-cell-16 {
+	background-color: #f69664;
+	color: #000;
+}
+
+.game-cell-32 {
+	background-color: #f77c5f;
+	color: #fff;
+}
+
+.game-cell-64 {
+	background-color: #f75f3b;
+	color: #fff;
+}
+
+.game-cell-128 {
+	background-color: #edd073;
+	color: #000;
+}
+
+.game-cell-256 {
+	background-color: #edcc62;
+	color: #000;
+}
+
+.game-cell-512 {
+	background-color: #edc950;
+	color: #000;
+}
+
+.game-cell-1024 {
+	background-color: #edc53f;
+	color: #000;
+}
+
+.game-cell-2048 {
+	background-color: #edc22e;
+	color: #000;
+}
+
+.content-spacer {
+	background-color: transparent;
+	height: 2rem;
+}

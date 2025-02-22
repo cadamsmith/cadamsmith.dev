@@ -1,11 +1,12 @@
 <script lang="ts">
-	import NavBrand from "./NavBrand.svelte";
+	import NavBrand from './NavBrand.svelte';
 
 	const linkedInUrl = 'https://linkedin.com/in/cadamsmithdev';
 	const githubUrl = 'https://github.com/cadamsmith';
 	const emailAddress = 'cadamsmith.dev@gmail.com';
 
-	const resumeUrl = 'https://drive.google.com/file/d/1J1hP-a2mQrQiw9494O5273dMo3JGmtMK/view?usp=sharing';
+	const resumeUrl =
+		'https://drive.google.com/file/d/1J1hP-a2mQrQiw9494O5273dMo3JGmtMK/view?usp=sharing';
 </script>
 
 <header>
@@ -15,23 +16,23 @@
 		<ul>
 			<li>
 				<a class="icon-link" href={githubUrl} target="_blank" aria-label="GitHub">
-					<iconify-icon class="iconify-icon" icon="skill-icons:github-dark" />
+					<iconify-icon class="iconify-icon" icon="skill-icons:github-dark"></iconify-icon>
 				</a>
 			</li>
 			<li>
 				<a class="icon-link" href={linkedInUrl} target="_blank" aria-label="LinkedIn">
-					<iconify-icon class="iconify-icon" icon="skill-icons:linkedin" />
+					<iconify-icon class="iconify-icon" icon="skill-icons:linkedin"></iconify-icon>
 				</a>
 			</li>
 			<li>
 				<a class="icon-link resume-link" href={resumeUrl} target="_blank">
-					<iconify-icon class="iconify-icon" inline icon="icon-park:doc-detail" />
+					<iconify-icon class="iconify-icon" inline icon="icon-park:doc-detail"></iconify-icon>
 					<span>Resume</span>
 				</a>
 			</li>
 			<li>
 				<a class="icon-link email-link" href="mailto:{emailAddress}">
-					<iconify-icon class="iconify-icon" inline icon="icon-park:email-block" />
+					<iconify-icon class="iconify-icon" inline icon="icon-park:email-block"></iconify-icon>
 					<span>Contact</span>
 				</a>
 			</li>
@@ -42,7 +43,7 @@
 <style>
 	header {
 		padding: 1rem;
-		background-image: linear-gradient(to right, var(--color-a), var(--color-b));
+		background-color: var(--color-a);
 		color: white;
 		display: flex;
 		flex-wrap: wrap;

@@ -1,7 +1,7 @@
 ---
-name: "JavaScript"
-group: "Languages"
+name: 'JavaScript'
+group: 'Languages'
 order: 1
-imageFileName: "javascript.svg"
-url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+imageFileName: 'javascript.svg'
+url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript'
 ---
