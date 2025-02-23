@@ -1,3 +1,4 @@
+import type { Project } from '$lib/types/Project';
 import type { Skill } from '$lib/types/Skill';
 import type { TimelineItem } from '$lib/types/TimelineItem';
 
@@ -72,4 +73,39 @@ export const fetchMarkdownTimelineItems = async (): Promise<TimelineItem[]> => {
 	);
 
 	return allTimelineItems;
+};
+
+export const fetchMarkdownProjects = async (): Promise<Project[]> => {
+	const allFiles = import.meta.glob('/data/projects/*.md');
+	const iterableFiles = Object.entries(allFiles);
+
+	const allProjects = await Promise.all(
+		iterableFiles.map(async ([_, resolver]) => {
+			const { metadata } = (await resolver()) as {
+				metadata: {
+					name: string;
+					group: string;
+					order: number;
+					images: string;
+					url: string;
+					description: string;
+				};
+			};
+
+			const imageUrls = metadata.images.split(',').map((image) => {
+				return `/images/projects/${image.trim()}`;
+			});
+
+			return {
+				name: metadata.name,
+				group: metadata.group,
+				order: metadata.order,
+				url: metadata.url,
+				imageUrls: imageUrls,
+				description: metadata.description
+			};
+		})
+	);
+
+	return allProjects;
 };
