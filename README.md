@@ -1,6 +1,6 @@
 # cadamsmith.dev
 
-My personal website
+My personal website built with SvelteKit.
 
 ![image](https://github.com/user-attachments/assets/115c4125-c043-4c60-bb5d-43628a25d6e6)
 
