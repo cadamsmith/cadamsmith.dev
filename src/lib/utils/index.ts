@@ -125,3 +125,15 @@ export const fetchMarkdownProjects = async (count: number): Promise<Project[]> =
 		return sorted.slice(0, count);
 	}
 };
+
+export const fetchMarkdownMiscResources = async (): Promise<{[key: string]: string}> => {
+	// convert data/misc_resources.md into dictionary type
+	const file = import.meta.glob('/data/misc_resources.md');
+	const resolver = Object.values(file)[0];
+
+	const { metadata } = (await resolver()) as {
+		metadata: {[key: string]: string}
+	};
+
+	return metadata;
+};

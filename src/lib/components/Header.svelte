@@ -1,12 +1,7 @@
 <script lang="ts">
 	import NavBrand from './NavBrand.svelte';
 
-	const linkedInUrl = 'https://linkedin.com/in/cadamsmithdev';
-	const githubUrl = 'https://github.com/cadamsmith';
-	const emailAddress = 'cadamsmith.dev@gmail.com';
-
-	const resumeUrl =
-		'https://drive.google.com/file/d/1J1hP-a2mQrQiw9494O5273dMo3JGmtMK/view?usp=sharing';
+	let { resources } = $props<{ resources: {[key: string]: string} }>();
 </script>
 
 <header>
@@ -15,23 +10,23 @@
 	<nav>
 		<ul>
 			<li>
-				<a class="icon-link" href={githubUrl} target="_blank" aria-label="GitHub">
+				<a class="icon-link" href={resources["githubUrl"]} target="_blank" aria-label="GitHub">
 					<iconify-icon class="iconify-icon" icon="skill-icons:github-dark"></iconify-icon>
 				</a>
 			</li>
 			<li>
-				<a class="icon-link" href={linkedInUrl} target="_blank" aria-label="LinkedIn">
+				<a class="icon-link" href={resources["linkedInUrl"]} target="_blank" aria-label="LinkedIn">
 					<iconify-icon class="iconify-icon" icon="skill-icons:linkedin"></iconify-icon>
 				</a>
 			</li>
 			<li>
-				<a class="icon-link resume-link" href={resumeUrl} target="_blank">
+				<a class="icon-link resume-link" href={resources["resumeUrl"]} target="_blank">
 					<iconify-icon class="iconify-icon" inline icon="icon-park:doc-detail"></iconify-icon>
 					<span>Resume</span>
 				</a>
 			</li>
 			<li>
-				<a class="icon-link email-link" href="mailto:{emailAddress}">
+				<a class="icon-link email-link" href="mailto:{resources["emailAddress"]}">
 					<iconify-icon class="iconify-icon" inline icon="icon-park:email-block"></iconify-icon>
 					<span>Contact</span>
 				</a>

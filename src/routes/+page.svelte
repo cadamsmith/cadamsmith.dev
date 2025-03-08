@@ -131,28 +131,26 @@
 			<p>I'm open to new opportunities! Reach out to me if you'd like to connect.</p>
 
 			<div class="contact-links">
-				<a href="mailto:cadamsmith.dev@gmail.com">
+				<a href="mailto:{data.resources["emailAddress"]}">
 					<iconify-icon class="iconify-icon" icon="mdi:email"></iconify-icon>
 					Email
 				</a>
 				<a
-					href="https://drive.google.com/file/d/1J1hP-a2mQrQiw9494O5273dMo3JGmtMK/view?usp=sharing"
+					href={data.resources["resumeUrl"]}
 					target="_blank"
 				>
 					<iconify-icon class="iconify-icon" icon="mdi:file-pdf"></iconify-icon>
 					Resume
 				</a>
-				<a href="https://www.linkedin.com/in/adam-smith-auburn/" target="_blank">
+				<a href={data.resources["linkedInUrl"]} target="_blank">
 					<iconify-icon class="iconify-icon" icon="mdi:linkedin"></iconify-icon>
 					LinkedIn
 				</a>
-				<a href="https://github.com/cadamsmith" target="_blank">
+				<a href={data.resources["githubUrl"]} target="_blank">
 					<iconify-icon class="iconify-icon" icon="mdi:github"></iconify-icon>
 					GitHub
 				</a>
 			</div>
-
-			<p>Thanks for visiting my site!</p>
 		</div>
 		<div class="right">
 			<iframe
