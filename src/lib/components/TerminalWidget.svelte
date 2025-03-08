@@ -80,8 +80,8 @@
 	}
 
 	.terminal-body {
-		background-color: black;
-		color: white;
+		background-color: #000;
+		color: #fff;
 		padding: 1em;
 		overflow-x: hidden;
 		font-family: monospace;

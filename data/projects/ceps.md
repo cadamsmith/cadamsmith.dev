@@ -1,8 +1,10 @@
 ---
-name: 'AE Alumni'
+name: 'CEPS'
 group: 'Libraries and Frameworks'
-order: 0
-images: 'aealumni.png'
+order: 1
+images: 'ceps.png'
+tags: 'Libraries and Frameworks'
+timeRange: '2015-2016'
 description: |
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.

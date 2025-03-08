@@ -4,6 +4,7 @@
 	import SkillsWidget from '$lib/components/SkillsWidget.svelte';
 	import TerminalWidget from '$lib/components/TerminalWidget.svelte';
 	import Timeline from '$lib/components/Timeline.svelte';
+	import ProjectShowcase from '$lib/components/ProjectShowcase.svelte';
 
 	const cwsWebsiteUrl = 'https://cws.auburn.edu/cws';
 
@@ -94,13 +95,13 @@
 </section>
 
 <section>
-	<h2>Technologies</h2>
+	<h2>Career</h2>
+
+	<h3>Technologies</h3>
 
 	<SkillsWidget skills={data.skills} />
-</section>
 
-<section class="bg-color">
-	<h2>My Journey</h2>
+	<h3>Experience</h3>
 
 	<div class="journey-split">
 		<div class="map-wrapper">
@@ -112,6 +113,14 @@
 			<Timeline timeline={data.timeline} />
 		</div>
 	</div>
+</section>
+
+<section class="bg-color">
+	<h2>Projects</h2>
+
+	{#each data.projects as project}
+		<ProjectShowcase project={project} />
+	{/each}
 </section>
 
 <section>
@@ -224,7 +233,6 @@
 	.journey-split {
 		display: flex;
 		gap: 2em;
-		margin-bottom: 1rem;
 	}
 
 	.map-wrapper {
@@ -266,6 +274,6 @@
 	}
 
 	.contact-split .right {
-		margin: 1rem 0;
+		margin-top: 1rem;
 	}
 </style>

@@ -44,7 +44,7 @@
 	header {
 		padding: 1rem;
 		background-color: var(--color-a);
-		color: white;
+		color: #fff;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
@@ -73,14 +73,14 @@
 	a:not(.icon-link):hover {
 		border-color: #000;
 		text-decoration: underline;
-		color: #3da5d9;
+		color: var(--color-h);
 	}
 
 	@media (max-width: 700px) {
 		header {
 			flex-direction: column;
 			gap: 0.5em;
-			background-image: linear-gradient(to right, #352e48, #352e48);
+			background-color: var(--color-b);
 			padding-bottom: 0;
 			padding-left: 0;
 			padding-right: 0;
@@ -91,7 +91,7 @@
 		}
 
 		nav {
-			background-color: #584c77;
+			background-color: var(--color-a);
 			width: 100%;
 			display: flex;
 			justify-content: center;

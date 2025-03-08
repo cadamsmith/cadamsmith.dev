@@ -3,11 +3,13 @@
 	--color-a: #584c77;
 	--color-b: #352e48;
 	--color-c: #b3001b;
-	--color-d: #00ff00;
 	--color-e: #c5d4e7;
 	--color-f: #eff6e0;
-	--color-g: #e6e6e6;
 	--color-h: #3da5d9;
+	--color-i: #d3d3d3;
+	--color-j: #666;
+	--color-k: #2f4b26;
+	--color-l: #333;
 }
 
 html {
@@ -20,8 +22,8 @@ html {
 
 body {
 	margin: min(5vw, 25px) auto;
-	background: white;
-	color: #333;
+	background: #fff;
+	color: var(--color-l);
 	font-family: sans-serif;
 	max-width: 1080px;
 	box-shadow: 0 0 10px rgba(50, 50, 50, 0.17);
@@ -49,8 +51,8 @@ main {
 
 main > * {
 	grid-column: full;
-	background-color: white;
-	padding: 0 2rem;
+	background-color: #fff;
+	padding: 0 2rem 1rem 2rem;
 }
 
 main > .full-width {
@@ -132,10 +134,10 @@ section.hero {
 
 .icon-link {
 	background-color: #fff;
-	border: 5px solid white;
+	border: 5px solid #fff;
 	padding: 2.5px;
 	text-decoration: none;
-	color: black;
+	color: #000;
 	margin-right: 0.2em;
 	border-radius: 0.4em;
 	font-weight: bold;

@@ -74,7 +74,7 @@
 		border: 2px solid #000;
 		padding: 0.2rem;
 		margin-bottom: 0.5rem;
-		background-color: #d3d3d3;
+		background-color: var(--color-i);
 	}
 
 	.timeline-selector button {
@@ -87,7 +87,7 @@
 	}
 
 	.timeline-selector button:hover {
-		background-color: #666;
+		background-color: var(--color-j);
 		color: #fff;
 	}
 
@@ -110,7 +110,7 @@
 		border: 2px solid #000;
 		padding: 0 1rem;
 		width: 100%;
-		background-color: #2f4b26;
+		background-color: var(--color-k);
 		color: #fff;
 	}
 

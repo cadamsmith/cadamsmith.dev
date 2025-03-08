@@ -37,13 +37,6 @@
 				console.log('onEachFeature', feature, layer);
 			}
 		};
-
-		/* if (leafletMap) {
-            const map = leafletMap.getMap();
-            if (map) {
-                map.fitBounds([[1.266835, 103.796403], [1.232988, 103.854861]]);
-            }
-        } */
 	});
 </script>
 

@@ -16,10 +16,8 @@
 
 <style>
 	.skill-card {
-		background-color: #d3d3d3;
+		background-color: var(--color-i);
 		border-radius: 15px;
-
-		border: 5px solid #d5bf86;
 
 		display: flex;
 		flex-direction: column;
@@ -42,7 +40,7 @@
 	}
 
 	.skill-card-footer {
-		background-color: white;
+		background-color: #fff;
 		width: 100%;
 	}
 

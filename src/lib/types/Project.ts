@@ -5,4 +5,6 @@ export interface Project {
 	order: number;
 	url: string;
 	description: string;
+	tags: string[];
+	timeRange: string;
 }

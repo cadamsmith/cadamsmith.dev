@@ -75,7 +75,7 @@ export const fetchMarkdownTimelineItems = async (): Promise<TimelineItem[]> => {
 	return allTimelineItems;
 };
 
-export const fetchMarkdownProjects = async (): Promise<Project[]> => {
+export const fetchMarkdownProjects = async (count: number): Promise<Project[]> => {
 	const allFiles = import.meta.glob('/data/projects/*.md');
 	const iterableFiles = Object.entries(allFiles);
 
@@ -89,11 +89,17 @@ export const fetchMarkdownProjects = async (): Promise<Project[]> => {
 					images: string;
 					url: string;
 					description: string;
+					tags: string;
+					timeRange: string;
 				};
 			};
 
 			const imageUrls = metadata.images.split(',').map((image) => {
 				return `/images/projects/${image.trim()}`;
+			});
+
+			const tags = metadata.tags.split(',').map((tag) => {
+				return tag.trim();
 			});
 
 			return {
@@ -102,10 +108,20 @@ export const fetchMarkdownProjects = async (): Promise<Project[]> => {
 				order: metadata.order,
 				url: metadata.url,
 				imageUrls: imageUrls,
-				description: metadata.description
+				description: metadata.description,
+				tags: tags,
+				timeRange: metadata.timeRange
 			};
 		})
 	);
 
-	return allProjects;
+	// sort projects by order
+	const sorted = allProjects.sort((a, b) => a.order - b.order);
+
+	// return the first count projects
+	if (count === -1 || count > sorted.length) {
+		return sorted;
+	} else {
+		return sorted.slice(0, count);
+	}
 };
