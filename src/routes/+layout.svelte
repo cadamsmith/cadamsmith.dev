@@ -8,7 +8,7 @@
 	let { data, children } = $props();
 </script>
 
-<Header />
+<Header resources={data.resources} />
 
 <div class="transition-outer">
 	{#key data.currentRoute}

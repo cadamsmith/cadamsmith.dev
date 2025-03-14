@@ -14,7 +14,7 @@ export const load = async ({ fetch }) => {
 			timeline
 		};
 	} catch (error) {
-		console.error('Failed to fetch skills or timeline:', error);
+		console.error('Failed to fetch data for the home page', error);
 		throw error;
 	}
 };

@@ -1,12 +1,7 @@
 <script lang="ts">
 	import NavBrand from './NavBrand.svelte';
 
-	const linkedInUrl = 'https://linkedin.com/in/cadamsmithdev';
-	const githubUrl = 'https://github.com/cadamsmith';
-	const emailAddress = 'cadamsmith.dev@gmail.com';
-
-	const resumeUrl =
-		'https://drive.google.com/file/d/1J1hP-a2mQrQiw9494O5273dMo3JGmtMK/view?usp=sharing';
+	let { resources } = $props<{ resources: {[key: string]: string} }>();
 </script>
 
 <header>
@@ -15,23 +10,23 @@
 	<nav>
 		<ul>
 			<li>
-				<a class="icon-link" href={githubUrl} target="_blank" aria-label="GitHub">
+				<a class="icon-link" href={resources["githubUrl"]} target="_blank" aria-label="GitHub">
 					<iconify-icon class="iconify-icon" icon="skill-icons:github-dark"></iconify-icon>
 				</a>
 			</li>
 			<li>
-				<a class="icon-link" href={linkedInUrl} target="_blank" aria-label="LinkedIn">
+				<a class="icon-link" href={resources["linkedInUrl"]} target="_blank" aria-label="LinkedIn">
 					<iconify-icon class="iconify-icon" icon="skill-icons:linkedin"></iconify-icon>
 				</a>
 			</li>
 			<li>
-				<a class="icon-link resume-link" href={resumeUrl} target="_blank">
+				<a class="icon-link resume-link" href={resources["resumeUrl"]} target="_blank">
 					<iconify-icon class="iconify-icon" inline icon="icon-park:doc-detail"></iconify-icon>
 					<span>Resume</span>
 				</a>
 			</li>
 			<li>
-				<a class="icon-link email-link" href="mailto:{emailAddress}">
+				<a class="icon-link email-link" href="mailto:{resources["emailAddress"]}">
 					<iconify-icon class="iconify-icon" inline icon="icon-park:email-block"></iconify-icon>
 					<span>Contact</span>
 				</a>
@@ -44,7 +39,7 @@
 	header {
 		padding: 1rem;
 		background-color: var(--color-a);
-		color: white;
+		color: #fff;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
@@ -73,14 +68,14 @@
 	a:not(.icon-link):hover {
 		border-color: #000;
 		text-decoration: underline;
-		color: #3da5d9;
+		color: var(--color-h);
 	}
 
 	@media (max-width: 700px) {
 		header {
 			flex-direction: column;
 			gap: 0.5em;
-			background-image: linear-gradient(to right, #352e48, #352e48);
+			background-color: var(--color-b);
 			padding-bottom: 0;
 			padding-left: 0;
 			padding-right: 0;
@@ -91,7 +86,7 @@
 		}
 
 		nav {
-			background-color: #584c77;
+			background-color: var(--color-a);
 			width: 100%;
 			display: flex;
 			justify-content: center;

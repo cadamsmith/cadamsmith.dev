@@ -44,7 +44,7 @@
 	a:hover {
 		border-color: #000;
 		text-decoration: underline;
-		color: #3da5d9;
+		color: var(--color-h);
 	}
 
 	.nav-brand {
@@ -53,7 +53,7 @@
 		text-transform: uppercase;
 		background-color: #000;
 		gap: 0.5em;
-		color: white;
+		color: #fff;
 		padding: unset;
 		padding-right: 0.5em;
 		margin-top: 0.7em;
@@ -82,9 +82,9 @@
 		& .dino img {
 			width: 100%;
 			height: 100%;
-			color: black;
+			color: #000;
 			position: absolute;
-			background-color: white;
+			background-color: #fff;
 		}
 	}
 

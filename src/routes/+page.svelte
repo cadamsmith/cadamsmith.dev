@@ -4,15 +4,19 @@
 	import SkillsWidget from '$lib/components/SkillsWidget.svelte';
 	import TerminalWidget from '$lib/components/TerminalWidget.svelte';
 	import Timeline from '$lib/components/Timeline.svelte';
-
+	import MusicPlayer from '$lib/components/MusicPlayer.svelte';
+	
 	const cwsWebsiteUrl = 'https://cws.auburn.edu/cws';
 
 	// get years of work experience in 0.5 year increments
 	const now = new Date();
 	const startDate = new Date(2023, 0, 1); // January 1, 2023
 	const monthsDiff =
-		(now.getFullYear() - startDate.getFullYear()) * 12 + (now.getMonth() - startDate.getMonth());
-	const yearsOfWorkExperience = Math.floor(monthsDiff / 6) / 2 + 1; // Round to nearest 0.5
+		(now.getFullYear() - startDate.getFullYear()) * 12 +
+		(now.getMonth() - startDate.getMonth());
+
+	// Round to nearest 0.5
+	const yearsOfWorkExperience = Math.floor(monthsDiff / 6) / 2 + 1;
 
 	let LocationMap: any = $state(null);
 
@@ -46,7 +50,9 @@
 		</span>
 		<span class="hero-info-tag">
 			<iconify-icon class="iconify-icon" icon="mdi:clock"></iconify-icon>
-			<span class="hero-info-tag-text">{yearsOfWorkExperience} Years Work Experience</span>
+			<span class="hero-info-tag-text"
+				>{yearsOfWorkExperience} Years Work Experience</span
+			>
 		</span>
 		<span class="hero-info-tag">
 			<iconify-icon class="iconify-icon" icon="mdi:people"></iconify-icon>
@@ -65,25 +71,26 @@
 	<div class="hero-split">
 		<div class="hero-content">
 			<p>
-				During my undergrad at Auburn University, I worked as a co-op developer at <a
-					href={cwsWebsiteUrl}
-					target="_blank">Campus Web Solutions</a
-				>. I was hired to the full-time staff after graduation and have been working there since.
+				During my undergrad at Auburn University, I worked as a co-op developer
+				at <a href={cwsWebsiteUrl} target="_blank">Campus Web Solutions</a>. I
+				was hired to the full-time staff after graduation and have been working
+				there since.
 			</p>
 
 			<p>
-				I am most confident with .NET full-stack web development, but I am a fast learner and can
-				pick up new skills quickly.
+				I am most confident with .NET full-stack web development, but I am a
+				fast learner and can pick up new skills quickly.
 			</p>
 
 			<p>
-				In addition to development, I enjoy working on internal tooling, automating development
-				processes, and debugging production problems. I'm a big fan of code reviewing and improving
-				code quality.
+				In addition to development, I enjoy working on internal tooling,
+				automating development processes, and debugging production problems. I'm
+				a big fan of code reviewing and improving code quality.
 			</p>
 
 			<p>
-				I write documentation and train new developers. I am a reliable hard worker and team player.
+				I write documentation and train new developers. I am a reliable hard
+				worker and team player.
 			</p>
 		</div>
 
@@ -98,7 +105,6 @@
 
 	<SkillsWidget skills={data.skills} />
 </section>
-
 <section class="bg-color">
 	<h2>My Journey</h2>
 
@@ -113,50 +119,36 @@
 		</div>
 	</div>
 </section>
-
 <section>
 	<div class="contact-split">
 		<div class="left">
 			<h2>Contact Me</h2>
 
-			<p>I'm open to new opportunities! Reach out to me if you'd like to connect.</p>
+			<p>
+				I'm open to new opportunities! Reach out to me if you'd like to connect.
+			</p>
 
 			<div class="contact-links">
-				<a href="mailto:cadamsmith.dev@gmail.com">
+				<a href="mailto:{data.resources['emailAddress']}">
 					<iconify-icon class="iconify-icon" icon="mdi:email"></iconify-icon>
 					Email
 				</a>
-				<a
-					href="https://drive.google.com/file/d/1J1hP-a2mQrQiw9494O5273dMo3JGmtMK/view?usp=sharing"
-					target="_blank"
-				>
+				<a href={data.resources['resumeUrl']} target="_blank">
 					<iconify-icon class="iconify-icon" icon="mdi:file-pdf"></iconify-icon>
 					Resume
 				</a>
-				<a href="https://www.linkedin.com/in/adam-smith-auburn/" target="_blank">
+				<a href={data.resources['linkedInUrl']} target="_blank">
 					<iconify-icon class="iconify-icon" icon="mdi:linkedin"></iconify-icon>
 					LinkedIn
 				</a>
-				<a href="https://github.com/cadamsmith" target="_blank">
+				<a href={data.resources['githubUrl']} target="_blank">
 					<iconify-icon class="iconify-icon" icon="mdi:github"></iconify-icon>
 					GitHub
 				</a>
 			</div>
-
-			<p>Thanks for visiting my site!</p>
 		</div>
 		<div class="right">
-			<iframe
-				width="344"
-				height="210"
-				src="https://www.youtube.com/embed/videoseries?si=Bj5MQ5Jhzk0TRKtJ&amp;list=PLOnKIDPOvtO2Nz8G2Qsz6VYafKAzvD0xD"
-				title="YouTube video player"
-				frameborder="0"
-				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-				referrerpolicy="strict-origin-when-cross-origin"
-				allowfullscreen
-			>
-			</iframe>
+			<MusicPlayer />
 		</div>
 	</div>
 </section>
@@ -224,7 +216,6 @@
 	.journey-split {
 		display: flex;
 		gap: 2em;
-		margin-bottom: 1rem;
 	}
 
 	.map-wrapper {
@@ -266,6 +257,6 @@
 	}
 
 	.contact-split .right {
-		margin: 1rem 0;
+		margin-top: 1rem;
 	}
 </style>

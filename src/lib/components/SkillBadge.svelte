@@ -1,10 +1,12 @@
 <script lang="ts">
 	import type { Skill } from '$lib/types/Skill';
 
-	let { skill, selected } = $props<{
+	interface Props {
 		skill: Skill;
 		selected: boolean;
-	}>();
+	}
+
+	let { skill, selected }: Props = $props();
 </script>
 
 <a class="skill-badge" href={skill.url} class:selected target="_blank">
@@ -25,7 +27,7 @@
 		color: #000;
 		border-radius: 10px;
 		padding: 0.3rem;
-		background-color: #d3d3d3;
+		background-color: var(--color-i);
 	}
 
 	.skill-badge-img-wrapper {

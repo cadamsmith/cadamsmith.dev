@@ -52,7 +52,7 @@
 		margin-top: 1rem;
 		padding: 1rem;
 		background-color: var(--color-a);
-		color: white;
+		color: #fff;
 		display: flex;
 		justify-content: space-between;
 		gap: 0.5em;
@@ -65,7 +65,7 @@
 	}
 
 	a:not(.icon-link) {
-		color: white;
+		color: #fff;
 	}
 
 	.info,
@@ -96,7 +96,7 @@
 
 	@media (max-width: 700px) {
 		footer {
-			background-image: linear-gradient(to right, var(--color-a), var(--color-a));
+			background-color: var(--color-a);
 			text-align: center;
 			flex-direction: column;
 			padding: 1rem 0 0 0;
