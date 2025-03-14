@@ -19,7 +19,9 @@
         // superman (goldfinger)
         'https://www.youtube.com/embed/0di6EY1p20U?si=32CaCCPerHhYAYMn',
         // the dripping tap (king gizzard and the lizard wizard)
-        'https://www.youtube.com/embed/oDMldn7hFZo?si=vX_ty8b55xxADre7'
+        'https://www.youtube.com/embed/oDMldn7hFZo?si=vX_ty8b55xxADre7',
+        // brooklyn bridge to chorus (the strokes)
+        'https://www.youtube.com/embed/XlmyLnNfu8M?si=jQzTKJETjnpe5frs'
 	];
 
     const randomized = youTubeUrls.sort(() => Math.random() - 0.5);
@@ -28,15 +30,59 @@
 		return Math.floor(Math.random() * randomized.length);
 	}
 
+    function nextSong() {
+        index = (index + 1) % randomized.length;
+        isPlaying = true;
+    }
+
+    function previousSong() {
+        index = (index - 1 + randomized.length) % randomized.length;
+        isPlaying = true;
+    }
+
+    let isPlaying = $state(false);
+
 	let index = $state(getRandomIndex());
 
     let url = $derived(randomized[index]);
 </script>
 
+<div class="controls">
+    <button onclick={previousSong} aria-label="Previous Song">
+        <iconify-icon class="iconify-icon" icon="mdi:skip-previous"></iconify-icon>
+    </button>
+
+    <iconify-icon class="iconify-icon music-icon" icon="mdi:music"></iconify-icon>
+
+    <button onclick={nextSong} aria-label="Next Song">
+        <iconify-icon class="iconify-icon" icon="mdi:skip-next"></iconify-icon>
+    </button>
+</div>
+
 <iframe width="344" height="210"
-    src="{url}"
+    src="{url}&controls=0&rel=0{isPlaying ? '&autoplay=1' : ''}"
     title="YouTube video player"
     frameborder="0"
     allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     referrerpolicy="strict-origin-when-cross-origin"
 ></iframe>
+
+<style>
+    .controls {
+        background-color: var(--color-j);
+        border: 2px solid #000;
+        display: flex;
+        justify-content: space-between;
+        gap: .5rem;
+        padding: .5rem;
+        margin-bottom: .2rem;
+    }
+
+    .music-icon {
+        color: #fff;
+    }
+
+    .controls button {
+        border: 2px solid #000;
+    }
+</style>

@@ -101,13 +101,12 @@
 </section>
 
 <section>
-	<h2>Career</h2>
-
-	<h3>Technologies</h3>
+	<h2>Technologies</h2>
 
 	<SkillsWidget skills={data.skills} />
-
-	<h3>Experience</h3>
+</section>
+<section class="bg-color">
+	<h2>My Journey</h2>
 
 	<div class="journey-split">
 		<div class="map-wrapper">
@@ -120,7 +119,7 @@
 		</div>
 	</div>
 </section>
-<section class="bg-color">
+<section>
 	<div class="contact-split">
 		<div class="left">
 			<h2>Contact Me</h2>
