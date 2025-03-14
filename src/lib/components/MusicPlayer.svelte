@@ -21,7 +21,13 @@
         // the dripping tap (king gizzard and the lizard wizard)
         'https://www.youtube.com/embed/oDMldn7hFZo?si=vX_ty8b55xxADre7',
         // brooklyn bridge to chorus (the strokes)
-        'https://www.youtube.com/embed/XlmyLnNfu8M?si=jQzTKJETjnpe5frs'
+        'https://www.youtube.com/embed/XlmyLnNfu8M?si=jQzTKJETjnpe5frs',
+        // i summon you (spoon)
+        'https://www.youtube.com/embed/iRXE3NNaiks?si=ek81Bz6UYKnyf--e',
+        // turn to stone (elo)
+        'https://www.youtube.com/embed/BDhJU_cNCZE?si=GVmv8thhSKTmhKeM',
+        // down by the seaside (led zeppelin)
+        'https://www.youtube.com/embed/g2U1BhziqzM?si=fmlAhbTgoKvB_vgI'
 	];
 
     const randomized = youTubeUrls.sort(() => Math.random() - 0.5);
@@ -69,7 +75,7 @@
 
 <style>
     .controls {
-        background-color: var(--color-j);
+        background-color: #000;
         border: 2px solid #000;
         display: flex;
         justify-content: space-between;
