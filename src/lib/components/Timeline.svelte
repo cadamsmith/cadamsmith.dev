@@ -12,25 +12,27 @@
 		const endDate = new Date(end);
 
 		// Set all times to midnight for accurate day comparison
-		currentDate.setHours(0, 0, 0, 0);
-		startDate.setHours(0, 0, 0, 0);
-		endDate.setHours(0, 0, 0, 0);
+		currentDate.setUTCHours(0, 0, 0, 0);
 
-		// need to only check based on days, fix it
+		// Check if endDate is today or in the future
 		if (endDate >= currentDate) {
-			return (
-				startDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) + ' - Present'
-			);
+			return `${formatDate(startDate)} - Present`;
 		}
-		return (
-			startDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) +
-			' - ' +
-			endDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
-		);
+		return `${formatDate(startDate)} - ${formatDate(endDate)}`;
+	}
+
+	function formatDate(date: Date) {
+		return date.toLocaleDateString('en-US', {
+			month: 'short',
+			year: 'numeric',
+			timeZone: 'UTC'
+		});
 	}
 
 	function formatTimelineRange(dateRanges: [string, string][]) {
-		return dateRanges.map((dateRange) => formatDateRange(dateRange[0], dateRange[1])).join(', ');
+		return dateRanges
+			.map((dateRange) => formatDateRange(dateRange[0], dateRange[1]))
+			.join(', ');
 	}
 
 	function handleGroupChange(group: string) {
@@ -39,8 +41,9 @@
 </script>
 
 <div class="timeline-selector">
-	<button class:selected={currentGroup === 'Work'} onclick={() => handleGroupChange('Work')}
-		>Work</button
+	<button
+		class:selected={currentGroup === 'Work'}
+		onclick={() => handleGroupChange('Work')}>Work</button
 	>
 	<button
 		class:selected={currentGroup === 'Education'}
@@ -50,7 +53,10 @@
 
 <div class="timeline">
 	{#each timeline as timelineItem}
-		<div class="timeline-item" class:selected={timelineItem.group === currentGroup}>
+		<div
+			class="timeline-item"
+			class:selected={timelineItem.group === currentGroup}
+		>
 			<div class="timeline-item-left">
 				<div class="timeline-item-bar"></div>
 				<div class="img-wrapper">

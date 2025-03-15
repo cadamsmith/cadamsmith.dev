@@ -7,7 +7,7 @@ export const fetchMarkdownSkills = async (): Promise<Skill[]> => {
 	const iterableFiles = Object.entries(allFiles);
 
 	const allSkills = await Promise.all(
-		iterableFiles.map(async ([_, resolver]) => {
+		iterableFiles.map(async ([, resolver]) => {
 			const { metadata } = (await resolver()) as {
 				metadata: {
 					name: string;
@@ -40,7 +40,7 @@ export const fetchMarkdownTimelineItems = async (): Promise<TimelineItem[]> => {
 	const iterableFiles = Object.entries(allFiles);
 
 	const allTimelineItems = await Promise.all(
-		iterableFiles.map(async ([_, resolver]) => {
+		iterableFiles.map(async ([, resolver]) => {
 			const { metadata } = (await resolver()) as {
 				metadata: {
 					title: string;
@@ -56,9 +56,23 @@ export const fetchMarkdownTimelineItems = async (): Promise<TimelineItem[]> => {
 			const dates = metadata.dates.split(',').map((date) => {
 				const [startDate, endDate] = date.trim().split(' - ');
 
-				const realEndDate = endDate === 'Present' ? new Date() : new Date(endDate);
+				// Create dates with UTC to avoid timezone issues
+				const startDateObj = new Date(startDate);
+				
+				// Set to UTC midnight to avoid date shifting
+				startDateObj.setUTCHours(0, 0, 0, 0);
+				
+				let endDateObj: Date;
+				
+				if (endDate === 'Present') {
+					endDateObj = new Date();
+					endDateObj.setUTCHours(0, 0, 0, 0);
+				} else {
+					endDateObj = new Date(endDate);
+					endDateObj.setUTCHours(0, 0, 0, 0);
+				}
 
-				return [new Date(startDate), realEndDate] as [Date, Date];
+				return [startDateObj.toISOString(), endDateObj.toISOString()] as [string, string];
 			});
 
 			return {
@@ -80,7 +94,7 @@ export const fetchMarkdownProjects = async (count: number): Promise<Project[]> =
 	const iterableFiles = Object.entries(allFiles);
 
 	const allProjects = await Promise.all(
-		iterableFiles.map(async ([_, resolver]) => {
+		iterableFiles.map(async ([, resolver]) => {
 			const { metadata } = (await resolver()) as {
 				metadata: {
 					name: string;

@@ -154,16 +154,6 @@
 </section>
 
 <style>
-	h1 {
-		font-size: 2.2em;
-		margin-top: 1rem;
-		margin-bottom: 0.6rem;
-	}
-
-	section.bg-color {
-		background-color: var(--color-e);
-	}
-
 	.hero-split {
 		display: grid;
 		grid-template-columns: 1.1fr 0.9fr;

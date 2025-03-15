@@ -71,6 +71,7 @@
 		overflow: hidden;
 		height: 0;
 		margin-top: 1rem;
+		font-weight: bold;
 	}
 
 	.terminal-header {

@@ -3,6 +3,6 @@ export interface TimelineItem {
 	company: string;
 	group: string;
 	order: number;
-	dates: [Date, Date][];
+	dates: [string, string][];
 	url: string;
 }

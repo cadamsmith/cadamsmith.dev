@@ -16,7 +16,8 @@
 
 		mapOptions = {
 			center: [32.60986, -85.48059],
-			zoom: 12
+			zoom: 12,
+			scrollWheelZoom: false
 		};
 
 		tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
