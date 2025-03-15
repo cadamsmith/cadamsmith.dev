@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
 	const youTubeUrls = [
         // gangplank galleon (donkey kong country)
 		'https://www.youtube.com/embed/yMBFdtRbFD0?si=7F-yTnkU8LR1GoFR',
@@ -30,10 +32,17 @@
         'https://www.youtube.com/embed/g2U1BhziqzM?si=fmlAhbTgoKvB_vgI'
 	];
 
-    const randomized = youTubeUrls.sort(() => Math.random() - 0.5);
+    let randomized: string[] = [];
+    let index = $state(0);
+    let isPlaying = $state(false);
+
+    onMount(() => {
+        randomized = youTubeUrls.sort(() => Math.random() - 0.5);
+        index = getRandomIndex();
+    });
 
 	function getRandomIndex() {
-		return Math.floor(Math.random() * randomized.length);
+		return Math.floor(Math.random() * youTubeUrls.length);
 	}
 
     function nextSong() {
@@ -46,11 +55,7 @@
         isPlaying = true;
     }
 
-    let isPlaying = $state(false);
-
-	let index = $state(getRandomIndex());
-
-    let url = $derived(randomized[index]);
+    let url = $derived(randomized[index] ?? youTubeUrls[0]);
 </script>
 
 <div class="controls">
