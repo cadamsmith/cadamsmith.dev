@@ -7,7 +7,7 @@ export const fetchMarkdownSkills = async (): Promise<Skill[]> => {
 	const iterableFiles = Object.entries(allFiles);
 
 	const allSkills = await Promise.all(
-		iterableFiles.map(async ([_, resolver]) => {
+		iterableFiles.map(async ([, resolver]) => {
 			const { metadata } = (await resolver()) as {
 				metadata: {
 					name: string;
@@ -40,7 +40,7 @@ export const fetchMarkdownTimelineItems = async (): Promise<TimelineItem[]> => {
 	const iterableFiles = Object.entries(allFiles);
 
 	const allTimelineItems = await Promise.all(
-		iterableFiles.map(async ([_, resolver]) => {
+		iterableFiles.map(async ([, resolver]) => {
 			const { metadata } = (await resolver()) as {
 				metadata: {
 					title: string;
@@ -94,7 +94,7 @@ export const fetchMarkdownProjects = async (count: number): Promise<Project[]> =
 	const iterableFiles = Object.entries(allFiles);
 
 	const allProjects = await Promise.all(
-		iterableFiles.map(async ([_, resolver]) => {
+		iterableFiles.map(async ([, resolver]) => {
 			const { metadata } = (await resolver()) as {
 				metadata: {
 					name: string;
