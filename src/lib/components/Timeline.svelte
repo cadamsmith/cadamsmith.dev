@@ -18,15 +18,17 @@
 
 		// need to only check based on days, fix it
 		if (endDate >= currentDate) {
-			return (
-				startDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) + ' - Present'
-			);
+			return `${formatDate(startDate)} - Present`;
 		}
-		return (
-			startDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) +
-			' - ' +
-			endDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
-		);
+		return `${formatDate(startDate)} - ${formatDate(endDate)}`;
+	}
+
+	function formatDate(date: Date) {
+		return new Date(date).toLocaleDateString('en-US', {
+			month: 'short',
+			year: 'numeric',
+			timeZone: 'UTC'
+		});
 	}
 
 	function formatTimelineRange(dateRanges: [string, string][]) {
