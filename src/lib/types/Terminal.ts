@@ -70,7 +70,7 @@ export class Terminal {
 		const session = this.sessions[this.sessions.length - 2];
 
 		const header = `Get to 2048! Use your arrow keys (↑, ↓, ←, →)`;
-		const footer = `Enter \"q\" to quit the game`;
+		const footer = `Enter "q" to quit the game`;
 
 		switch (e.key) {
 			case 'Enter': {
@@ -111,6 +111,11 @@ export class Terminal {
 		if (this.twentyFortyEightGame.hasWon) {
 			this.isPlaying2048 = false;
 			session.output.content += '\n\nYou win! Thanks for playing!';
+		}
+
+		if (this.twentyFortyEightGame.isLost()) {
+			this.isPlaying2048 = false;
+			session.output.content += '\n\nYou lost! Thanks for playing!';
 		}
 	}
 
@@ -164,7 +169,7 @@ export class Terminal {
 				this.isPlaying2048 = true;
 				session.output.content = `Get to 2048! Use your arrow keys (↑, ↓, ←, →)\n
 					${this.twentyFortyEightGame.init()}\n
-					Enter \"q\" to quit the game`;
+					Enter "q" to quit the game`;
 				break;
 			default:
 				session.output.content = 'Command not found';
@@ -359,6 +364,28 @@ class TwentyFortyEight {
 		}
 	}
 
+	public isLost(): boolean {
+		if (this.getAvailableSpaces().length !== 0) {
+			return false;
+		}
+
+		// Check all adjacent cells (horizontal and vertical)
+		for (let row = 0; row < 4; row++) {
+			for (let col = 0; col < 4; col++) {
+				// Check right neighbor (if not on the right edge)
+				if (col < 3 && this.board[row][col] === this.board[row][col + 1]) {
+					return false;
+				}
+				// Check bottom neighbor (if not on the bottom edge)
+				if (row < 3 && this.board[row][col] === this.board[row + 1][col]) {
+					return false;
+				}
+			}
+		}
+
+		return true;
+	}
+
 	public toString(): string {
 		return this.board
 			.map((row) => row.map((n) => this.prettyPrintValue(n)).join(' | '))
@@ -368,7 +395,7 @@ class TwentyFortyEight {
 	prettyPrintValue(value: number): string {
 		const stringValue = ` ${value.toString().padStart(4, ' ')} `;
 
-		return `<span class=\"game-cell game-cell-${value}\">${stringValue}</span>`;
+		return `<span class="game-cell game-cell-${value}">${stringValue}</span>`;
 	}
 
 	reset() {
