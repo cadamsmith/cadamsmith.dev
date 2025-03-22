@@ -2,8 +2,6 @@
 	import Carousel from '$lib/components/Carousel.svelte';
 
 	let { data } = $props();
-
-	console.log(data.projects);
 </script>
 
 <section class="bg-color">
