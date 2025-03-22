@@ -41,6 +41,8 @@
 		]
 	},
 	"dependencies": {
+		"@fontsource-variable/rubik": "^5.2.5",
+		"@fontsource/jetbrains-mono": "^5.2.5",
 		"iconify-icon": "^2.3.0",
 		"leaflet": "^1.9.4",
 		"svelte-leafletjs": "^2.0.0"

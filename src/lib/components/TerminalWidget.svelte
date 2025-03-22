@@ -72,6 +72,8 @@
 		height: 0;
 		margin-top: 1rem;
 		font-weight: bold;
+		font-size: 13px;
+		font-family: 'JetBrains Mono', monospace;
 	}
 
 	.terminal-header {
@@ -85,7 +87,6 @@
 		color: #fff;
 		padding: 1em;
 		overflow-x: hidden;
-		font-family: monospace;
 
 		flex-grow: 1;
 	}

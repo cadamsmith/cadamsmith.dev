@@ -7,4 +7,5 @@ export interface Project {
 	description: string;
 	tags: string[];
 	timeRange: string;
+	slug: string;
 }
