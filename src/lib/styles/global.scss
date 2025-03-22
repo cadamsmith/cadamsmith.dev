@@ -1,3 +1,6 @@
+@use '@fontsource-variable/rubik';
+@use '@fontsource/jetbrains-mono';
+
 :root {
 	/* I am bad at color palettes */
 	--color-a: #584c77;
@@ -18,13 +21,14 @@ html {
 	display: flex;
 	flex-direction: column;
 	margin: 0 min(5vw, 25px);
+
+	font-family: 'Rubik Variable', sans-serif;
 }
 
 body {
 	margin: min(5vw, 25px) auto;
 	background: #fff;
 	color: var(--color-l);
-	font-family: sans-serif;
 	max-width: 1080px;
 	box-shadow: 0 0 10px rgba(50, 50, 50, 0.17);
 	width: 100%;
