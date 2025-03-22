@@ -255,20 +255,30 @@ class TwentyFortyEight {
 	}
 
 	public shift(direction: Direction): string {
+		// Create a copy of the board to check if it changed
+		const oldBoard = this.board.map(row => [...row]);
+		
 		for (let i = 0; i < 4; i++) {
 			this.shiftColumn(i, direction);
 			this.shiftRow(i, direction);
 		}
 
-		// every move, a random available cell is filled (if any cells are available)
-		const [x, y] = this.getRandomAvailableSpace();
-		if (x !== -1) {
-			// 10% chance of spawning a 4
-			// 90% chance of spawning a 2
-			const isFour = Math.random() < 0.1;
-			const cellValue = isFour ? 4 : 2;
+		// Check if the board changed
+		const boardChanged = this.board.some((row, i) => 
+			row.some((cell, j) => cell !== oldBoard[i][j])
+		);
 
-			this.setSpace([x, y], cellValue);
+		// Only generate a new tile if the board changed
+		if (boardChanged) {
+			const [x, y] = this.getRandomAvailableSpace();
+			if (x !== -1) {
+				// 10% chance of spawning a 4
+				// 90% chance of spawning a 2
+				const isFour = Math.random() < 0.1;
+				const cellValue = isFour ? 4 : 2;
+
+				this.setSpace([x, y], cellValue);
+			}
 		}
 
 		return this.toString();

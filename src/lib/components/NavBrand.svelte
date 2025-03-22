@@ -23,6 +23,7 @@
 	href="/"
 	onmouseenter={setAltProfilePhoto}
 	onmouseleave={setDefaultProfilePhoto}
+	target="_self"
 >
 	<div class="dino">
 		<img src={defaultImg} alt="" class={useDefaultProfileImg ? '' : 'hide'} />
