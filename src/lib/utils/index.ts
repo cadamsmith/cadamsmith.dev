@@ -3,14 +3,14 @@ import type { Skill } from '$lib/types/Skill';
 import type { TimelineItem } from '$lib/types/TimelineItem';
 
 /**
- * Fetches and parses all skill markdown files from the /data/skills/ directory.
+ * Fetches and parses all skill markdown files from the /content/skills/ directory.
  * Each markdown file contains metadata about a skill including name, group, order, image, and URL.
  *
  * @returns {Promise<Skill[]>} A promise that resolves to an array of Skill objects.
  */
 export const fetchMarkdownSkills = async (): Promise<Skill[]> => {
 	// Use import.meta.glob to get all markdown files in the skills directory
-	const allFiles = import.meta.glob('/data/skills/*.md');
+	const allFiles = import.meta.glob('/content/skills/*.md');
 	// Convert object to array of entries for easier processing
 	const iterableFiles = Object.entries(allFiles);
 
@@ -46,7 +46,7 @@ export const fetchMarkdownSkills = async (): Promise<Skill[]> => {
 };
 
 /**
- * Fetches and parses all timeline markdown files from the /data/timeline/ directory.
+ * Fetches and parses all timeline markdown files from the /content/timeline/ directory.
  * Each markdown file represents a timeline item (like a job or education period) with
  * metadata for title, company, dates, etc.
  * 
@@ -54,7 +54,7 @@ export const fetchMarkdownSkills = async (): Promise<Skill[]> => {
  */
 export const fetchMarkdownTimelineItems = async (): Promise<TimelineItem[]> => {
 	// Use import.meta.glob to get all markdown files in the timeline directory
-	const allFiles = import.meta.glob('/data/timeline/*.md');
+	const allFiles = import.meta.glob('/content/timeline/*.md');
 	// Convert object to array of entries for easier processing
 	const iterableFiles = Object.entries(allFiles);
 
@@ -113,7 +113,7 @@ export const fetchMarkdownTimelineItems = async (): Promise<TimelineItem[]> => {
 };
 
 /**
- * Fetches and parses project markdown files from the /data/projects/ directory.
+ * Fetches and parses project markdown files from the /content/projects/ directory.
  * Each markdown file contains metadata about a project including name, description, images, etc.
  *
  * @param {number} count - The number of projects to return. If -1, returns all projects.
@@ -121,7 +121,7 @@ export const fetchMarkdownTimelineItems = async (): Promise<TimelineItem[]> => {
  */
 export const fetchMarkdownProjects = async (count: number): Promise<Project[]> => {
 	// Use import.meta.glob to get all markdown files in the projects directory
-	const allFiles = import.meta.glob('/data/projects/*.md');
+	const allFiles = import.meta.glob('/content/projects/*.md');
 	// Convert object to array of entries for easier processing
 	const iterableFiles = Object.entries(allFiles);
 
@@ -141,7 +141,7 @@ export const fetchMarkdownProjects = async (count: number): Promise<Project[]> =
 				};
 			};
 
-			// Extract slug from the file path (e.g., '/data/projects/my-project.md' -> 'my-project')
+			// Extract slug from the file path (e.g., '/content/projects/my-project.md' -> 'my-project')
 			const slug = path.split('/').pop()?.replace('.md', '') ?? '';
 
 			// Process comma-separated image list into array of image URLs
@@ -180,14 +180,14 @@ export const fetchMarkdownProjects = async (count: number): Promise<Project[]> =
 };
 
 /**
- * Fetches miscellaneous resources from a single markdown file at /data/misc_resources.md.
+ * Fetches miscellaneous resources from a single markdown file at /content/misc_resources.md.
  * The file should contain key-value pairs in its frontmatter metadata.
  *
  * @returns {Promise<{[key: string]: string}>} A promise that resolves to an object containing resource key-value pairs.
  */
 export const fetchMarkdownMiscResources = async (): Promise<{[key: string]: string}> => {
 	// Load the single file containing miscellaneous resources
-	const file = import.meta.glob('/data/misc_resources.md');
+	const file = import.meta.glob('/content/misc_resources.md');
 	// Get the resolver function for the file (there's only one)
 	const resolver = Object.values(file)[0];
 

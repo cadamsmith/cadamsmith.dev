@@ -8,7 +8,7 @@ export const load = async ({ fetch }) => {
 		let projects = [];
 
 		for (const metadata of projectMetadatas) {
-			const module = await import(`../../../data/projects/${metadata.slug}.md`);
+			const module = await import(`../../../content/projects/${metadata.slug}.md`);
 			projects.push({metadata, component: module.default});
 		}
 
