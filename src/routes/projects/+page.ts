@@ -1,6 +1,13 @@
 import type { Project } from '$lib/types/Project';
+import { dev } from '$app/environment';
+import { error } from '@sveltejs/kit';
 
 export const load = async ({ fetch }) => {
+	// Return 404 in production environment
+	if (!dev) {
+		error(404, 'Not implemented');
+	}
+
 	try {
 		const response = await fetch(`/api/projects`);
 		const projectMetadatas = (await response.json()) as Project[];
@@ -15,8 +22,7 @@ export const load = async ({ fetch }) => {
 		return {
 			projects: projects
 		};
-	} catch (error) {
-		console.error('Failed to fetch data for the home page', error);
-		throw error;
+	} catch (e) {
+		error(404, 'Failed to fetch data for the home page');
 	}
 };
