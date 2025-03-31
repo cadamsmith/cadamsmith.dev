@@ -80,26 +80,26 @@ export class Terminal {
 				break;
 			}
 			case 'ArrowUp': {
-				session.output.content = `${header}\n
-					${this.twentyFortyEightGame.shift(Direction.Up)}\n
+				session.output.content = `${header}
+					${this.twentyFortyEightGame.shift(Direction.Up)}
 					${footer}`;
 				break;
 			}
 			case 'ArrowDown': {
-				session.output.content = `${header}\n
-					${this.twentyFortyEightGame.shift(Direction.Down)}\n
+				session.output.content = `${header}
+					${this.twentyFortyEightGame.shift(Direction.Down)}
 					${footer}`;
 				break;
 			}
 			case 'ArrowLeft': {
-				session.output.content = `${header}\n
-					${this.twentyFortyEightGame.shift(Direction.Left)}\n
+				session.output.content = `${header}
+					${this.twentyFortyEightGame.shift(Direction.Left)}
 					${footer}`;
 				break;
 			}
 			case 'ArrowRight': {
-				session.output.content = `${header}\n
-					${this.twentyFortyEightGame.shift(Direction.Right)}\n
+				session.output.content = `${header}
+					${this.twentyFortyEightGame.shift(Direction.Right)}
 					${footer}`;
 				break;
 			}
@@ -110,12 +110,12 @@ export class Terminal {
 
 		if (this.twentyFortyEightGame.hasWon) {
 			this.isPlaying2048 = false;
-			session.output.content += '\n\nYou win! Thanks for playing!';
+			session.output.content += '\nYou win! Thanks for playing!';
 		}
 
 		if (this.twentyFortyEightGame.isLost()) {
 			this.isPlaying2048 = false;
-			session.output.content += '\n\nYou lost! Thanks for playing!';
+			session.output.content += '\nYou lost! Thanks for playing!';
 		}
 	}
 
@@ -167,8 +167,8 @@ export class Terminal {
 				break;
 			case '2048':
 				this.isPlaying2048 = true;
-				session.output.content = `Get to 2048! Use your arrow keys (↑, ↓, ←, →)\n
-					${this.twentyFortyEightGame.init()}\n
+				session.output.content = `Get to 2048! Use your arrow keys (↑, ↓, ←, →)
+					${this.twentyFortyEightGame.init()}
 					Enter "q" to quit the game`;
 				break;
 			default:
@@ -225,8 +225,8 @@ class TerminalSession {
 
 class TerminalCommands {
 	static welcome(output: TerminalOutput) {
-		output.content = `┻━┻ ︵ヽ(\`Д´)ﾉ ︵ ┻━┻\n
-            Welcome to my website!\n
+		output.content = `┻━┻ ︵ヽ(\`Д´)ﾉ ︵ ┻━┻
+            Welcome to my website!
             Enter \`help\` to see all terminal commands`;
 	}
 
@@ -399,7 +399,7 @@ class TwentyFortyEight {
 	public toString(): string {
 		return this.board
 			.map((row) => row.map((n) => this.prettyPrintValue(n)).join(' | '))
-			.join('\n\n---------------------------------\n\n');
+			.join('\n---------------------------------\n');
 	}
 
 	prettyPrintValue(value: number): string {

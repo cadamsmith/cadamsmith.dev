@@ -21,6 +21,7 @@ html {
 	display: flex;
 	flex-direction: column;
 	margin: 0 min(5vw, 25px);
+	scroll-behavior: smooth;
 
 	font-family: 'Rubik Variable', sans-serif;
 }
