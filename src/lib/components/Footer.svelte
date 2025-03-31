@@ -9,7 +9,7 @@
 
 <footer>
 	<div class="info">
-		<span>
+		<span class="powered-by">
 			Powered by
 			<a class="icon-link sveltekit-link" href="https://kit.svelte.dev/" target="_blank">
 				<svg
@@ -38,7 +38,7 @@
 				<span>SvelteKit</span>
 			</a>
 		</span>
-		<span>
+		<span class="hosted-by">
 			on
 			<a
 				class="icon-link cloudflare-link"
@@ -112,13 +112,23 @@
 
 	.icon-link {
 		--border-color: var(--color-h);
-		display: inline-block;
+		display: inline-flex;
 	}
 
 	a:not(.icon-link) {
 		color: #fff;
 	}
 
+	.powered-by,
+	.hosted-by {
+		display: flex;
+		align-items: center;
+		gap: 0.3em;
+	}
+
+	.powered-by {
+		margin-right: 0.2em;
+	}
 	.info,
 	.source-info {
 		display: flex;
