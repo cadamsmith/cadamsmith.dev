@@ -49,7 +49,7 @@
 							><rect width="256" height="256" fill="#fff" rx="60" /><rect
 								width="256"
 								height="256"
-								fill="#0a66c2"
+								fill="#000"
 								rx="60"
 							/><path
 								fill="#fff"
@@ -66,28 +66,11 @@
 						xmlns="http://www.w3.org/2000/svg"
 						width="1em"
 						height="1em"
-						viewBox="0 0 48 48"
-						><g
-							fill="none"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="4"
-							><path
-								fill="#2f88ff"
-								stroke="#000"
-								d="M39 4H11C9.89543 4 9 4.89543 9 6V42C9 43.1046 9.89543 44 11 44H39C40.1046 44 41 43.1046 41 42V6C41 4.89543 40.1046 4 39 4Z"
-							/><path stroke="#fff" d="M17 30L31 30" /><path
-								stroke="#fff"
-								d="M17 36H24"
-							/><rect
-								width="14"
-								height="10"
-								x="17"
-								y="12"
-								fill="#2f88ff"
-								stroke="#fff"
-							/></g
-						></svg
+						viewBox="0 0 24 24"
+						><path
+							fill="currentColor"
+							d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-9.5 8.5c0 .8-.7 1.5-1.5 1.5H7v2H5.5V9H8c.8 0 1.5.7 1.5 1.5zm5 2c0 .8-.7 1.5-1.5 1.5h-2.5V9H13c.8 0 1.5.7 1.5 1.5zm4-3H17v1h1.5V13H17v2h-1.5V9h3zm-6.5 0h1v3h-1zm-5 0h1v1H7z"
+						/></svg
 					>
 					<span>Resume</span>
 				</a>
@@ -102,18 +85,8 @@
 						viewBox="0 0 24 24"
 						><path
 							fill="currentColor"
-							fill-opacity="0.3"
-							d="M12 13l-8 -5v10h16v-10l-8 5Z"
-						/><g
-							fill="none"
-							stroke="currentColor"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							><path
-								d="M4 5h16c0.55 0 1 0.45 1 1v12c0 0.55 -0.45 1 -1 1h-16c-0.55 0 -1 -0.45 -1 -1v-12c0 -0.55 0.45 -1 1 -1Z"
-							/><path d="M3 6.5l9 5.5l9 -5.5" /></g
-						></svg
+							d="m20 8l-8 5l-8-5V6l8 5l8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2"
+						/></svg
 					>
 					<span>Contact</span>
 				</a>
