@@ -117,6 +117,6 @@
 	.session .output {
 		grid-column: 1 / span 2;
 		white-space: pre-line;
-		line-height: 0.7em;
+		line-height: 1.4em;
 	}
 </style>
