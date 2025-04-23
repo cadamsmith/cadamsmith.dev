@@ -5,36 +5,6 @@
 
 	let currentGroup = $state('Work');
 
-	// format date range to be in the format of "Jan 2024 - Mar 2025"
-	function formatDateRange(start: string, end: string) {
-		const currentDate = new Date();
-		const startDate = new Date(start);
-		const endDate = new Date(end);
-
-		// Set all times to midnight for accurate day comparison
-		currentDate.setUTCHours(0, 0, 0, 0);
-
-		// Check if endDate is today or in the future
-		if (endDate >= currentDate) {
-			return `${formatDate(startDate)} - Present`;
-		}
-		return `${formatDate(startDate)} - ${formatDate(endDate)}`;
-	}
-
-	function formatDate(date: Date) {
-		return date.toLocaleDateString('en-US', {
-			month: 'short',
-			year: 'numeric',
-			timeZone: 'UTC'
-		});
-	}
-
-	function formatTimelineRange(dateRanges: [string, string][]) {
-		return dateRanges
-			.map((dateRange) => formatDateRange(dateRange[0], dateRange[1]))
-			.join(', ');
-	}
-
 	function handleGroupChange(group: string) {
 		currentGroup = group;
 	}
@@ -64,7 +34,7 @@
 				</div>
 			</div>
 			<div class="timeline-item-right">
-				<p>{formatTimelineRange(timelineItem.dates)}</p>
+				<p>{timelineItem.dates}</p>
 				<h3>{timelineItem.company}</h3>
 				<p>{timelineItem.title}</p>
 			</div>

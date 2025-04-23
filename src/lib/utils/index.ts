@@ -72,37 +72,11 @@ export const fetchMarkdownTimelineItems = async (): Promise<TimelineItem[]> => {
 				};
 			};
 
-			// Process date ranges from string format to array of ISO date strings
-			// Example input: "January 2020 - March 2022, April 2022 - Present"
-			const dates = metadata.dates.split(',').map((date) => {
-				const [startDate, endDate] = date.trim().split(' - ');
-
-				// Create dates with UTC to avoid timezone issues
-				const startDateObj = new Date(startDate);
-				
-				// Set to UTC midnight to avoid date shifting when converting to different timezones
-				startDateObj.setUTCHours(0, 0, 0, 0);
-				
-				let endDateObj: Date;
-				
-				// Handle 'Present' as the current date
-				if (endDate === 'Present') {
-					endDateObj = new Date();
-					endDateObj.setUTCHours(0, 0, 0, 0);
-				} else {
-					endDateObj = new Date(endDate);
-					endDateObj.setUTCHours(0, 0, 0, 0);
-				}
-
-				// Return as tuple of ISO strings for consistent date formatting
-				return [startDateObj.toISOString(), endDateObj.toISOString()] as [string, string];
-			});
-
 			return {
 				title: metadata.title,
 				company: metadata.company,
 				group: metadata.group,
-				dates: dates,
+				dates: metadata.dates,
 				order: metadata.order,
 				url: metadata.url
 			};
