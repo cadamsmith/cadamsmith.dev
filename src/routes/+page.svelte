@@ -8,7 +8,6 @@
 
 	const cwsWebsiteUrl = 'https://cws.auburn.edu/cws';
 
-	// get years of work experience in 0.5 year increments
 	const now = new Date();
 	const startDate = new Date(2023, 0, 1); // January 1, 2023
 	const monthsDiff =
