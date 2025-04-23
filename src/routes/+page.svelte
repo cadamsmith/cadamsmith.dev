@@ -318,6 +318,7 @@
 	.map-wrapper {
 		width: 18rem;
 		height: 15rem;
+		flex-shrink: 0;
 	}
 
 	.journey-content {
