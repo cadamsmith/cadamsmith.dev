@@ -1,13 +1,12 @@
 ---
 import pkg from '../../package.json';
+import { siteResources } from '../config/siteResources';
 
 const deploySha =
 	import.meta.env.DEPLOY_COMMIT_SHA || import.meta.env.CF_PAGES_COMMIT_SHA;
 const deployBranch =
 	import.meta.env.DEPLOY_COMMIT_BRANCH || import.meta.env.CF_PAGES_BRANCH;
 const appVersion = pkg.version;
-
-const githubUrl = 'https://github.com/cadamsmith/cadamsmith.dev';
 ---
 
 <footer>
@@ -92,7 +91,7 @@ const githubUrl = 'https://github.com/cadamsmith/cadamsmith.dev';
 				deploySha && deployBranch ? (
 					<a
 						class="deploy-info-link"
-						href={`${githubUrl}/commit/${deploySha}`}
+						href={`${siteResources.repositoryUrl}/commit/${deploySha}`}
 						target="_blank"
 					>
 						{deployBranch} @ {deploySha.slice(0, 7)}
@@ -102,12 +101,12 @@ const githubUrl = 'https://github.com/cadamsmith/cadamsmith.dev';
 				)
 			}
 
-			<a href={`${githubUrl}/releases/tag/v${appVersion}`} target="_blank">
+			<a href={`${siteResources.repositoryUrl}/releases/tag/v${appVersion}`} target="_blank">
 				<strong>v{appVersion}</strong>
 			</a>
 		</div>
 
-		<a class="icon-link" href={githubUrl} target="_blank">
+		<a class="icon-link" href={siteResources.repositoryUrl} target="_blank">
 			<svg
 				class="iconify-icon"
 				xmlns="http://www.w3.org/2000/svg"
