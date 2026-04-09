@@ -45,7 +45,7 @@ const timeline: TimelineItem[] = timelineEntries
 	.sort((a, b) => b.order - a.order);
 const latestWorkLocation = timeline.find((item) => item.group === 'Work')?.location ?? '';
 
-const songEntries = await getCollection('songs');
+const songEntries = await getCollection('songs', ({ data }) => data.enabled);
 const songUrls: string[] = songEntries.map((entry) => entry.data.youtubeEmbedUrl);
 
 const heroBlurb = await getEntry('blurbs', 'hero');

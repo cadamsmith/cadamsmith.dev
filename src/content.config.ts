@@ -47,7 +47,8 @@ const songs = defineCollection({
 	schema: z.object({
 		title: z.string(),
 		artist: z.string(),
-		youtubeEmbedUrl: z.string()
+		youtubeEmbedUrl: z.string(),
+		enabled: z.boolean().default(true)
 	})
 });
 
