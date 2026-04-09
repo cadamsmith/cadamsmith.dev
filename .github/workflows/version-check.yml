@@ -1,0 +1,43 @@
+name: Version Check
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
+
+jobs:
+  check:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check version bump
+        run: |
+          BASE_VERSION=$(git show origin/main:package.json | node -e "process.stdin.resume();let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>console.log(JSON.parse(d).version))")
+          PR_VERSION=$(node -e "console.log(require('./package.json').version)")
+
+          echo "Base (main): $BASE_VERSION"
+          echo "PR:          $PR_VERSION"
+
+          if [ "$PR_VERSION" = "$BASE_VERSION" ]; then
+            echo "❌ Version has not been bumped. Update the version in package.json before merging."
+            exit 1
+          fi
+
+          # Ensure PR version is strictly greater using node semver comparison
+          IS_GREATER=$(node -e "
+            const [aMaj, aMin, aPat] = '$PR_VERSION'.split('.').map(Number);
+            const [bMaj, bMin, bPat] = '$BASE_VERSION'.split('.').map(Number);
+            const greater = aMaj > bMaj || (aMaj === bMaj && aMin > bMin) || (aMaj === bMaj && aMin === bMin && aPat > bPat);
+            console.log(greater ? 'yes' : 'no');
+          ")
+
+          if [ "$IS_GREATER" != "yes" ]; then
+            echo "❌ PR version ($PR_VERSION) must be greater than base version ($BASE_VERSION)."
+            exit 1
+          fi
+
+          echo "✅ Version bumped: $BASE_VERSION → $PR_VERSION"
