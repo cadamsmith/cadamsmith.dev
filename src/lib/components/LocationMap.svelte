@@ -3,12 +3,15 @@
 	import L from 'leaflet';
 	import 'leaflet/dist/leaflet.css';
 
+	const { initialCoordinates }: { initialCoordinates: { lat: number; lng: number } } =
+		$props();
+
 	let mapContainer: HTMLDivElement;
 
 	onMount(() => {
 		const map = L.map(mapContainer, {
-			center: [32.60986, -85.48059],
-			zoom: 12,
+			center: [initialCoordinates.lat, initialCoordinates.lng],
+			zoom: 10,
 			scrollWheelZoom: false
 		});
 
@@ -19,7 +22,13 @@
 			attribution: '&copy; OpenStreetMap contributors'
 		}).addTo(map);
 
-		L.marker([32.60986, -85.48059]).addTo(map);
+		const marker = L.marker([initialCoordinates.lat, initialCoordinates.lng]).addTo(map);
+
+		window.addEventListener('location-change', (e) => {
+			const { lat, lng } = (e as CustomEvent<{ lat: number; lng: number }>).detail;
+			marker.setLatLng([lat, lng]);
+			map.setView([lat, lng], 12);
+		});
 	});
 </script>
 

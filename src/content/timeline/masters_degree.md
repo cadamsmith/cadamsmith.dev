@@ -5,4 +5,6 @@ group: 'Education'
 dates: 'Jan 2024 - Present'
 order: 3
 url: 'https://auburn.edu'
+location: 'Auburn, AL'
+coordinates: { lat: 32.6099, lng: -85.4808 }
 ---

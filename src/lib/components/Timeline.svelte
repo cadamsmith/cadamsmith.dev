@@ -8,6 +8,10 @@
 	function handleGroupChange(group: string) {
 		currentGroup = group;
 	}
+
+	function selectLocation(coordinates: { lat: number; lng: number }) {
+		window.dispatchEvent(new CustomEvent('location-change', { detail: coordinates }));
+	}
 </script>
 
 <div class="timeline-selector">
@@ -22,21 +26,35 @@
 </div>
 
 <div class="timeline">
-	{#each timeline as timelineItem}
-		<div class="timeline-item" class:selected={timelineItem.group === currentGroup}>
-			<div class="timeline-item-left">
-				<div class="timeline-item-bar"></div>
-				<div class="img-wrapper">
-					<img src="/images/generic_skill.svg" alt="Generic Skill" />
-				</div>
+	<div class="timeline-panels">
+		{#each ['Work', 'Education'] as group}
+			<div class="timeline-panel" class:selected={group === currentGroup}>
+				{#each timeline.filter((item) => item.group === group) as timelineItem}
+					<div class="timeline-item">
+						<div class="timeline-item-left">
+							<div class="img-wrapper">
+								<img src="/images/generic_skill.svg" alt="Generic Skill" />
+							</div>
+						</div>
+						<div class="timeline-item-right">
+							<p>{timelineItem.dates}</p>
+							<h3>
+								<a href={timelineItem.url} target="_blank">{timelineItem.company}</a>
+							</h3>
+							<p>{timelineItem.title}</p>
+							<button
+								class="location"
+								onclick={() => selectLocation(timelineItem.coordinates)}
+							>
+								<iconify-icon icon="mdi:map-marker"></iconify-icon>
+								{timelineItem.location}
+							</button>
+						</div>
+					</div>
+				{/each}
 			</div>
-			<div class="timeline-item-right">
-				<p>{timelineItem.dates}</p>
-				<h3>{timelineItem.company}</h3>
-				<p>{timelineItem.title}</p>
-			</div>
-		</div>
-	{/each}
+		{/each}
+	</div>
 </div>
 
 <style>
@@ -75,6 +93,10 @@
 		text-transform: uppercase;
 	}
 
+	h3 a {
+		color: inherit;
+	}
+
 	p {
 		margin: 0;
 	}
@@ -87,6 +109,31 @@
 		color: #fff;
 	}
 
+	.timeline-panels {
+		display: grid;
+	}
+
+	.timeline-panel {
+		grid-area: 1 / 1;
+		visibility: hidden;
+		position: relative;
+	}
+
+	.timeline-panel::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 1rem;
+		width: 2px;
+		transform: translateX(-50%);
+		background-color: #fff;
+	}
+
+	.timeline-panel.selected {
+		visibility: visible;
+	}
+
 	.timeline-item {
 		display: flex;
 		flex-direction: row;
@@ -94,26 +141,10 @@
 		gap: 1rem;
 	}
 
-	.timeline-item:not(.selected) {
-		display: none;
-	}
-
 	.timeline-item-left {
 		display: flex;
-		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		position: relative;
-		align-self: stretch;
-	}
-
-	.timeline-item-bar {
-		position: absolute;
-		top: 0;
-		left: 50%;
-		width: 2px;
-		height: 100%;
-		background-color: #fff;
 	}
 
 	.timeline-item .img-wrapper {
@@ -134,5 +165,23 @@
 
 	.timeline-item-right {
 		padding: 0.5rem 0;
+	}
+
+	.location {
+		display: flex;
+		align-items: center;
+		gap: 0.2em;
+		opacity: 0.75;
+		font-size: 0.85em;
+		background: none;
+		border: none;
+		color: inherit;
+		padding: 0;
+		cursor: pointer;
+	}
+
+	.location:hover {
+		opacity: 1;
+		text-decoration: underline;
 	}
 </style>
