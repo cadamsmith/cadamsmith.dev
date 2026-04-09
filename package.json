@@ -9,7 +9,8 @@
 		"preview": "astro preview",
 		"check": "astro check",
 		"format": "prettier --write .",
-		"lint": "prettier --check . && eslint ."
+		"lint": "prettier --check . && eslint .",
+		"prepare": "husky"
 	},
 	"devDependencies": {
 		"@astrojs/cloudflare": "^12.0.0",
@@ -22,6 +23,7 @@
 		"eslint-config-prettier": "^10.0.1",
 		"eslint-plugin-svelte": "^2.46.1",
 		"globals": "^15.14.0",
+		"husky": "^9.1.7",
 		"prettier": "^3.4.2",
 		"prettier-plugin-astro": "^0.14.0",
 		"prettier-plugin-svelte": "^3.3.3",
