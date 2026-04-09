@@ -1,41 +1,26 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { browser } from '$app/environment';
-	import { Marker, GeoJSON, LeafletMap, TileLayer } from 'svelte-leafletjs';
-	import type { MapOptions, TileLayerOptions } from 'leaflet';
+	import L from 'leaflet';
 	import 'leaflet/dist/leaflet.css';
 
-	let leafletMap: LeafletMap | null = null;
-	let mapOptions: MapOptions;
-	let tileLayerOptions: TileLayerOptions;
-	let tileUrl: string;
+	let mapContainer: HTMLDivElement;
 
 	onMount(() => {
-		if (!browser) return;
-
-		mapOptions = {
+		const map = L.map(mapContainer, {
 			center: [32.60986, -85.48059],
 			zoom: 12,
 			scrollWheelZoom: false
-		};
+		});
 
-		tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-
-		tileLayerOptions = {
+		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 			minZoom: 0,
 			maxZoom: 20,
 			maxNativeZoom: 19,
-			attribution: '© OpenStreetMap contributors'
-		};
+			attribution: '&copy; OpenStreetMap contributors'
+		}).addTo(map);
+
+		L.marker([32.60986, -85.48059]).addTo(map);
 	});
 </script>
 
-<div class="example" style="width: 100%; height: 100%;">
-	{#if mapOptions}
-		<LeafletMap bind:this={leafletMap} options={mapOptions}>
-			<TileLayer url={tileUrl} options={tileLayerOptions} />
-			<GeoJSON />
-			<Marker latLng={[32.60986, -85.48059]}></Marker>
-		</LeafletMap>
-	{/if}
-</div>
+<div bind:this={mapContainer} style="width: 100%; height: 100%;"></div>

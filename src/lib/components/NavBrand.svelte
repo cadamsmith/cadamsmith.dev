@@ -13,11 +13,6 @@
 	}
 </script>
 
-<svelte:head>
-	<link rel="preload" as="image" href={defaultImg} />
-	<link rel="preload" as="image" href={altImg} />
-</svelte:head>
-
 <a
 	class="nav-brand"
 	href="/"
