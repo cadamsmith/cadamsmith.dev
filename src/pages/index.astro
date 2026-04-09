@@ -63,14 +63,18 @@ const heroTags = heroTagEntries.sort((a, b) => a.data.order - b.data.order);
 		<h1>Adam Smith</h1>
 
 		<div class="hero-info-tag-list">
-			{heroTags.map((tag) => (
-				<span class="hero-info-tag">
-					<iconify-icon class="iconify-icon" icon={tag.data.icon}></iconify-icon>
-					<span class="hero-info-tag-text">
-						{tag.data.label.replace('{years}', String(yearsOfWorkExperience)).replace('{location}', latestWorkLocation)}
+			{
+				heroTags.map((tag) => (
+					<span class="hero-info-tag">
+						<iconify-icon class="iconify-icon" icon={tag.data.icon} />
+						<span class="hero-info-tag-text">
+							{tag.data.label
+								.replace('{years}', String(yearsOfWorkExperience))
+								.replace('{location}', latestWorkLocation)}
+						</span>
 					</span>
-				</span>
-			))}
+				))
+			}
 		</div>
 
 		<div class="hero-split">

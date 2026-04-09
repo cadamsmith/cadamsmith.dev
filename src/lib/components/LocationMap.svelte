@@ -3,7 +3,8 @@
 	import L from 'leaflet';
 	import 'leaflet/dist/leaflet.css';
 
-	const { initialCoordinates }: { initialCoordinates: { lat: number; lng: number } } = $props();
+	const { initialCoordinates }: { initialCoordinates: { lat: number; lng: number } } =
+		$props();
 
 	let mapContainer: HTMLDivElement;
 

@@ -38,7 +38,9 @@
 						</div>
 						<div class="timeline-item-right">
 							<p>{timelineItem.dates}</p>
-							<h3><a href={timelineItem.url} target="_blank">{timelineItem.company}</a></h3>
+							<h3>
+								<a href={timelineItem.url} target="_blank">{timelineItem.company}</a>
+							</h3>
 							<p>{timelineItem.title}</p>
 							<button
 								class="location"
