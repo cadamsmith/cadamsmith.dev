@@ -31,13 +31,6 @@
     "typescript": "^5.0.0",
     "typescript-eslint": "^8.20.0"
   },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "sharp",
-      "workerd"
-    ]
-  },
   "dependencies": {
     "@fontsource-variable/rubik": "^5.2.5",
     "@fontsource/jetbrains-mono": "^5.2.5",
