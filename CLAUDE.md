@@ -24,7 +24,6 @@ Personal portfolio site built with **Astro** + **Svelte 5** islands, deployed to
 Site content lives in `src/content/` as markdown files with YAML frontmatter, managed by **Astro content collections** (schema in `src/content.config.ts`):
 - `skills/` — skill entries (name, group, order, imageFileName, url)
 - `timeline/` — work history entries (title, company, group, dates, order, url)
-- `projects/` — project writeups (name, group, order, images, tags, timeRange)
 
 Site-wide config (social links, email, resume URL) is in `src/config/siteResources.ts`.
 
@@ -32,14 +31,14 @@ Pages load content via `getCollection()` in Astro frontmatter — no API routes 
 
 ### Project structure
 
-- `src/pages/` — Astro file-based routing (index.astro, projects.astro)
+- `src/pages/` — Astro file-based routing (index.astro)
 - `src/layouts/` — BaseLayout.astro (HTML shell, head, Header/Footer, View Transitions)
 - `src/components/` — Astro components (Header.astro, Footer.astro)
 - `src/lib/components/` — Svelte 5 components used as islands (`$props()`, `$state()` runes)
 - `src/lib/types/` — TypeScript interfaces for Project, Skill, TimelineItem, plus Option/Maybe utilities
 - `src/styles/global.scss` — global SCSS with CSS custom properties (`--color-a` through `--color-l`)
 - `src/content/` — markdown content files (source of truth for all portfolio data)
-- `public/images/` — images organized as `projects/{slug}/` and `skills/`
+- `public/images/` — images organized as `skills/`
 
 ### Svelte Islands
 

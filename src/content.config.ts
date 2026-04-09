@@ -23,17 +23,4 @@ const timeline = defineCollection({
 	})
 });
 
-const projects = defineCollection({
-	type: 'content',
-	schema: z.object({
-		name: z.string(),
-		group: z.string(),
-		order: z.number(),
-		images: z.string().optional().default(''),
-		url: z.string().optional().default(''),
-		tags: z.string().optional().default(''),
-		timeRange: z.string().optional().default('')
-	})
-});
-
-export const collections = { skills, timeline, projects };
+export const collections = { skills, timeline };
