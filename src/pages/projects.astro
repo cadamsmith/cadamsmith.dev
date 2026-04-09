@@ -1,0 +1,76 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Carousel from '../lib/components/Carousel.svelte';
+
+const projectEntries = await getCollection('projects');
+const projects = projectEntries
+	.map((entry) => {
+		const slug = entry.id;
+		const imageUrls = entry.data.images
+			? entry.data.images.split('|').map((img: string) => `/images/projects/${slug}/${img.trim()}`)
+			: [];
+		const tags = entry.data.tags
+			? entry.data.tags.split(',').map((tag: string) => tag.trim())
+			: [];
+
+		return {
+			...entry,
+			metadata: {
+				name: entry.data.name,
+				group: entry.data.group,
+				order: entry.data.order,
+				url: entry.data.url,
+				imageUrls,
+				tags,
+				timeRange: entry.data.timeRange,
+				slug
+			}
+		};
+	})
+	.sort((a, b) => a.metadata.order - b.metadata.order);
+---
+
+<BaseLayout title="Projects - Adam Smith">
+	<section class="bg-color">
+		<h1>Projects</h1>
+
+		here are some projects I've worked on
+	</section>
+
+	{
+		projects.map(async (project, i) => {
+			const { Content } = await render(project);
+			return (
+				<section class:list={['project', { 'bg-color': i % 2 === 1 }]}>
+					<h2>{project.metadata.name}</h2>
+					<p class="timerange">{project.metadata.timeRange}</p>
+
+					{project.metadata.imageUrls.length > 0 && (
+						<div class="carousel-wrapper">
+							<Carousel
+								images={project.metadata.imageUrls}
+								alt={`${project.metadata.name} project image`}
+								client:visible
+							/>
+						</div>
+					)}
+
+					<div class="tags">
+						{project.metadata.tags.map((tag: string) => (
+							<span class="tag">{tag}</span>
+						))}
+					</div>
+
+					{project.metadata.url && (
+						<a href={project.metadata.url} target="_blank" rel="noopener noreferrer">
+							View Project
+						</a>
+					)}
+
+					<Content />
+				</section>
+			);
+		})
+	}
+</BaseLayout>
