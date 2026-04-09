@@ -18,13 +18,13 @@ All pages are **prerendered at build time** (static output). Interactive compone
 
 Site content is driven by **Astro content collections** in `src/content/`:
 
-| Collection | Description |
-|---|---|
-| `skills/` | Tech skills shown in the skills widget |
+| Collection  | Description                                            |
+| ----------- | ------------------------------------------------------ |
+| `skills/`   | Tech skills shown in the skills widget                 |
 | `timeline/` | Work and education history with location + coordinates |
-| `songs/` | Music player playlist (YouTube embeds) |
-| `blurbs/` | Hero and contact section copy |
-| `heroTags/` | Info tags shown in the hero section |
+| `songs/`    | Music player playlist (YouTube embeds)                 |
+| `blurbs/`   | Hero and contact section copy                          |
+| `heroTags/` | Info tags shown in the hero section                    |
 
 ## Local Setup
 
