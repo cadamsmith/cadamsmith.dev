@@ -6,7 +6,7 @@ on:
     types: [opened, synchronize, reopened, ready_for_review]
 
 jobs:
-  lint:
+  ci_lint:
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
@@ -18,7 +18,7 @@ jobs:
       - run: npm ci
       - run: npm run lint
 
-  check:
+  ci_check:
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
@@ -30,7 +30,7 @@ jobs:
       - run: npm ci
       - run: npm run check
 
-  build:
+  ci_build:
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
