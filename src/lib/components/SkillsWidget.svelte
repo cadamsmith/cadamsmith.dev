@@ -7,7 +7,9 @@
 	let groups = $derived(
 		skills
 			.map((s: Skill) => s.group)
-			.filter((value: string, index: number, arr: string[]) => index === arr.indexOf(value))
+			.filter(
+				(value: string, index: number, arr: string[]) => index === arr.indexOf(value)
+			)
 			.sort()
 	);
 
