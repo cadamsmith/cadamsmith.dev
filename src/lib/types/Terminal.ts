@@ -256,15 +256,15 @@ class TwentyFortyEight {
 
 	public shift(direction: Direction): string {
 		// Create a copy of the board to check if it changed
-		const oldBoard = this.board.map(row => [...row]);
-		
+		const oldBoard = this.board.map((row) => [...row]);
+
 		for (let i = 0; i < 4; i++) {
 			this.shiftColumn(i, direction);
 			this.shiftRow(i, direction);
 		}
 
 		// Check if the board changed
-		const boardChanged = this.board.some((row, i) => 
+		const boardChanged = this.board.some((row, i) =>
 			row.some((cell, j) => cell !== oldBoard[i][j])
 		);
 

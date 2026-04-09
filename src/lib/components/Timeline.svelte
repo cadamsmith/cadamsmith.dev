@@ -23,10 +23,7 @@
 
 <div class="timeline">
 	{#each timeline as timelineItem}
-		<div
-			class="timeline-item"
-			class:selected={timelineItem.group === currentGroup}
-		>
+		<div class="timeline-item" class:selected={timelineItem.group === currentGroup}>
 			<div class="timeline-item-left">
 				<div class="timeline-item-bar"></div>
 				<div class="img-wrapper">

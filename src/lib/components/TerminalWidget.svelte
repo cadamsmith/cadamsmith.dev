@@ -56,6 +56,7 @@
 					<div class="command">{command}</div>
 				{/if}
 
+				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 				<pre class="output">{@html output.content}</pre>
 			</div>
 		{/each}

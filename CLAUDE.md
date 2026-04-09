@@ -22,6 +22,7 @@ Personal portfolio site built with **Astro** + **Svelte 5** islands, deployed to
 ### Content & Data Flow
 
 Site content lives in `src/content/` as markdown files with YAML frontmatter, managed by **Astro content collections** (schema in `src/content.config.ts`):
+
 - `skills/` — skill entries (name, group, order, imageFileName, url)
 - `timeline/` — work history entries (title, company, group, dates, order, url)
 
@@ -50,9 +51,9 @@ SCSS with CSS custom properties for the color palette. Components use scoped `<s
 
 ### Deployed environments
 
-| Environment | URL |
-|-------------|-----|
-| Production | https://cadamsmith.dev (alias for https://cadamsmith.pages.dev) |
+| Environment | URL                                                             |
+| ----------- | --------------------------------------------------------------- |
+| Production  | https://cadamsmith.dev (alias for https://cadamsmith.pages.dev) |
 
 Cloudflare Pages deployment from `main` branch.
 
