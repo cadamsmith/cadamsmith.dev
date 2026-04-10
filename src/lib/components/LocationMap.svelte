@@ -9,6 +9,14 @@
 	let mapContainer: HTMLDivElement;
 
 	onMount(() => {
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		delete (L.Icon.Default.prototype as any)._getIconUrl;
+		L.Icon.Default.mergeOptions({
+			iconUrl: '/leaflet/marker-icon.png',
+			iconRetinaUrl: '/leaflet/marker-icon-2x.png',
+			shadowUrl: '/leaflet/marker-shadow.png'
+		});
+
 		const map = L.map(mapContainer, {
 			center: [initialCoordinates.lat, initialCoordinates.lng],
 			zoom: 10,
