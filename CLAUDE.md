@@ -5,15 +5,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-pnpm run dev        # Start development server
-pnpm run build      # Build for production (static output to dist/)
-pnpm run preview    # Preview production build
-pnpm run lint       # Run Prettier + ESLint checks
-pnpm run format     # Auto-format with Prettier
-pnpm run check      # Astro type checking
+npm run dev        # Start development server
+npm run build      # Build for production (static output to dist/)
+npm run preview    # Preview production build
+npm run lint       # Run Prettier + ESLint checks
+npm run format     # Auto-format with Prettier
+npm run check      # Astro type checking
 ```
 
-There are no tests. `pnpm run lint` and `pnpm run check` are the main quality gates.
+There are no tests. `npm run lint` and `npm run check` are the main quality gates.
 
 ## Architecture
 
