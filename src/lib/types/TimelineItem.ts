@@ -3,7 +3,7 @@ export interface TimelineItem {
 	company: string;
 	group: string;
 	order: number;
-	dates: string;
+	dateRanges: { startDate: string; endDate: string }[];
 	url: string;
 	location: string;
 	coordinates: { lat: number; lng: number };

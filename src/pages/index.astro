@@ -11,11 +11,6 @@ import type { Skill } from '../lib/types/Skill';
 import type { TimelineItem } from '../lib/types/TimelineItem';
 
 const now = new Date();
-const startDate = new Date(2023, 0, 1);
-const monthsDiff =
-	(now.getFullYear() - startDate.getFullYear()) * 12 +
-	(now.getMonth() - startDate.getMonth());
-const yearsOfWorkExperience = Math.floor(monthsDiff / 6) / 2 + 1;
 
 const skillEntries = await getCollection('skills');
 const skills: Skill[] = skillEntries
@@ -36,7 +31,7 @@ const timeline: TimelineItem[] = timelineEntries
 		title: entry.data.title,
 		company: entry.data.company,
 		group: entry.data.group,
-		dates: entry.data.dates,
+		dateRanges: entry.data.dateRanges,
 		order: entry.data.order,
 		url: entry.data.url,
 		location: entry.data.location,
@@ -45,7 +40,20 @@ const timeline: TimelineItem[] = timelineEntries
 	.sort((a, b) => b.order - a.order);
 const latestWorkLocation = timeline.find((item) => item.group === 'Work')?.location ?? '';
 
-const songEntries = await getCollection('songs');
+const workItems = timeline.filter((item) => item.group === 'Work');
+const totalWorkMonths = workItems
+	.flatMap((item) => item.dateRanges)
+	.reduce((sum, { startDate, endDate }) => {
+		const start = new Date(startDate);
+		const end = endDate === 'PRESENT' ? now : new Date(endDate);
+		const months =
+			(end.getFullYear() - start.getFullYear()) * 12 +
+			(end.getMonth() - start.getMonth());
+		return sum + months;
+	}, 0);
+const yearsOfWorkExperience = Math.floor(totalWorkMonths / 6) / 2;
+
+const songEntries = await getCollection('songs', ({ data }) => data.enabled);
 const songUrls: string[] = songEntries.map((entry) => entry.data.youtubeEmbedUrl);
 
 const heroBlurb = await getEntry('blurbs', 'hero');

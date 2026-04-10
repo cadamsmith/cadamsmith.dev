@@ -9,6 +9,15 @@
 		currentGroup = group;
 	}
 
+	function formatDate(dateStr: string): string {
+		if (dateStr === 'PRESENT') return 'Present';
+		const [year, month] = dateStr.split('-').map(Number);
+		return new Date(year, month - 1).toLocaleDateString('en-US', {
+			month: 'short',
+			year: 'numeric'
+		});
+	}
+
 	function selectLocation(coordinates: { lat: number; lng: number }) {
 		window.dispatchEvent(new CustomEvent('location-change', { detail: coordinates }));
 	}
@@ -37,7 +46,11 @@
 							</div>
 						</div>
 						<div class="timeline-item-right">
-							<p>{timelineItem.dates}</p>
+							<p>
+								{timelineItem.dateRanges
+									.map((r) => `${formatDate(r.startDate)} – ${formatDate(r.endDate)}`)
+									.join(', ')}
+							</p>
 							<h3>
 								<a href={timelineItem.url} target="_blank">{timelineItem.company}</a>
 							</h3>

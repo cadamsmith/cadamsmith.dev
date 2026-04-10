@@ -2,7 +2,9 @@
 title: 'Bachelor of Software Engineering'
 company: 'Auburn University'
 group: 'Education'
-dates: 'Aug 2018 - Dec 2022'
+dateRanges:
+  - startDate: '2018-08-01'
+    endDate: '2022-12-01'
 order: 0
 url: 'https://auburn.edu'
 location: 'Auburn, AL'

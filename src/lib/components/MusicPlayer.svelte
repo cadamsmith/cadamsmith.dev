@@ -1,3 +1,9 @@
+<script module>
+	// Module-level: persists across remounts (client-side navigations) but resets on full page load.
+	// On first hydration we keep the SSR-rendered song; on subsequent mounts we randomize.
+	let hasLoaded = false;
+</script>
+
 <script lang="ts">
 	import { onMount } from 'svelte';
 
@@ -8,8 +14,17 @@
 	let isPlaying = $state(false);
 
 	onMount(() => {
-		randomized = youTubeUrls.sort(() => Math.random() - 0.5);
-		index = getRandomIndex();
+		if (hasLoaded) {
+			randomized = [...youTubeUrls].sort(() => Math.random() - 0.5);
+			index = getRandomIndex();
+		} else {
+			// Keep the SSR-rendered song (youTubeUrls[0]) at index 0 so the iframe src
+			// doesn't change on hydration. Shuffle the rest for next/prev navigation.
+			const [first, ...rest] = youTubeUrls;
+			randomized = [first, ...rest.sort(() => Math.random() - 0.5)];
+			index = 0;
+			hasLoaded = true;
+		}
 	});
 
 	function getRandomIndex() {
