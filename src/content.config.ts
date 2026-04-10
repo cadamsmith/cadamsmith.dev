@@ -17,7 +17,14 @@ const timeline = defineCollection({
 		title: z.string(),
 		company: z.string(),
 		group: z.string(),
-		dates: z.string(),
+		dateRanges: z
+			.array(
+				z.object({
+					startDate: z.union([z.string().date(), z.literal('PRESENT')]),
+					endDate: z.union([z.string().date(), z.literal('PRESENT')])
+				})
+			)
+			.min(1),
 		order: z.number(),
 		url: z.string(),
 		location: z.string(),

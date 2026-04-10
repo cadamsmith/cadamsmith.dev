@@ -2,7 +2,9 @@
 title: 'Masters of Science in Computer Science and Software Engineering'
 company: 'Auburn University'
 group: 'Education'
-dates: 'Jan 2024 - Present'
+dateRanges:
+  - startDate: '2024-01-01'
+    endDate: PRESENT
 order: 3
 url: 'https://auburn.edu'
 location: 'Auburn, AL'
