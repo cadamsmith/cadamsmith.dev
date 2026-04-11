@@ -8,11 +8,14 @@ updates:
       day: 'monday'
       time: '06:00'
       timezone: 'America/New_York'
-    # Group all npm updates into a single PR
+    # Group patch and minor updates, majors get individual PRs
     groups:
-      npm-dependencies:
-        patterns:
-          - '*'
+      npm-patch:
+        update-types:
+          - 'patch'
+      npm-minor:
+        update-types:
+          - 'minor'
     # Limit open PRs to avoid spam
     open-pull-requests-limit: 5
     # Add labels to PRs
