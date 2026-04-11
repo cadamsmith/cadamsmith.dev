@@ -90,7 +90,11 @@ describe('TwentyFortyEight', () => {
 			]);
 			game.handleKeydown(makeKey('ArrowLeft'), makeOutput());
 			expect(getBoard(game)[0][0]).toBe(4);
-			expect(getBoard(game)[0][1]).toBe(0);
+			expect(
+				getBoard(game)
+					.flat()
+					.filter((n) => n !== 0)
+			).toHaveLength(2);
 		});
 
 		it('does not cascade merges in a single shift', () => {
@@ -141,7 +145,11 @@ describe('TwentyFortyEight', () => {
 			]);
 			game.handleKeydown(makeKey('ArrowRight'), makeOutput());
 			expect(getBoard(game)[0][3]).toBe(4);
-			expect(getBoard(game)[0][2]).toBe(0);
+			expect(
+				getBoard(game)
+					.flat()
+					.filter((n) => n !== 0)
+			).toHaveLength(2);
 		});
 	});
 
@@ -166,7 +174,11 @@ describe('TwentyFortyEight', () => {
 			]);
 			game.handleKeydown(makeKey('ArrowUp'), makeOutput());
 			expect(getBoard(game)[0][0]).toBe(4);
-			expect(getBoard(game)[1][0]).toBe(0);
+			expect(
+				getBoard(game)
+					.flat()
+					.filter((n) => n !== 0)
+			).toHaveLength(2);
 		});
 	});
 
@@ -191,7 +203,11 @@ describe('TwentyFortyEight', () => {
 			]);
 			game.handleKeydown(makeKey('ArrowDown'), makeOutput());
 			expect(getBoard(game)[3][0]).toBe(4);
-			expect(getBoard(game)[2][0]).toBe(0);
+			expect(
+				getBoard(game)
+					.flat()
+					.filter((n) => n !== 0)
+			).toHaveLength(2);
 		});
 	});
 

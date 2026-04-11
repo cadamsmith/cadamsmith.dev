@@ -4,6 +4,7 @@
 		"anthropic.claude-code",
 		"dbaeumer.vscode-eslint",
 		"esbenp.prettier-vscode",
-		"svelte.svelte-vscode"
+		"svelte.svelte-vscode",
+		"vitest.explorer"
 	]
 }

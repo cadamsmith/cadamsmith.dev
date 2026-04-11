@@ -8,12 +8,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 npm run dev        # Start development server
 npm run build      # Build for production (static output to dist/)
 npm run preview    # Preview production build
+npm run test       # Run Vitest unit tests
 npm run lint       # Run Prettier + ESLint checks
 npm run format     # Auto-format with Prettier
 npm run check      # Astro type checking
 ```
 
-There are no tests. `npm run lint` and `npm run check` are the main quality gates.
+`npm run test`, `npm run lint`, and `npm run check` are the main quality gates.
 
 ## Architecture
 
