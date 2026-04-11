@@ -80,13 +80,8 @@ Enter "q" to quit the game`;
 		}
 	}
 
-	private shiftRow(row: number, direction: Direction): void {
-		if (direction === Direction.Up || direction === Direction.Down) return;
-
-		let values = this.board[row].filter((n) => n !== 0);
-
-		if (direction === Direction.Right) values = values.reverse();
-
+	private mergeValues(values: number[]): number[] {
+		values = values.filter((n) => n !== 0);
 		for (let i = 0; i < values.length - 1; i++) {
 			if (values[i] === values[i + 1]) {
 				const sum = values[i] * 2;
@@ -95,9 +90,17 @@ Enter "q" to quit the game`;
 				values[i + 1] = 0;
 			}
 		}
-
 		values = values.filter((n) => n !== 0);
 		while (values.length < 4) values.push(0);
+		return values;
+	}
+
+	private shiftRow(row: number, direction: Direction): void {
+		if (direction === Direction.Up || direction === Direction.Down) return;
+
+		let values = this.board[row];
+		if (direction === Direction.Right) values = values.reverse();
+		values = this.mergeValues(values);
 		if (direction === Direction.Right) values = values.reverse();
 
 		this.board[row] = values;
@@ -106,21 +109,9 @@ Enter "q" to quit the game`;
 	private shiftColumn(col: number, direction: Direction): void {
 		if (direction === Direction.Left || direction === Direction.Right) return;
 
-		let values = this.board.map((row) => row[col]).filter((n) => n !== 0);
-
+		let values = this.board.map((row) => row[col]);
 		if (direction === Direction.Down) values = values.reverse();
-
-		for (let i = 0; i < values.length - 1; i++) {
-			if (values[i] === values[i + 1]) {
-				const sum = values[i] * 2;
-				if (sum >= this.winValue) this.hasWon = true;
-				values[i] = sum;
-				values[i + 1] = 0;
-			}
-		}
-
-		values = values.filter((n) => n !== 0);
-		while (values.length < 4) values.push(0);
+		values = this.mergeValues(values);
 		if (direction === Direction.Down) values = values.reverse();
 
 		for (let row = 0; row < 4; row++) {

@@ -100,7 +100,7 @@ export class Terminal {
 		this.historyIndex++;
 		const h = this.currentHistory;
 		if (h instanceof Some) {
-			this.sessions[this.sessions.length - 1].command = (h as Some<string>).value;
+			this.sessions[this.sessions.length - 1].command = h.value;
 		}
 	}
 
@@ -109,7 +109,7 @@ export class Terminal {
 		this.historyIndex--;
 		const h = this.currentHistory;
 		if (h instanceof Some) {
-			this.sessions[this.sessions.length - 1].command = (h as Some<string>).value;
+			this.sessions[this.sessions.length - 1].command = h.value;
 		}
 	}
 
