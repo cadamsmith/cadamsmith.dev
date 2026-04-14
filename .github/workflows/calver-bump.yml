@@ -19,6 +19,7 @@ jobs:
       contents: write
       pull-requests: read
       issues: write
+      actions: write
     steps:
       - name: Get PR branch
         id: pr
@@ -66,9 +67,17 @@ jobs:
           git commit -m "chore: bump version to ${{ steps.calver.outputs.version }}"
           git push
 
-      - name: React to comment
+      - name: Trigger CI checks
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh api repos/${{ github.repository }}/issues/comments/${{ github.event.comment.id }}/reactions \
-            -X POST -f content='+1'
+          gh workflow run ci.yml --repo ${{ github.repository }} --ref ${{ steps.pr.outputs.branch }}
+          gh workflow run version-check.yml --repo ${{ github.repository }} --ref ${{ steps.pr.outputs.branch }}
+
+      - name: Comment with new version
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr comment ${{ github.event.issue.number }} \
+            --repo ${{ github.repository }} \
+            --body "Bumped version to \`${{ steps.calver.outputs.version }}\`"
