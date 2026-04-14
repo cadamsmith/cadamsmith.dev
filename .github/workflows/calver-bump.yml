@@ -19,6 +19,7 @@ jobs:
       contents: write
       pull-requests: read
       issues: write
+      actions: write
     steps:
       - name: Get PR branch
         id: pr
@@ -65,6 +66,13 @@ jobs:
           git add package.json
           git commit -m "chore: bump version to ${{ steps.calver.outputs.version }}"
           git push
+
+      - name: Trigger CI checks
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run ci.yml --repo ${{ github.repository }} --ref ${{ steps.pr.outputs.branch }}
+          gh workflow run version-check.yml --repo ${{ github.repository }} --ref ${{ steps.pr.outputs.branch }}
 
       - name: Comment with new version
         env:
