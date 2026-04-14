@@ -18,6 +18,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: read
+      reactions: write
     steps:
       - name: Get PR branch
         id: pr
