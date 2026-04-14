@@ -1,0 +1,73 @@
+name: CalVer Bump
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  bump:
+    if: |
+      github.event.issue.pull_request != null &&
+      startsWith(github.event.comment.body, '/bump') &&
+      (
+        github.event.comment.author_association == 'OWNER' ||
+        github.event.comment.author_association == 'MEMBER' ||
+        github.event.comment.author_association == 'COLLABORATOR'
+      )
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: read
+    steps:
+      - name: Get PR branch
+        id: pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          BRANCH=$(gh api repos/${{ github.repository }}/pulls/${{ github.event.issue.number }} --jq '.head.ref')
+          echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.pr.outputs.branch }}
+          fetch-depth: 0
+
+      - name: Calculate next CalVer
+        id: calver
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          YEAR=$(date -u +%Y)
+          MONTH=$(date -u +%m)
+          PREFIX="v${YEAR}.${MONTH}."
+
+          MAX_XX=$(gh release list --limit 100 --json tagName \
+            --jq "[.[] | .tagName | select(startswith(\"$PREFIX\")) | ltrimstr(\"$PREFIX\") | tonumber] | max // 0")
+
+          NEXT_XX=$(printf "%02d" $((MAX_XX + 1)))
+          VERSION="${YEAR}.${MONTH}.${NEXT_XX}"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Update package.json
+        run: |
+          node -e "
+            const fs = require('fs');
+            const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            pkg.version = '${{ steps.calver.outputs.version }}';
+            fs.writeFileSync('package.json', JSON.stringify(pkg, null, '\t') + '\n');
+          "
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add package.json
+          git commit -m "chore: bump version to ${{ steps.calver.outputs.version }}"
+          git push
+
+      - name: React to comment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api repos/${{ github.repository }}/issues/comments/${{ github.event.comment.id }}/reactions \
+            -X POST -f content='+1'
