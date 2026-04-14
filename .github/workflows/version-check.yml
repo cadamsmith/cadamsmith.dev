@@ -40,20 +40,23 @@ jobs:
           echo "PR:          $PR_VERSION"
 
           if [ "$PR_VERSION" = "$BASE_VERSION" ]; then
-            echo "❌ Version has not been bumped. Update the version in package.json before merging."
+            echo "❌ Version has not been bumped. Comment /bump on this PR to auto-calculate the next CalVer."
             exit 1
           fi
 
-          # Ensure PR version is strictly greater using node semver comparison
           IS_GREATER=$(node -e "
-            const [aMaj, aMin, aPat] = '$PR_VERSION'.split('.').map(Number);
-            const [bMaj, bMin, bPat] = '$BASE_VERSION'.split('.').map(Number);
-            const greater = aMaj > bMaj || (aMaj === bMaj && aMin > bMin) || (aMaj === bMaj && aMin === bMin && aPat > bPat);
-            console.log(greater ? 'yes' : 'no');
+            const parse = v => v.split('.').map(Number);
+            const pr = parse('$PR_VERSION');
+            const base = parse('$BASE_VERSION');
+            for (let i = 0; i < 3; i++) {
+              if (pr[i] > base[i]) { console.log('yes'); process.exit(0); }
+              if (pr[i] < base[i]) { console.log('no'); process.exit(0); }
+            }
+            console.log('no');
           ")
 
           if [ "$IS_GREATER" != "yes" ]; then
-            echo "❌ PR version ($PR_VERSION) must be greater than base version ($BASE_VERSION)."
+            echo "❌ PR version ($PR_VERSION) must be greater than base version ($BASE_VERSION). Comment /bump to recalculate."
             exit 1
           fi
 
