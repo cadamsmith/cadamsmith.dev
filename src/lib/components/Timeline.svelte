@@ -38,7 +38,7 @@
 	<div class="timeline-panels">
 		{#each ['Work', 'Education'] as group (group)}
 			<div class="timeline-panel" class:selected={group === currentGroup}>
-				{#each timeline.filter((item) => item.group === group) as timelineItem (timelineItem.company)}
+				{#each timeline.filter((item) => item.group === group) as timelineItem (timelineItem.order)}
 					<div class="timeline-item">
 						<div class="timeline-item-left">
 							<div class="img-wrapper">
