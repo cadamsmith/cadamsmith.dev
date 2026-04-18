@@ -37,7 +37,7 @@
 >
 	<div class="terminal-header"></div>
 	<div class="terminal-body">
-		{#each terminal.sessions as { prompt, command, output }, i}
+		{#each terminal.sessions as { prompt, command, output }, i (i)}
 			<div class="session">
 				<div class="prompt">{prompt}</div>
 
