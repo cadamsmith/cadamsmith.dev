@@ -1,37 +1,18 @@
-name: CalVer Bump
+name: Post-Merge Version Bump
 
 on:
-  issue_comment:
-    types: [created]
+  push:
+    branches: [main]
 
 jobs:
   bump:
-    if: |
-      github.event.issue.pull_request != null &&
-      startsWith(github.event.comment.body, '/bump') &&
-      (
-        github.event.comment.author_association == 'OWNER' ||
-        github.event.comment.author_association == 'MEMBER' ||
-        github.event.comment.author_association == 'COLLABORATOR'
-      )
+    if: "!startsWith(github.event.head_commit.message, 'chore: bump version')"
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      pull-requests: read
-      issues: write
-      actions: write
     steps:
-      - name: Get PR branch
-        id: pr
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          BRANCH=$(gh api repos/${{ github.repository }}/pulls/${{ github.event.issue.number }} --jq '.head.ref')
-          echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
-
       - uses: actions/checkout@v4
         with:
-          ref: ${{ steps.pr.outputs.branch }}
           fetch-depth: 0
 
       - name: Calculate next CalVer
@@ -66,18 +47,3 @@ jobs:
           git add package.json
           git commit -m "chore: bump version to ${{ steps.calver.outputs.version }}"
           git push
-
-      - name: Trigger CI checks
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh workflow run ci.yml --repo ${{ github.repository }} --ref ${{ steps.pr.outputs.branch }}
-          gh workflow run version-check.yml --repo ${{ github.repository }} --ref ${{ steps.pr.outputs.branch }}
-
-      - name: Comment with new version
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh pr comment ${{ github.event.issue.number }} \
-            --repo ${{ github.repository }} \
-            --body "Bumped version to \`${{ steps.calver.outputs.version }}\`"
