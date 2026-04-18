@@ -3,6 +3,7 @@ node_modules
 # Output
 dist/
 .astro/
+.wrangler/
 
 # OS
 .DS_Store
