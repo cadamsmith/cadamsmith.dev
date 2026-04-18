@@ -28,7 +28,7 @@ jobs:
           CF_PAGES_BRANCH: main
 
       - name: Deploy
-        run: npx wrangler pages deploy dist/ --project-name cadamsmith-web --branch main
+        run: npx wrangler pages deploy dist/ --project-name cadamsmith --branch main
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
