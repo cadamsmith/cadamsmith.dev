@@ -1,5 +1,5 @@
 ---
-import { getCollection, getEntry, render } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { siteResources } from '../config/siteResources';
 import SkillsWidget from '../lib/components/SkillsWidget.svelte';
@@ -57,10 +57,10 @@ const songEntries = await getCollection('songs', ({ data }) => data.enabled);
 const songUrls: string[] = songEntries.map((entry) => entry.data.youtubeEmbedUrl);
 
 const heroBlurb = await getEntry('blurbs', 'hero');
-const { Content: HeroContent } = await render(heroBlurb!);
+const { Content: HeroContent } = await heroBlurb!.render();
 
 const contactBlurb = await getEntry('blurbs', 'contact');
-const { Content: ContactContent } = await render(contactBlurb!);
+const { Content: ContactContent } = await contactBlurb!.render();
 
 const heroTagEntries = await getCollection('heroTags');
 const heroTags = heroTagEntries.sort((a, b) => a.data.order - b.data.order);

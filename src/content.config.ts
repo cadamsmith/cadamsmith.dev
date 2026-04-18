@@ -1,8 +1,7 @@
 import { defineCollection, z } from 'astro:content';
-import { glob } from 'astro/loaders';
 
 const skills = defineCollection({
-	loader: glob({ pattern: '**/*.md', base: './src/content/skills' }),
+	type: 'content',
 	schema: z.object({
 		name: z.string(),
 		group: z.string(),
@@ -13,7 +12,7 @@ const skills = defineCollection({
 });
 
 const timeline = defineCollection({
-	loader: glob({ pattern: '**/*.md', base: './src/content/timeline' }),
+	type: 'content',
 	schema: z.object({
 		title: z.string(),
 		company: z.string(),
@@ -37,7 +36,7 @@ const timeline = defineCollection({
 });
 
 const heroTags = defineCollection({
-	loader: glob({ pattern: '**/*.md', base: './src/content/heroTags' }),
+	type: 'content',
 	schema: z.object({
 		label: z.string(),
 		icon: z.string(),
@@ -46,12 +45,12 @@ const heroTags = defineCollection({
 });
 
 const blurbs = defineCollection({
-	loader: glob({ pattern: '**/*.md', base: './src/content/blurbs' }),
+	type: 'content',
 	schema: z.object({})
 });
 
 const songs = defineCollection({
-	loader: glob({ pattern: '**/*.md', base: './src/content/songs' }),
+	type: 'content',
 	schema: z.object({
 		title: z.string(),
 		artist: z.string(),
