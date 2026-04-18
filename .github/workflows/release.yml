@@ -33,5 +33,5 @@ jobs:
           if gh release view "$VERSION" &>/dev/null; then
             echo "Release $VERSION already exists, skipping."
           else
-            gh release create "$VERSION" --title "$VERSION" --generate-notes
+            gh release create "$VERSION" --title "$VERSION" --generate-notes --target ${{ github.sha }}
           fi
