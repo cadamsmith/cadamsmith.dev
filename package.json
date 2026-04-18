@@ -10,6 +10,7 @@
 		"check": "astro check",
 		"format": "prettier --write .",
 		"test": "vitest run",
+		"test:smoke": "vitest run --config vitest.smoke.config.ts",
 		"lint": "prettier --check . && eslint .",
 		"prepare": "husky"
 	},
