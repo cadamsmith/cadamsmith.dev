@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { TwentyFortyEight } from '../src/lib/types/terminal/TwentyFortyEight';
-import type { TerminalOutput } from '../src/lib/types/terminal/TerminalSession';
+import { TwentyFortyEight } from './TwentyFortyEight';
+import type { TerminalOutput } from './TerminalSession';
 
 function makeOutput(): TerminalOutput {
 	return { content: '' };
