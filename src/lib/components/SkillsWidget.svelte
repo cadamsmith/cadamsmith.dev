@@ -13,14 +13,11 @@
 			.sort()
 	);
 
-	let currentGroup = $state('');
-	$effect(() => {
-		currentGroup = groups[0];
-	});
+	let currentGroup = $derived(groups[0]);
 </script>
 
 <div class="skills-list">
-	{#each skills as skill}
+	{#each skills as skill (skill.name)}
 		<SkillBadge {skill} selected={skill.group === currentGroup} />
 	{/each}
 </div>
