@@ -29,4 +29,10 @@
 		grid-gap: 0.4rem;
 		grid-auto-flow: dense;
 	}
+
+	@media (max-width: 600px) {
+		.skills-list {
+			grid-template-columns: repeat(4, 1fr);
+		}
+	}
 </style>
