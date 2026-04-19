@@ -22,6 +22,7 @@
 		flex-direction: row;
 		gap: 0.3rem;
 		align-items: center;
+		min-width: 0;
 
 		text-decoration: none;
 		color: #000;
@@ -43,11 +44,21 @@
 	}
 
 	.skill-badge span {
-		display: contents;
-		height: 100%;
+		flex: 1;
+		min-width: 0;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
+	}
+
+	@media (max-width: 600px) {
+		.skill-badge {
+			justify-content: center;
+		}
+
+		.skill-badge span {
+			display: none;
+		}
 	}
 
 	.skill-badge:hover,

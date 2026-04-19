@@ -180,7 +180,7 @@ const heroTags = heroTagEntries.sort((a, b) => a.data.order - b.data.order);
 				</div>
 			</div>
 			<div class="right">
-				<MusicPlayer youTubeUrls={songUrls} client:visible />
+				<MusicPlayer youTubeUrls={songUrls} client:only="svelte" />
 			</div>
 		</div>
 	</section>
@@ -213,8 +213,8 @@ const heroTags = heroTagEntries.sort((a, b) => a.data.order - b.data.order);
 			display: none;
 		}
 
-		.contact-split .right {
-			display: none;
+		.contact-split {
+			flex-direction: column;
 		}
 	}
 
@@ -282,5 +282,6 @@ const heroTags = heroTagEntries.sort((a, b) => a.data.order - b.data.order);
 
 	.contact-split .right {
 		margin-top: 1rem;
+		min-width: 350px;
 	}
 </style>

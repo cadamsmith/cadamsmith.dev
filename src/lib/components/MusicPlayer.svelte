@@ -1,9 +1,3 @@
-<script module>
-	// Module-level: persists across remounts (client-side navigations) but resets on full page load.
-	// On first hydration we keep the SSR-rendered song; on subsequent mounts we randomize.
-	let hasLoaded = false;
-</script>
-
 <script lang="ts">
 	import { onMount } from 'svelte';
 
@@ -12,19 +6,12 @@
 	let randomized: string[] = [];
 	let index = $state(0);
 	let isPlaying = $state(false);
+	let isMounted = $state(false);
 
 	onMount(() => {
-		if (hasLoaded) {
-			randomized = [...youTubeUrls].sort(() => Math.random() - 0.5);
-			index = getRandomIndex();
-		} else {
-			// Keep the SSR-rendered song (youTubeUrls[0]) at index 0 so the iframe src
-			// doesn't change on hydration. Shuffle the rest for next/prev navigation.
-			const [first, ...rest] = youTubeUrls;
-			randomized = [first, ...rest.sort(() => Math.random() - 0.5)];
-			index = 0;
-			hasLoaded = true;
-		}
+		randomized = [...youTubeUrls].sort(() => Math.random() - 0.5);
+		index = getRandomIndex();
+		isMounted = true;
 	});
 
 	function getRandomIndex() {
@@ -44,27 +31,29 @@
 	let url = $derived(randomized[index] ?? youTubeUrls[0]);
 </script>
 
-<div class="controls">
-	<button onclick={previousSong} aria-label="Previous Song">
-		<iconify-icon class="iconify-icon" icon="mdi:skip-previous"></iconify-icon>
-	</button>
+{#if isMounted}
+	<div class="controls">
+		<button onclick={previousSong} aria-label="Previous Song">
+			<iconify-icon class="iconify-icon" icon="mdi:skip-previous"></iconify-icon>
+		</button>
 
-	<iconify-icon class="iconify-icon music-icon" icon="mdi:music"></iconify-icon>
+		<iconify-icon class="iconify-icon music-icon" icon="mdi:music"></iconify-icon>
 
-	<button onclick={nextSong} aria-label="Next Song">
-		<iconify-icon class="iconify-icon" icon="mdi:skip-next"></iconify-icon>
-	</button>
-</div>
+		<button onclick={nextSong} aria-label="Next Song">
+			<iconify-icon class="iconify-icon" icon="mdi:skip-next"></iconify-icon>
+		</button>
+	</div>
 
-<iframe
-	width="344"
-	height="210"
-	src="{url}&controls=0&rel=0{isPlaying ? '&autoplay=1' : ''}"
-	title="YouTube video player"
-	frameborder="0"
-	allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-	referrerpolicy="strict-origin-when-cross-origin"
-></iframe>
+	<iframe
+		width="100%"
+		height="210"
+		src="{url}&controls=0&rel=0{isPlaying ? '&autoplay=1' : ''}"
+		title="YouTube video player"
+		frameborder="0"
+		allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+		referrerpolicy="strict-origin-when-cross-origin"
+	></iframe>
+{/if}
 
 <style>
 	.controls {
