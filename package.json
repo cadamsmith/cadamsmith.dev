@@ -17,7 +17,7 @@
 		"@astrojs/cloudflare": "^12.0.0",
 		"@astrojs/svelte": "^7.0.0",
 		"@eslint/compat": "^1.2.5",
-		"@eslint/js": "^9.18.0",
+		"@eslint/js": "^10.0.1",
 		"@types/leaflet": "^1.9.16",
 		"@types/node": "^25.6.0",
 		"astro": "^5.7.0",
