@@ -20,27 +20,33 @@
 	.skill-badge {
 		display: flex;
 		flex-direction: row;
-		gap: 0.3rem;
+		gap: 0.35rem;
 		align-items: center;
 		min-width: 0;
 
 		text-decoration: none;
-		color: #000;
-		border-radius: 10px;
-		padding: 0.3rem;
+		color: var(--color-l);
+		border-radius: 6px;
+		padding: 0.35rem 0.5rem;
 		background-color: var(--color-i);
+		border: 1px solid var(--color-border);
+		font-size: 0.9em;
+		transition:
+			border-color 0.12s ease,
+			color 0.12s ease;
 	}
 
 	.skill-badge-img-wrapper {
-		background-color: var(--color-e);
-		border-radius: 6px;
-		border: 2px solid var(--color-a);
+		background-color: var(--color-j);
+		border-radius: 4px;
+		flex-shrink: 0;
 	}
 
 	.skill-badge img {
 		height: 1.2rem;
 		width: 1.2rem;
 		margin: 0.2rem;
+		display: block;
 	}
 
 	.skill-badge span {
@@ -63,8 +69,8 @@
 
 	.skill-badge:hover,
 	.skill-badge:focus {
-		background-color: var(--color-a);
-		color: #fff;
-		text-decoration: underline;
+		border-color: var(--color-h);
+		color: var(--color-h);
+		text-decoration: none;
 	}
 </style>

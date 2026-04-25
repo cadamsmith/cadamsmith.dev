@@ -187,6 +187,26 @@ const heroTags = heroTagEntries.sort((a, b) => a.data.order - b.data.order);
 </BaseLayout>
 
 <style>
+	.hero h1 {
+		font-size: 3.8em;
+		font-weight: 700;
+		letter-spacing: -0.03em;
+		line-height: 1;
+		margin-bottom: 0.6rem;
+		position: relative;
+		display: inline-block;
+	}
+
+	.hero h1::after {
+		content: '';
+		display: block;
+		width: 2.5rem;
+		height: 3px;
+		background-color: var(--color-c);
+		margin-top: 0.4rem;
+		border-radius: 2px;
+	}
+
 	.hero-split {
 		display: grid;
 		grid-template-columns: 1.1fr 0.9fr;
@@ -221,18 +241,22 @@ const heroTags = heroTagEntries.sort((a, b) => a.data.order - b.data.order);
 	.hero-info-tag-list {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.3em;
+		gap: 0.4em;
+		margin-bottom: 0.25rem;
 	}
 
 	.hero-info-tag {
-		background-color: var(--color-a);
-		color: #fff;
-		padding: 0.2em 0.5em;
-		border-radius: 0.2em;
+		background-color: rgba(212, 134, 10, 0.12);
+		color: var(--color-c);
+		border: 1px solid rgba(212, 134, 10, 0.3);
+		padding: 0.2em 0.55em;
+		border-radius: 0.25em;
+		font-size: 0.88em;
+		font-weight: 500;
 
 		display: flex;
 		align-items: center;
-		gap: 0.2em;
+		gap: 0.3em;
 		vertical-align: middle;
 	}
 
@@ -254,24 +278,30 @@ const heroTags = heroTagEntries.sort((a, b) => a.data.order - b.data.order);
 	.contact-links {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.3em;
+		gap: 0.4em;
 		margin-bottom: 1rem;
 	}
 
 	.contact-links > a {
 		background-color: var(--color-c);
-		color: #fff;
-		padding: 0.2em 0.5em;
-		border-radius: 0.2em;
+		color: #0c0b09;
+		padding: 0.3em 0.7em;
+		border-radius: 0.25em;
+		font-weight: 700;
+		font-size: 0.9em;
 
 		display: flex;
 		align-items: center;
-		gap: 0.2em;
+		gap: 0.3em;
 		vertical-align: middle;
+		text-decoration: none;
+		transition: background-color 0.12s ease;
 	}
 
 	.contact-links > a:hover {
-		background-color: #000;
+		background-color: var(--color-h);
+		color: #0c0b09;
+		text-decoration: none;
 	}
 
 	.contact-split {

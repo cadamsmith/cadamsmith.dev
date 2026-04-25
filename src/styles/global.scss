@@ -1,18 +1,77 @@
 @use '@fontsource-variable/rubik';
 @use '@fontsource/jetbrains-mono';
 
-:root {
-	/* I am bad at color palettes */
-	--color-a: #584c77;
-	--color-b: #352e48;
-	--color-c: #b3001b;
-	--color-e: #c5d4e7;
-	--color-f: #eff6e0;
-	--color-h: #3da5d9;
-	--color-i: #d3d3d3;
-	--color-j: #666;
-	--color-k: #2f4b26;
-	--color-l: #333;
+:root,
+:root[data-theme='ember'] {
+	--color-a: #1e1b16;
+	--color-b: #111009;
+	--color-c: #d4860a;
+	--color-e: #1c1a15;
+	--color-f: #0c0b09;
+	--color-h: #f0a020;
+	--color-i: #252219;
+	--color-j: #2e2b23;
+	--color-k: #1c1a15;
+	--color-l: #e8e0d0;
+	--color-border: #2e2a22;
+	--color-muted: #7a7060;
+	--color-surface: #161410;
+	--grid-dot: rgba(212, 134, 10, 0.18);
+	--hero-start: #221f17;
+}
+
+:root[data-theme='ocean'] {
+	--color-a: #0d1520;
+	--color-b: #080e16;
+	--color-c: #00c8b0;
+	--color-e: #0f1a28;
+	--color-f: #070c12;
+	--color-h: #20e8d0;
+	--color-i: #101e2e;
+	--color-j: #182840;
+	--color-k: #0f1a28;
+	--color-l: #c8dff0;
+	--color-border: #1a2e44;
+	--color-muted: #4a6880;
+	--color-surface: #0d1828;
+	--grid-dot: rgba(0, 200, 176, 0.15);
+	--hero-start: #0a1220;
+}
+
+:root[data-theme='forest'] {
+	--color-a: #0c1a0e;
+	--color-b: #081008;
+	--color-c: #c8b060;
+	--color-e: #101e12;
+	--color-f: #080e08;
+	--color-h: #e0c878;
+	--color-i: #142018;
+	--color-j: #182814;
+	--color-k: #101e12;
+	--color-l: #d8ead0;
+	--color-border: #1c3020;
+	--color-muted: #587858;
+	--color-surface: #0f1a10;
+	--grid-dot: rgba(200, 176, 96, 0.14);
+	--hero-start: #0e1c10;
+}
+
+:root[data-theme='dusk'] {
+	--color-a: #120e20;
+	--color-b: #0c0a18;
+	--color-c: #e06858;
+	--color-e: #160e28;
+	--color-f: #0a0814;
+	--color-h: #f08070;
+	--color-i: #1c1430;
+	--color-j: #241a38;
+	--color-k: #160e28;
+	--color-l: #e8e0f4;
+	--color-border: #2c2044;
+	--color-muted: #7060a8;
+	--color-surface: #150e24;
+	--grid-dot: rgba(224, 104, 88, 0.14);
+	--hero-start: #140e22;
 }
 
 html {
@@ -22,20 +81,23 @@ html {
 	flex-direction: column;
 	margin: 0 min(5vw, 25px);
 	scroll-behavior: smooth;
-
 	font-family: 'Rubik Variable', sans-serif;
+	transition: background-color 0.25s ease;
 }
 
 body {
 	margin: min(5vw, 25px) auto;
-	background: #fff;
+	background: var(--color-surface);
 	color: var(--color-l);
 	max-width: 1080px;
-	box-shadow: 0 0 10px rgba(50, 50, 50, 0.17);
+	box-shadow: 0 0 60px rgba(0, 0, 0, 0.7);
 	width: 100%;
 	flex-grow: 1;
 	display: flex;
 	flex-direction: column;
+	transition:
+		background-color 0.25s ease,
+		color 0.25s ease;
 }
 
 main {
@@ -44,18 +106,16 @@ main {
 		[full-start] 1rem [wrapper-start] minmax(0, 70rem)
 		[wrapper-end] 1rem [full-end];
 	grid-auto-rows: min-content;
-
-	/* Optional gap */
 	column-gap: var(--pad, 1rem);
 	overflow-x: hidden;
-
-	background-image: url(/images/bg_lego.svg);
-	background-repeat: repeat;
+	background-color: var(--color-f);
+	background-image: radial-gradient(circle, var(--grid-dot) 1px, transparent 1px);
+	background-size: 28px 28px;
 }
 
 main > * {
 	grid-column: full;
-	background-color: #fff;
+	background-color: var(--color-surface);
 	padding: 0 2rem 1rem 2rem;
 }
 
@@ -97,10 +157,8 @@ html {
 .sr-only {
 	border: 0 !important;
 	clip: rect(1px, 1px, 1px, 1px) !important;
-	/* 1 */
 	-webkit-clip-path: inset(50%) !important;
 	clip-path: inset(50%) !important;
-	/* 2 */
 	height: 0px !important;
 	margin: -1px !important;
 	overflow: hidden !important;
@@ -108,8 +166,6 @@ html {
 	position: absolute !important;
 	width: 0px !important;
 	white-space: nowrap !important;
-	/* 3 */
-
 	font-size: 0;
 }
 
@@ -128,20 +184,23 @@ main a {
 }
 
 main a:hover {
-	color: #000;
-	text-decoration-color: #000;
+	color: var(--color-h);
+	text-decoration-color: var(--color-h);
 }
 
 section.hero {
-	background-color: var(--color-e);
+	background: linear-gradient(160deg, var(--hero-start) 0%, var(--color-e) 100%);
+	transition:
+		background-color 0.3s ease,
+		background 0.3s ease;
 }
 
 .icon-link {
-	background-color: #fff;
-	border: 5px solid #fff;
-	padding: 2.5px;
+	background-color: var(--color-j);
+	border: 2px solid var(--color-border);
+	padding: 4px 8px;
 	text-decoration: none;
-	color: #000;
+	color: var(--color-l);
 	margin-right: 0.2em;
 	border-radius: 0.4em;
 	font-weight: bold;
@@ -173,9 +232,10 @@ section.hero {
 }
 
 .icon-link:hover {
-	background-color: #fff;
-	box-shadow: none;
+	background-color: var(--color-j);
 	border-color: var(--color-h);
+	color: var(--color-h);
+	box-shadow: none;
 }
 
 .game-cell {
@@ -252,7 +312,19 @@ section.bg-color {
 }
 
 h1 {
-	font-size: 2.2em;
+	font-size: 3em;
+	font-weight: 700;
+	letter-spacing: -0.02em;
+	line-height: 1.05;
 	margin-top: 1rem;
-	margin-bottom: 0.6rem;
+	margin-bottom: 0.5rem;
+}
+
+h2 {
+	font-size: 0.75em;
+	font-weight: 600;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--color-muted);
+	margin-bottom: 1.2rem;
 }

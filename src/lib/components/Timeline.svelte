@@ -74,52 +74,70 @@
 	.timeline-selector {
 		width: 100%;
 		display: flex;
-		gap: 0.5em;
-		border: 2px solid #000;
-		padding: 0.2rem;
+		gap: 0.3em;
+		border: 1px solid var(--color-border);
+		padding: 0.25rem;
 		margin-bottom: 0.5rem;
 		background-color: var(--color-i);
+		border-radius: 0.3em;
 	}
 
 	.timeline-selector button {
 		flex-grow: 1;
 		background-color: transparent;
 		border: none;
-		padding: 0.2rem;
+		padding: 0.3rem 0.5rem;
 		cursor: pointer;
-		font-weight: bold;
+		font-weight: 600;
+		font-size: 0.8em;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--color-muted);
+		border-radius: 0.2em;
+		font-family: inherit;
+		transition: color 0.12s ease;
 	}
 
 	.timeline-selector button:hover {
-		background-color: var(--color-j);
-		color: #fff;
+		color: var(--color-l);
 	}
 
 	.timeline-selector button.selected {
-		background-color: #000;
-		color: #fff;
+		background-color: var(--color-c);
+		color: #0c0b09;
+		font-weight: 700;
 	}
 
 	h3 {
-		font-size: 1.05em;
+		font-size: 1em;
 		margin: 0;
 		text-transform: uppercase;
+		letter-spacing: 0.04em;
 	}
 
 	h3 a {
 		color: inherit;
+		text-decoration: none;
+	}
+
+	h3 a:hover {
+		color: var(--color-h);
+		text-decoration: underline;
 	}
 
 	p {
 		margin: 0;
+		font-size: 0.9em;
+		color: var(--color-muted);
 	}
 
 	.timeline {
-		border: 2px solid #000;
+		border: 1px solid var(--color-border);
 		padding: 0 1rem;
 		width: 100%;
 		background-color: var(--color-k);
-		color: #fff;
+		color: var(--color-l);
+		border-radius: 0.3em;
 	}
 
 	.timeline-panels {
@@ -140,7 +158,8 @@
 		left: 1rem;
 		width: 2px;
 		transform: translateX(-50%);
-		background-color: #fff;
+		background-color: var(--color-c);
+		opacity: 0.5;
 	}
 
 	.timeline-panel.selected {
@@ -163,8 +182,8 @@
 	.timeline-item .img-wrapper {
 		width: 2rem;
 		height: 2rem;
-		background-color: #000;
-		border: 2px solid #fff;
+		background-color: var(--color-j);
+		border: 2px solid var(--color-c);
 		border-radius: 50%;
 		padding: 0.3rem;
 		z-index: 1;
@@ -174,23 +193,26 @@
 		width: 100%;
 		height: 100%;
 		object-fit: contain;
+		opacity: 0.7;
 	}
 
 	.timeline-item-right {
-		padding: 0.5rem 0;
+		padding: 0.6rem 0;
 	}
 
 	.location {
 		display: flex;
 		align-items: center;
 		gap: 0.2em;
-		opacity: 0.75;
-		font-size: 0.85em;
+		opacity: 0.6;
+		font-size: 0.82em;
 		background: none;
 		border: none;
 		color: inherit;
 		padding: 0;
 		cursor: pointer;
+		font-family: inherit;
+		transition: opacity 0.12s ease;
 	}
 
 	.location:hover {
