@@ -19,7 +19,7 @@
 
 		const map = L.map(mapContainer, {
 			center: [initialCoordinates.lat, initialCoordinates.lng],
-			zoom: 10,
+			zoom: 12,
 			scrollWheelZoom: false
 		});
 
@@ -35,7 +35,7 @@
 		window.addEventListener('location-change', (e) => {
 			const { lat, lng } = (e as CustomEvent<{ lat: number; lng: number }>).detail;
 			marker.setLatLng([lat, lng]);
-			map.setView([lat, lng], 12);
+			map.panTo([lat, lng]);
 		});
 	});
 </script>
