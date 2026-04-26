@@ -68,27 +68,45 @@
 		flex-grow: 1;
 		display: flex;
 		flex-direction: column;
-		border-radius: 1em;
+		border-radius: 0.5em;
 		overflow: hidden;
 		height: 0;
 		margin-top: 1rem;
 		font-weight: bold;
 		font-size: 13px;
 		font-family: 'JetBrains Mono', monospace;
+		border: 1px solid var(--color-border);
+		box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
 	}
 
 	.terminal-header {
-		background-color: #fff;
-		height: 2em;
-		min-height: 2em;
+		background-color: var(--color-j);
+		height: 2.2em;
+		min-height: 2.2em;
+		display: flex;
+		align-items: center;
+		padding: 0 0.9em;
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.terminal-header::before {
+		content: '';
+		display: block;
+		width: 0.65em;
+		height: 0.65em;
+		border-radius: 50%;
+		background: #ff5f57;
+		box-shadow:
+			1.15em 0 0 #febc2e,
+			2.3em 0 0 #28c840;
+		flex-shrink: 0;
 	}
 
 	.terminal-body {
-		background-color: #000;
-		color: #fff;
+		background-color: #0d0b09;
+		color: #e8e0d0;
 		padding: 1em;
 		overflow-x: hidden;
-
 		flex-grow: 1;
 	}
 
@@ -96,12 +114,12 @@
 		display: grid;
 		grid-template-columns: auto 1fr;
 		gap: 1em;
-
 		margin-bottom: 0.6em;
 	}
 
 	.session .prompt {
 		flex-shrink: 1;
+		color: var(--color-c);
 	}
 
 	.session .command {
@@ -109,6 +127,7 @@
 		word-break: break-all;
 		border: 0px solid transparent;
 		outline: 0px solid transparent;
+		color: #e8e0d0;
 	}
 
 	.session .command:focus {
@@ -119,5 +138,6 @@
 		grid-column: 1 / span 2;
 		white-space: pre-line;
 		line-height: 1.4em;
+		color: #b8b0a0;
 	}
 </style>

@@ -2,17 +2,21 @@
 @use '@fontsource/jetbrains-mono';
 
 :root {
-	/* I am bad at color palettes */
-	--color-a: #584c77;
-	--color-b: #352e48;
-	--color-c: #b3001b;
-	--color-e: #c5d4e7;
-	--color-f: #eff6e0;
-	--color-h: #3da5d9;
-	--color-i: #d3d3d3;
-	--color-j: #666;
-	--color-k: #2f4b26;
-	--color-l: #333;
+	--color-a: #0c1420;
+	--color-b: #080c10;
+	--color-c: #40b8f0;
+	--color-e: #0e1828;
+	--color-f: #080c10;
+	--color-h: #60d0ff;
+	--color-i: #101c2c;
+	--color-j: #162438;
+	--color-k: #0e1828;
+	--color-l: #d0e8f8;
+	--color-border: #162030;
+	--color-muted: #6890c0;
+	--color-surface: #0e1420;
+	--grid-dot: rgba(64, 184, 240, 0.15);
+	--hero-start: #0c1220;
 }
 
 html {
@@ -22,20 +26,23 @@ html {
 	flex-direction: column;
 	margin: 0 min(5vw, 25px);
 	scroll-behavior: smooth;
-
 	font-family: 'Rubik Variable', sans-serif;
+	transition: background-color 0.25s ease;
 }
 
 body {
 	margin: min(5vw, 25px) auto;
-	background: #fff;
+	background: var(--color-surface);
 	color: var(--color-l);
 	max-width: 1080px;
-	box-shadow: 0 0 10px rgba(50, 50, 50, 0.17);
+	box-shadow: 0 0 60px rgba(0, 0, 0, 0.7);
 	width: 100%;
 	flex-grow: 1;
 	display: flex;
 	flex-direction: column;
+	transition:
+		background-color 0.25s ease,
+		color 0.25s ease;
 }
 
 main {
@@ -44,18 +51,16 @@ main {
 		[full-start] 1rem [wrapper-start] minmax(0, 70rem)
 		[wrapper-end] 1rem [full-end];
 	grid-auto-rows: min-content;
-
-	/* Optional gap */
 	column-gap: var(--pad, 1rem);
 	overflow-x: hidden;
-
-	background-image: url(/images/bg_lego.svg);
-	background-repeat: repeat;
+	background-color: var(--color-f);
+	background-image: radial-gradient(circle, var(--grid-dot) 1px, transparent 1px);
+	background-size: 28px 28px;
 }
 
 main > * {
 	grid-column: full;
-	background-color: #fff;
+	background-color: var(--color-surface);
 	padding: 0 2rem 1rem 2rem;
 }
 
@@ -97,10 +102,8 @@ html {
 .sr-only {
 	border: 0 !important;
 	clip: rect(1px, 1px, 1px, 1px) !important;
-	/* 1 */
 	-webkit-clip-path: inset(50%) !important;
 	clip-path: inset(50%) !important;
-	/* 2 */
 	height: 0px !important;
 	margin: -1px !important;
 	overflow: hidden !important;
@@ -108,8 +111,6 @@ html {
 	position: absolute !important;
 	width: 0px !important;
 	white-space: nowrap !important;
-	/* 3 */
-
 	font-size: 0;
 }
 
@@ -128,20 +129,23 @@ main a {
 }
 
 main a:hover {
-	color: #000;
-	text-decoration-color: #000;
+	color: var(--color-h);
+	text-decoration-color: var(--color-h);
 }
 
 section.hero {
-	background-color: var(--color-e);
+	background: linear-gradient(160deg, var(--hero-start) 0%, var(--color-e) 100%);
+	transition:
+		background-color 0.3s ease,
+		background 0.3s ease;
 }
 
 .icon-link {
-	background-color: #fff;
-	border: 5px solid #fff;
-	padding: 2.5px;
+	background-color: var(--color-j);
+	border: 2px solid var(--color-border);
+	padding: 4px 8px;
 	text-decoration: none;
-	color: #000;
+	color: var(--color-l);
 	margin-right: 0.2em;
 	border-radius: 0.4em;
 	font-weight: bold;
@@ -173,9 +177,10 @@ section.hero {
 }
 
 .icon-link:hover {
-	background-color: #fff;
-	box-shadow: none;
+	background-color: var(--color-j);
 	border-color: var(--color-h);
+	color: var(--color-h);
+	box-shadow: none;
 }
 
 .game-cell {
@@ -252,7 +257,19 @@ section.bg-color {
 }
 
 h1 {
-	font-size: 2.2em;
+	font-size: 3em;
+	font-weight: 700;
+	letter-spacing: -0.02em;
+	line-height: 1.05;
 	margin-top: 1rem;
-	margin-bottom: 0.6rem;
+	margin-bottom: 0.5rem;
+}
+
+h2 {
+	font-size: 0.75em;
+	font-weight: 600;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--color-muted);
+	margin-bottom: 1.2rem;
 }

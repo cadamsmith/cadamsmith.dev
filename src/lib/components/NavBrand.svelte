@@ -30,15 +30,13 @@
 <style>
 	a {
 		text-decoration: none;
-		color: inherit;
+		color: var(--color-l);
 		padding: 0.5em;
-		color: #fff;
 		font-weight: bold;
 		box-sizing: border-box;
 	}
 
 	a:hover {
-		border-color: #000;
 		text-decoration: underline;
 		color: var(--color-h);
 	}
@@ -47,40 +45,43 @@
 		display: inline-flex;
 		align-items: center;
 		text-transform: uppercase;
-		background-color: #000;
+		background-color: var(--color-b);
 		gap: 0.5em;
-		color: #fff;
+		color: var(--color-l);
 		padding: unset;
-		padding-right: 0.5em;
-		margin-top: 0.7em;
-		margin-bottom: 0.7em;
-		font-size: 1.4em;
+		padding-right: 0.75em;
+		margin-top: 0.5em;
+		margin-bottom: 0.5em;
+		font-size: 1.35em;
+		letter-spacing: 0.04em;
 		margin-left: 0.6em;
-		border-color: #000;
+		border: 2px solid var(--color-border);
+		border-radius: 0.3em;
+		transition: border-color 0.15s ease;
 
 		&:hover {
-			border-color: #fff;
+			border-color: var(--color-h);
+			color: var(--color-h);
+			text-decoration: none;
 		}
 
 		& .dino {
-			width: 3.5em;
-			height: 3.5em;
+			width: 3.2em;
+			height: 3.2em;
 			overflow: hidden;
 			border-radius: 50%;
 			flex-shrink: 0;
-
-			margin-top: -0.7em;
-			margin-bottom: -0.7em;
-			margin-left: -0.6em;
+			margin-top: -2px;
+			margin-bottom: -2px;
+			margin-left: -2px;
 			position: relative;
 		}
 
 		& .dino img {
 			width: 100%;
 			height: 100%;
-			color: #000;
 			position: absolute;
-			background-color: #fff;
+			background-color: var(--color-j);
 		}
 	}
 
