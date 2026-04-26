@@ -22,11 +22,6 @@ const { title } = Astro.props;
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<ClientRouter />
 		<title>{title}</title>
-		<script is:inline>
-			const t = localStorage.getItem('theme');
-			if (t) document.documentElement.setAttribute('data-theme', t);
-		</script>
-
 		<!--
 		You actually looked at the source code for this page, huh?
 		Maybe you're a recruiter or something?

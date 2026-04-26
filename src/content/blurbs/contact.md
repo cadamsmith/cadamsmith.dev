@@ -1,4 +1,4 @@
 ---
 ---
 
-I'm open to new opportunities! Reach out to me if you'd like to connect.
+Always happy to connect with fellow engineers or collaborate on interesting problems. Feel free to reach out!

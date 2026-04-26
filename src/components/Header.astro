@@ -1,7 +1,6 @@
 ---
 import { siteResources } from '../config/siteResources';
 import NavBrand from '../lib/components/NavBrand.svelte';
-import ThemeSwitcher from '../lib/components/ThemeSwitcher.svelte';
 ---
 
 <link rel="preload" as="image" href="/images/profile.jpg" />
@@ -11,7 +10,6 @@ import ThemeSwitcher from '../lib/components/ThemeSwitcher.svelte';
 	<NavBrand client:load />
 
 	<div class="header-right">
-		<ThemeSwitcher client:load />
 		<nav>
 			<ul>
 				<li>

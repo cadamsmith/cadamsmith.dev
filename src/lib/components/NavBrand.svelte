@@ -69,7 +69,7 @@
 			width: 3.2em;
 			height: 3.2em;
 			overflow: hidden;
-			border-radius: 0.2em 0 0 0.2em;
+			border-radius: 50%;
 			flex-shrink: 0;
 			margin-top: -2px;
 			margin-bottom: -2px;

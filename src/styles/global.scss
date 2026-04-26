@@ -1,77 +1,22 @@
 @use '@fontsource-variable/rubik';
 @use '@fontsource/jetbrains-mono';
 
-:root,
-:root[data-theme='ember'] {
-	--color-a: #1e1b16;
-	--color-b: #111009;
-	--color-c: #d4860a;
-	--color-e: #1c1a15;
-	--color-f: #0c0b09;
-	--color-h: #f0a020;
-	--color-i: #252219;
-	--color-j: #2e2b23;
-	--color-k: #1c1a15;
-	--color-l: #e8e0d0;
-	--color-border: #2e2a22;
-	--color-muted: #7a7060;
-	--color-surface: #161410;
-	--grid-dot: rgba(212, 134, 10, 0.18);
-	--hero-start: #221f17;
-}
-
-:root[data-theme='ocean'] {
-	--color-a: #0d1520;
-	--color-b: #080e16;
-	--color-c: #00c8b0;
-	--color-e: #0f1a28;
-	--color-f: #070c12;
-	--color-h: #20e8d0;
-	--color-i: #101e2e;
-	--color-j: #182840;
-	--color-k: #0f1a28;
-	--color-l: #c8dff0;
-	--color-border: #1a2e44;
-	--color-muted: #4a6880;
-	--color-surface: #0d1828;
-	--grid-dot: rgba(0, 200, 176, 0.15);
-	--hero-start: #0a1220;
-}
-
-:root[data-theme='forest'] {
-	--color-a: #0c1a0e;
-	--color-b: #081008;
-	--color-c: #c8b060;
-	--color-e: #101e12;
-	--color-f: #080e08;
-	--color-h: #e0c878;
-	--color-i: #142018;
-	--color-j: #182814;
-	--color-k: #101e12;
-	--color-l: #d8ead0;
-	--color-border: #1c3020;
-	--color-muted: #587858;
-	--color-surface: #0f1a10;
-	--grid-dot: rgba(200, 176, 96, 0.14);
-	--hero-start: #0e1c10;
-}
-
-:root[data-theme='dusk'] {
-	--color-a: #120e20;
-	--color-b: #0c0a18;
-	--color-c: #e06858;
-	--color-e: #160e28;
-	--color-f: #0a0814;
-	--color-h: #f08070;
-	--color-i: #1c1430;
-	--color-j: #241a38;
-	--color-k: #160e28;
-	--color-l: #e8e0f4;
-	--color-border: #2c2044;
-	--color-muted: #7060a8;
-	--color-surface: #150e24;
-	--grid-dot: rgba(224, 104, 88, 0.14);
-	--hero-start: #140e22;
+:root {
+	--color-a: #0c1420;
+	--color-b: #080c10;
+	--color-c: #40b8f0;
+	--color-e: #0e1828;
+	--color-f: #080c10;
+	--color-h: #60d0ff;
+	--color-i: #101c2c;
+	--color-j: #162438;
+	--color-k: #0e1828;
+	--color-l: #d0e8f8;
+	--color-border: #162030;
+	--color-muted: #6890c0;
+	--color-surface: #0e1420;
+	--grid-dot: rgba(64, 184, 240, 0.15);
+	--hero-start: #0c1220;
 }
 
 html {
