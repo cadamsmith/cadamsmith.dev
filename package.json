@@ -44,7 +44,7 @@
 		"@astrojs/check": "^0.9.8",
 		"@fontsource-variable/rubik": "^5.2.5",
 		"@fontsource/jetbrains-mono": "^5.2.5",
-		"iconify-icon": "^2.3.0",
+		"iconify-icon": "^3.0.2",
 		"leaflet": "^1.9.4"
 	}
 }
