@@ -8,20 +8,32 @@ updates:
       day: 'monday'
       time: '06:00'
       timezone: 'America/New_York'
-    # Group patch and minor updates, majors get individual PRs
+    # Bundle all non-major updates into one PR; majors get individual PRs
     groups:
-      npm-patch:
-        update-types:
-          - 'patch'
-      npm-minor:
+      npm-non-major:
         update-types:
           - 'minor'
-    # Limit open PRs to avoid spam
+          - 'patch'
     open-pull-requests-limit: 5
     # Add labels to PRs
     labels:
       - 'dependencies'
     # Commit message prefix
+    commit-message:
+      prefix: 'chore'
+      include: 'scope'
+
+  # GitHub Actions
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '06:00'
+      timezone: 'America/New_York'
+    open-pull-requests-limit: 5
+    labels:
+      - 'dependencies'
     commit-message:
       prefix: 'chore'
       include: 'scope'
