@@ -1,7 +1,9 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { glob } from 'astro/loaders';
+import { z } from 'astro/zod';
 
 const skills = defineCollection({
-	type: 'content',
+	loader: glob({ pattern: '**/*.md', base: './src/content/skills' }),
 	schema: z.object({
 		name: z.string(),
 		group: z.string(),
@@ -12,7 +14,7 @@ const skills = defineCollection({
 });
 
 const timeline = defineCollection({
-	type: 'content',
+	loader: glob({ pattern: '**/*.md', base: './src/content/timeline' }),
 	schema: z.object({
 		title: z.string(),
 		company: z.string(),
@@ -20,8 +22,8 @@ const timeline = defineCollection({
 		dateRanges: z
 			.array(
 				z.object({
-					startDate: z.union([z.string().date(), z.literal('PRESENT')]),
-					endDate: z.union([z.string().date(), z.literal('PRESENT')])
+					startDate: z.union([z.iso.date(), z.literal('PRESENT')]),
+					endDate: z.union([z.iso.date(), z.literal('PRESENT')])
 				})
 			)
 			.min(1),
@@ -36,7 +38,7 @@ const timeline = defineCollection({
 });
 
 const heroTags = defineCollection({
-	type: 'content',
+	loader: glob({ pattern: '**/*.md', base: './src/content/heroTags' }),
 	schema: z.object({
 		label: z.string(),
 		icon: z.string(),
@@ -45,12 +47,12 @@ const heroTags = defineCollection({
 });
 
 const blurbs = defineCollection({
-	type: 'content',
+	loader: glob({ pattern: '**/*.md', base: './src/content/blurbs' }),
 	schema: z.object({})
 });
 
 const songs = defineCollection({
-	type: 'content',
+	loader: glob({ pattern: '**/*.md', base: './src/content/songs' }),
 	schema: z.object({
 		title: z.string(),
 		artist: z.string(),
