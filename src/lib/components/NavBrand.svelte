@@ -1,6 +1,6 @@
 <script lang="ts">
-	const defaultImg = '/images/profile.jpg';
-	const altImg = '/images/profile_alt.jpg';
+	const defaultImg = '/images/profile.png';
+	const altImg = '/images/profile_alt.png';
 
 	let useDefaultProfileImg = $state(true);
 
