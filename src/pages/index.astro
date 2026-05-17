@@ -7,8 +7,10 @@ import TerminalWidget from '../lib/components/TerminalWidget.svelte';
 import Timeline from '../lib/components/Timeline.svelte';
 import MusicPlayer from '../lib/components/MusicPlayer.svelte';
 import LocationMap from '../lib/components/LocationMap.svelte';
+import ProjectsWidget from '../lib/components/ProjectsWidget.svelte';
 import type { Skill } from '../lib/types/Skill';
 import type { TimelineItem } from '../lib/types/TimelineItem';
+import type { Project } from '../lib/types/Project';
 
 const now = new Date();
 
@@ -55,6 +57,11 @@ const yearsOfWorkExperience = Math.floor(totalWorkMonths / 6) / 2;
 
 const songEntries = await getCollection('songs', ({ data }) => data.enabled);
 const songUrls: string[] = songEntries.map((entry) => entry.data.youtubeEmbedUrl);
+
+const projectEntries = await getCollection('projects');
+const projects: Project[] = projectEntries
+	.map((entry) => ({ ...entry.data }))
+	.sort((a, b) => a.order - b.order);
 
 const heroBlurb = await getEntry('blurbs', 'hero');
 const { Content: HeroContent } = await render(heroBlurb!);
@@ -112,6 +119,11 @@ const heroTags = heroTagEntries.sort((a, b) => a.data.order - b.data.order);
 				<Timeline timeline={timeline} client:visible />
 			</div>
 		</div>
+	</section>
+	<section>
+		<h2>Projects</h2>
+
+		<ProjectsWidget projects={projects} client:visible />
 	</section>
 	<section>
 		<div class="contact-split">
