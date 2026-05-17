@@ -61,4 +61,19 @@ const songs = defineCollection({
 	})
 });
 
-export const collections = { skills, timeline, songs, blurbs, heroTags };
+const projects = defineCollection({
+	loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
+	schema: z.object({
+		name: z.string(),
+		emoji: z.string(),
+		description: z.string(),
+		technologies: z.array(z.string()).min(1),
+		githubUrl: z.string(),
+		liveUrl: z.string(),
+		liveLabel: z.string(),
+		status: z.enum(['WIP', 'Stable', 'Archived']).optional(),
+		order: z.number()
+	})
+});
+
+export const collections = { skills, timeline, songs, blurbs, heroTags, projects };
