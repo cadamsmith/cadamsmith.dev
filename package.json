@@ -1,7 +1,7 @@
 {
 	"name": "cadamsmith-web",
 	"private": true,
-	"version": "2026.05.08",
+	"version": "2026.05.09",
 	"type": "module",
 	"scripts": {
 		"dev": "astro dev",
