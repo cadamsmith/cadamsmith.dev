@@ -2,6 +2,6 @@
 name: 'jQuery'
 group: 'Libraries and Frameworks'
 order: 2
-imageFileName: 'jquery.svg'
+icon: 'devicon:jquery'
 url: 'https://jquery.com/'
 ---

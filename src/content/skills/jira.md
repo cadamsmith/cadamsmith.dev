@@ -2,6 +2,6 @@
 name: 'Jira'
 group: 'Tools and Platforms'
 order: 5
-imageFileName: 'jira.svg'
+icon: 'devicon:jira'
 url: 'https://www.atlassian.com/software/jira'
 ---

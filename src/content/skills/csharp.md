@@ -2,6 +2,6 @@
 name: 'C#'
 group: 'Languages'
 order: 0
-imageFileName: 'csharp.svg'
+icon: 'devicon:csharp'
 url: 'https://dotnet.microsoft.com/en-us/languages/csharp'
 ---

@@ -2,6 +2,6 @@
 name: 'Java'
 group: 'Languages'
 order: 5
-imageFileName: 'java.svg'
+icon: 'devicon:java'
 url: 'https://www.oracle.com/java/'
 ---

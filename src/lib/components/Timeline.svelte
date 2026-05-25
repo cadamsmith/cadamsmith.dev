@@ -42,7 +42,11 @@
 					<div class="timeline-item">
 						<div class="timeline-item-left">
 							<div class="img-wrapper">
-								<img src="/images/generic_skill.svg" alt="Generic Skill" />
+								<iconify-icon
+									class="timeline-item-icon"
+									icon={group === 'Education' ? 'mdi:school' : 'mdi:briefcase'}
+									aria-label="{group} entry"
+								></iconify-icon>
 							</div>
 						</div>
 						<div class="timeline-item-right">
@@ -189,11 +193,16 @@
 		z-index: 1;
 	}
 
-	.timeline-item .img-wrapper img {
+	.timeline-item .img-wrapper :global(.timeline-item-icon) {
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		width: 100%;
 		height: 100%;
-		object-fit: contain;
+		font-size: 1.4rem;
 		opacity: 0.7;
+		color: var(--color-l);
+		transform: translateY(-2px);
 	}
 
 	.timeline-item-right {

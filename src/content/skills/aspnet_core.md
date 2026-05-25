@@ -2,6 +2,6 @@
 name: 'ASP.NET Core'
 group: 'Libraries and Frameworks'
 order: 0
-imageFileName: 'dotnet_core.svg'
+icon: 'skill-icons:dotnet'
 url: 'https://dotnet.microsoft.com/en-us/apps/aspnet'
 ---

@@ -5,6 +5,6 @@ description: 'A randomized Catan board generator that scores each layout on six 
 technologies: ['JavaScript']
 githubUrl: 'https://github.com/cadamsmith/catan-board-generator'
 liveUrl: 'https://catanboard.app'
-liveLabel: 'Play live'
+liveLabel: 'Live Site'
 order: 1
 ---

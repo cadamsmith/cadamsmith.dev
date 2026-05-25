@@ -11,7 +11,11 @@
 
 <a class="skill-badge" href={skill.url} class:selected target="_blank">
 	<div class="skill-badge-img-wrapper">
-		<img src={skill.imageUrl} alt="{skill.name} logo" />
+		<iconify-icon
+			class="skill-badge-icon"
+			icon={skill.icon}
+			aria-label="{skill.name} logo"
+		></iconify-icon>
 	</div>
 	<span>{skill.name}</span>
 </a>
@@ -42,11 +46,12 @@
 		flex-shrink: 0;
 	}
 
-	.skill-badge img {
+	.skill-badge :global(.skill-badge-icon) {
 		height: 1.2rem;
 		width: 1.2rem;
 		margin: 0.2rem;
 		display: block;
+		font-size: 1.2rem;
 	}
 
 	.skill-badge span {

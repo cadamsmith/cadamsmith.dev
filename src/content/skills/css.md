@@ -2,6 +2,6 @@
 name: 'CSS'
 group: 'Languages'
 order: 4
-imageFileName: 'css.svg'
+icon: 'devicon:css3'
 url: 'https://developer.mozilla.org/en-US/docs/Web/CSS'
 ---
