@@ -2,6 +2,6 @@
 name: 'Git'
 group: 'Tools and Platforms'
 order: 0
-imageFileName: 'git.svg'
+icon: 'skill-icons:git'
 url: 'https://git-scm.com/'
 ---

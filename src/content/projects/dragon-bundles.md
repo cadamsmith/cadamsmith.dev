@@ -5,6 +5,6 @@ description: 'A cross-runtime CSS/JS bundling library for ASP.NET — one API sp
 technologies: ['C#', 'ASP.NET']
 githubUrl: 'https://github.com/cadamsmith/dragon-bundles'
 liveUrl: 'https://www.nuget.org/packages/DragonBundles'
-liveLabel: 'View on NuGet'
+liveLabel: 'NuGet'
 order: 0
 ---

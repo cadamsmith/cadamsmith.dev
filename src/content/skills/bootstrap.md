@@ -2,6 +2,6 @@
 name: 'Bootstrap'
 group: 'Libraries and Frameworks'
 order: 3
-imageFileName: 'bootstrap.svg'
+icon: 'devicon:bootstrap'
 url: 'https://getbootstrap.com/'
 ---

@@ -2,6 +2,6 @@
 name: 'HTML'
 group: 'Languages'
 order: 3
-imageFileName: 'html.svg'
+icon: 'devicon:html5'
 url: 'https://developer.mozilla.org/en-US/docs/Web/HTML'
 ---

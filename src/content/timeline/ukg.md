@@ -3,7 +3,7 @@ title: 'Software Engineer'
 company: 'UKG'
 group: 'Work'
 dateRanges:
-  - startDate: '2025-06-01'
+  - startDate: '2025-06-09'
     endDate: PRESENT
 order: 4
 url: 'https://www.ukg.com/'

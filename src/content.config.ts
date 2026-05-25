@@ -8,7 +8,7 @@ const skills = defineCollection({
 		name: z.string(),
 		group: z.string(),
 		order: z.number(),
-		imageFileName: z.string().optional().default(''),
+		icon: z.string(),
 		url: z.string()
 	})
 });
