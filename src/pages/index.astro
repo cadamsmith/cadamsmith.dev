@@ -11,6 +11,10 @@ import ProjectsWidget from '../lib/components/ProjectsWidget.svelte';
 import type { Skill } from '../lib/types/Skill';
 import type { TimelineItem } from '../lib/types/TimelineItem';
 import type { Project } from '../lib/types/Project';
+import {
+	computeYearsOfExperience,
+	computeExperienceBreakdown
+} from '../lib/workExperience';
 
 const now = new Date();
 
@@ -41,33 +45,9 @@ const timeline: TimelineItem[] = timelineEntries
 const latestWorkLocation = timeline.find((item) => item.group === 'Work')?.location ?? '';
 
 const workItems = timeline.filter((item) => item.group === 'Work');
-const totalWorkMonths = workItems
-	.flatMap((item) => item.dateRanges)
-	.reduce((sum, { startDate, endDate }) => {
-		const start = new Date(startDate);
-		const end = endDate === 'PRESENT' ? now : new Date(endDate);
-		const months =
-			(end.getFullYear() - start.getFullYear()) * 12 +
-			(end.getMonth() - start.getMonth());
-		return sum + months;
-	}, 0);
-const yearsOfWorkExperience = Math.floor(totalWorkMonths / 6) / 2;
-
-const msPerDay = 86_400_000;
-const totalWorkDays = workItems
-	.flatMap((item) => item.dateRanges)
-	.reduce((sum, { startDate, endDate }) => {
-		const start = new Date(startDate);
-		const end = endDate === 'PRESENT' ? now : new Date(endDate);
-		return sum + Math.floor((end.getTime() - start.getTime()) / msPerDay);
-	}, 0);
-const workExperienceYears = Math.floor(totalWorkDays / 365.25);
-const workExperienceRemainingDays =
-	totalWorkDays - Math.floor(workExperienceYears * 365.25);
-const workExperienceMonths = Math.floor(workExperienceRemainingDays / 30.4375);
-const workExperienceDays =
-	workExperienceRemainingDays - Math.floor(workExperienceMonths * 30.4375);
-const workExperienceBreakdown = `${workExperienceYears} years, ${workExperienceMonths} months, ${workExperienceDays} days`;
+const workDateRanges = workItems.flatMap((item) => item.dateRanges);
+const yearsOfWorkExperience = computeYearsOfExperience(workDateRanges, now);
+const workExperienceBreakdown = computeExperienceBreakdown(workDateRanges, now);
 
 const songEntries = await getCollection('songs', ({ data }) => data.enabled);
 const songUrls: string[] = songEntries.map((entry) => entry.data.youtubeEmbedUrl);
@@ -93,21 +73,24 @@ const heroTags = heroTagEntries.sort((a, b) => a.data.order - b.data.order);
 
 		<div class="hero-info-tag-list">
 			{
-				heroTags.map((tag) => (
-					<span
-						class="hero-info-tag"
-						data-tooltip={
-							tag.data.label.includes('{years}') ? workExperienceBreakdown : undefined
-						}
-					>
-						<iconify-icon class="iconify-icon" icon={tag.data.icon} />
-						<span class="hero-info-tag-text">
-							{tag.data.label
-								.replace('{years}', String(yearsOfWorkExperience))
-								.replace('{location}', latestWorkLocation)}
+				heroTags.map((tag) => {
+					const isYearsTag = tag.data.label.includes('{years}');
+					return (
+						<span
+							class="hero-info-tag"
+							data-tooltip={isYearsTag ? workExperienceBreakdown : undefined}
+							data-years-template={isYearsTag ? tag.data.label : undefined}
+							data-work-ranges={isYearsTag ? JSON.stringify(workDateRanges) : undefined}
+						>
+							<iconify-icon class="iconify-icon" icon={tag.data.icon} />
+							<span class="hero-info-tag-text">
+								{tag.data.label
+									.replace('{years}', String(yearsOfWorkExperience))
+									.replace('{location}', latestWorkLocation)}
+							</span>
 						</span>
-					</span>
-				))
+					);
+				})
 			}
 		</div>
 
@@ -176,6 +159,37 @@ const heroTags = heroTagEntries.sort((a, b) => a.data.order - b.data.order);
 		</div>
 	</section>
 </BaseLayout>
+
+<script>
+	import {
+		computeYearsOfExperience,
+		computeExperienceBreakdown,
+		type DateRange
+	} from '../lib/workExperience';
+
+	function refreshWorkExperience() {
+		const tag = document.querySelector<HTMLElement>('[data-work-ranges]');
+		if (!tag) return;
+
+		const rangesAttr = tag.getAttribute('data-work-ranges');
+		const template = tag.getAttribute('data-years-template');
+		if (!rangesAttr || !template) return;
+
+		const ranges = JSON.parse(rangesAttr) as DateRange[];
+		const now = new Date();
+
+		const textEl = tag.querySelector('.hero-info-tag-text');
+		if (textEl) {
+			textEl.textContent = template.replace(
+				'{years}',
+				String(computeYearsOfExperience(ranges, now))
+			);
+		}
+		tag.setAttribute('data-tooltip', computeExperienceBreakdown(ranges, now));
+	}
+
+	document.addEventListener('astro:page-load', refreshWorkExperience);
+</script>
 
 <style>
 	.hero h1 {
