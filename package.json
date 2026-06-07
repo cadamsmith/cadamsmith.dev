@@ -14,27 +14,27 @@
 		"prepare": "husky"
 	},
 	"devDependencies": {
-		"@astrojs/svelte": "^8.1.1",
+		"@astrojs/svelte": "^8.1.2",
 		"@eslint/compat": "^2.1.0",
 		"@eslint/js": "^10.0.1",
 		"@types/leaflet": "^1.9.16",
-		"@types/node": "^25.9.1",
-		"astro": "^6.3.7",
-		"eslint": "^10.4.0",
+		"@types/node": "^25.9.2",
+		"astro": "^6.4.4",
+		"eslint": "^10.4.1",
 		"eslint-config-prettier": "^10.0.1",
-		"eslint-plugin-svelte": "^3.17.1",
+		"eslint-plugin-svelte": "^3.19.0",
 		"globals": "^17.6.0",
 		"husky": "^9.1.7",
 		"jiti": "^2.7.0",
 		"prettier": "^3.8.3",
 		"prettier-plugin-astro": "^0.14.0",
-		"prettier-plugin-svelte": "^4.0.1",
+		"prettier-plugin-svelte": "^4.1.0",
 		"sass": "^1.100.0",
-		"svelte": "^5.55.9",
-		"svelte-check": "^4.4.8",
+		"svelte": "^5.56.2",
+		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"typescript-eslint": "^8.59.4",
-		"vitest": "^4.1.7"
+		"typescript-eslint": "^8.60.1",
+		"vitest": "^4.1.8"
 	},
 	"overrides": {
 		"undici": "^7.24.7"
