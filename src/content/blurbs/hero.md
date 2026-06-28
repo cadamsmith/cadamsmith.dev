@@ -1,12 +1,7 @@
 ---
 ---
 
-I am currently a software engineer at [UKG](https://www.ukg.com/), a workforce management and HR software company.
+I'm a full-stack engineer at [UKG](https://www.ukg.com/), where I build privacy-preserving workforce benchmarks on a BigQuery and Dataform data platform. Before that I spent two-plus years at [Auburn University Campus Web Solutions](https://cws.auburn.edu/cws) — starting as a co-op during undergrad and staying on full-time — shipping and maintaining ASP.NET applications across the university.
 
-Previously, I worked at [Auburn University Campus Web Solutions](https://cws.auburn.edu/cws) — first as a co-op developer during undergrad, then as a full-time engineer for over two years.
-
-I am a full-stack engineer. I'm a fast learner and can pick up new skills quickly.
-
-In addition to development, I enjoy working on internal tooling, automating SDLC processes, and debugging production problems. I'm a big fan of code reviewing and improving code quality.
-
-I write documentation and train new developers. I am a reliable hard worker and team player.
+I'm a fast learner, and I gravitate toward the work other people tend to avoid: internal tooling, automating the tedious parts of the SDLC, and chasing down the production bugs nobody can reproduce. I care a lot about code quality — I review thoroughly, I document what I build, and I help new developers get up to speed.
+Outside of work, I'm usually building something small for the fun of it.
