@@ -4,7 +4,7 @@ company: 'Auburn University Campus Web Solutions'
 group: 'Work'
 dateRanges:
   - startDate: '2021-01-11'
-    endDate: '2021-04-30'
+    endDate: '2021-05-01'
   - startDate: '2021-08-09'
     endDate: '2021-12-10'
   - startDate: '2022-05-09'
