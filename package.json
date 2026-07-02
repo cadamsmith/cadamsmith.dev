@@ -37,7 +37,9 @@
 		"vitest": "^4.1.9"
 	},
 	"overrides": {
-		"undici": "^7.24.7"
+		"undici": "^7.24.7",
+		"esbuild": "^0.28.1",
+		"yaml": "^2.9.0"
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.9.9",
