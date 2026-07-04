@@ -12,9 +12,21 @@ npm run test       # Run Vitest unit tests
 npm run lint       # Run Prettier + ESLint checks
 npm run format     # Auto-format with Prettier
 npm run check      # Astro type checking
+npm run resume     # Regenerate the resume PDF from content (local tool; needs Gleam + Typst)
 ```
 
 `npm run test`, `npm run lint`, and `npm run check` are the main quality gates.
+
+### Resume generator (`tools/resume/`)
+
+`npm run resume` runs a local **Gleam** CLI that reads the content collections
+(`src/content/timeline`, `skills`, `projects`) plus `tools/resume/profile.yaml`
+and renders a resume via a **Typst** template. Output is written directly to
+the served asset `public/resume.pdf` (review the diff before committing).
+Requires `gleam` (+Erlang)
+and `typst` installed locally — it is intentionally **not** part of `npm run build`
+or CI. Timeline entries carry an optional `bullets` field consumed only by this
+tool. See `tools/resume/README.md`.
 
 ## Architecture
 

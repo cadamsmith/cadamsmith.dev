@@ -1,6 +1,6 @@
 ---
 name: 'Bootstrap'
-group: 'Libraries and Frameworks'
+group: 'Frameworks & Libraries'
 order: 3
 icon: 'devicon:bootstrap'
 url: 'https://getbootstrap.com/'

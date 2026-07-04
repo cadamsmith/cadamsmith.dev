@@ -1,5 +1,7 @@
 ---
 title: 'Bachelor of Software Engineering'
+# Resume-only: adds the minor without changing the site's timeline title.
+resumeTitle: 'Bachelor of Software Engineering, Minor in Mathematics'
 company: 'Auburn University'
 group: 'Education'
 dateRanges:

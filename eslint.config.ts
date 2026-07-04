@@ -32,6 +32,6 @@ export default ts.config(
 		}
 	},
 	{
-		ignores: ['dist/', '.astro/']
+		ignores: ['dist/', '.astro/', 'tools/']
 	}
 );

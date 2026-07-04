@@ -8,5 +8,6 @@
 		"paths": {
 			"$lib/*": ["./src/lib/*"]
 		}
-	}
+	},
+	"exclude": ["dist", "tools"]
 }
