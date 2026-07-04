@@ -1,6 +1,6 @@
 ---
 name: 'GitHub'
-group: 'Tools and Platforms'
+group: 'Tools'
 order: 1
 icon: 'mdi:github'
 url: 'https://github.com/about'

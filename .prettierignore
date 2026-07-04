@@ -10,3 +10,6 @@ dist/
 
 # Local-only tool config
 .claude/
+
+# Gleam resume generator (has its own toolchain/formatter)
+tools/

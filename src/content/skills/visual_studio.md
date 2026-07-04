@@ -1,7 +1,8 @@
 ---
 name: 'Visual Studio'
-group: 'Tools and Platforms'
-order: 4
+group: 'Tools'
+order: 5
 icon: 'devicon:visualstudio'
 url: 'https://visualstudio.microsoft.com/'
+excludeFromResume: true
 ---

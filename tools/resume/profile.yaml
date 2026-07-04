@@ -1,0 +1,17 @@
+# Resume header/profile data.
+#
+# This is the one piece of resume content not already in the site's content
+# collections: the display name lives in .astro/.svelte, and there is no profile
+# record. Contact links intentionally duplicate src/config/siteResources.ts
+# (parsing that TS file from the generator isn't worth it). Edit freely.
+
+name: 'Adam Smith'
+headline: 'Software Engineer · Full-Stack Web Developer'
+location: 'Atlanta, GA'
+email: 'cadamsmith.dev@gmail.com'
+summary: 'Full-stack engineer who gravitates toward the work others avoid — internal tooling, automating the tedious parts of the SDLC, and chasing down the production bugs nobody can reproduce. A fast learner who cares deeply about code quality, thorough reviews, and helping new developers get up to speed.'
+links:
+  - label: 'LinkedIn'
+    url: 'linkedin.com/in/cadamsmithdev'
+  - label: 'Website'
+    url: 'cadamsmith.dev'

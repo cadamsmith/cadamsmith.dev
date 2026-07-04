@@ -9,7 +9,12 @@ const skills = defineCollection({
 		group: z.string(),
 		order: z.number(),
 		icon: z.string(),
-		url: z.string()
+		url: z.string(),
+		// Resume-only overrides, consumed only by tools/resume; the site ignores them.
+		// `resumeName` replaces the display name on the resume; `excludeFromResume`
+		// drops the skill from the resume (e.g. to merge two skills into one label).
+		resumeName: z.string().optional(),
+		excludeFromResume: z.boolean().optional()
 	})
 });
 
@@ -27,6 +32,10 @@ const timeline = defineCollection({
 				})
 			)
 			.min(1),
+		summary: z.string().optional(),
+		bullets: z.array(z.string()).optional(),
+		// Resume-only title override, consumed only by tools/resume; the site uses `title`.
+		resumeTitle: z.string().optional(),
 		order: z.number(),
 		url: z.string(),
 		location: z.string(),
@@ -68,11 +77,15 @@ const projects = defineCollection({
 		emoji: z.string(),
 		description: z.string(),
 		technologies: z.array(z.string()).min(1),
+		// Resume-only override for the tech tags; the site always uses `technologies`.
+		// Consumed only by tools/resume. Falls back to `technologies` when absent.
+		resumeTechnologies: z.array(z.string()).min(1).optional(),
 		githubUrl: z.string(),
 		liveUrl: z.string(),
 		liveLabel: z.string(),
 		status: z.enum(['WIP', 'Stable', 'Archived']).optional(),
-		order: z.number()
+		order: z.number(),
+		includeInResume: z.boolean().optional()
 	})
 });
 

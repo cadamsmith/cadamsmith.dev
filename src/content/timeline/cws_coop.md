@@ -9,6 +9,8 @@ dateRanges:
     endDate: '2021-12-10'
   - startDate: '2022-05-09'
     endDate: '2022-08-05'
+bullets:
+  - 'Built and maintained 13 ASP.NET MVC web apps using C#, SQL Server, and Entity Framework, with responsive, accessible front-ends in HTML, CSS, JavaScript, and Bootstrap.'
 order: 1
 url: 'https://cws.auburn.edu/cws'
 location: 'Auburn, AL'

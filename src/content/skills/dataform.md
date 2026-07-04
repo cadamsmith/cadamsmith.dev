@@ -1,6 +1,6 @@
 ---
 name: 'Dataform'
-group: 'Tools and Platforms'
+group: 'Data & Cloud'
 order: 8
 icon: 'mdi:database-cog'
 url: 'https://cloud.google.com/dataform'
