@@ -14,7 +14,7 @@
 		"prepare": "husky"
 	},
 	"devDependencies": {
-		"@astrojs/svelte": "^8.1.2",
+		"@astrojs/svelte": "^9.0.1",
 		"@eslint/compat": "^2.1.0",
 		"@eslint/js": "^10.0.1",
 		"@types/leaflet": "^1.9.16",
