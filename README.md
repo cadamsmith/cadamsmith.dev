@@ -2,7 +2,7 @@
 
 Personal portfolio site built with **Astro** + **Svelte 5**, deployed on **Cloudflare Pages**.
 
-![image](https://github.com/user-attachments/assets/115c4125-c043-4c60-bb5d-43628a25d6e6)
+![site image](./docs/media/site-image.png)
 
 ## stack
 
