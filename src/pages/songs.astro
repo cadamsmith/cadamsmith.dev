@@ -1,0 +1,122 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const songEntries = await getCollection('songs');
+const songs = songEntries
+	.map((entry) => ({
+		title: entry.data.title,
+		artist: entry.data.artist,
+		enabled: entry.data.enabled,
+		embedUrl: entry.data.youtubeEmbedUrl
+	}))
+	.sort((a, b) => a.title.localeCompare(b.title));
+---
+
+<BaseLayout title="Songs">
+	<section>
+		<h2>Songs</h2>
+
+		<p class="intro">Every song in the collection ({songs.length} total).</p>
+
+		<div class="song-grid">
+			{
+				songs.map((song) => (
+					<div class="song-card">
+						<iframe
+							width="100%"
+							height="200"
+							src={`${song.embedUrl}&rel=0`}
+							title={`${song.title} — ${song.artist}`}
+							loading="lazy"
+							frameborder="0"
+							allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+							referrerpolicy="strict-origin-when-cross-origin"
+						/>
+
+						<div class="song-meta">
+							<div class="song-text">
+								<span class="song-title">{song.title}</span>
+								<span class="song-artist">{song.artist}</span>
+							</div>
+
+							{!song.enabled && <span class="tag disabled">disabled</span>}
+						</div>
+					</div>
+				))
+			}
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	.intro {
+		color: var(--color-muted);
+		font-size: 0.95em;
+		margin-bottom: 1.25rem;
+	}
+
+	.song-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+		gap: 1.25rem;
+	}
+
+	.song-card {
+		border: 1px solid var(--color-border);
+		border-radius: 0.5em;
+		overflow: hidden;
+		background-color: var(--color-j);
+	}
+
+	.song-card iframe {
+		display: block;
+		background-color: #000;
+	}
+
+	.song-meta {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		padding: 0.6rem 0.75rem;
+	}
+
+	.song-text {
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
+	}
+
+	.song-title {
+		font-weight: 600;
+		font-size: 0.95em;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.song-artist {
+		color: var(--color-muted);
+		font-size: 0.8em;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.tag {
+		flex-shrink: 0;
+		font-size: 0.72em;
+		font-weight: 600;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		font-family: 'JetBrains Mono', monospace;
+		padding: 0.25em 0.5em;
+		border-radius: 0.25em;
+	}
+
+	.tag.disabled {
+		color: var(--color-muted);
+		border: 1px solid var(--color-border);
+	}
+</style>
