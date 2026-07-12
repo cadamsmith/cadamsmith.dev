@@ -32,6 +32,47 @@ function circlePath(r = 80, cx = 200, cy = 200, steps = 80): Point[] {
 	return pts;
 }
 
+/**
+ * A heart distorted the way a finger actually draws one: lopsided lobes
+ * (`lobeSkew`), a shallower top notch (`dipMul` < 1), an unclosed loop
+ * (`stopAt` < 1), and positional `noise`.
+ */
+function messyHeart({
+	scale = 6,
+	steps = 70,
+	lobeSkew = 1,
+	dipMul = 1,
+	stopAt = 1,
+	noise = 0
+}: {
+	scale?: number;
+	steps?: number;
+	lobeSkew?: number;
+	dipMul?: number;
+	stopAt?: number;
+	noise?: number;
+} = {}): Point[] {
+	const pts: Point[] = [];
+	const end = Math.PI * 2 * stopAt;
+	for (let i = 0; i <= steps; i++) {
+		const t = (i / steps) * end;
+		let x = 16 * Math.sin(t) ** 3;
+		if (x > 0) x *= lobeSkew;
+		let y = -(
+			13 * Math.cos(t) -
+			5 * Math.cos(2 * t) -
+			2 * Math.cos(3 * t) -
+			Math.cos(4 * t)
+		);
+		if (y < 0) y *= dipMul;
+		pts.push({
+			x: 200 + x * scale + (Math.random() - 0.5) * noise,
+			y: 200 + y * scale + (Math.random() - 0.5) * noise
+		});
+	}
+	return pts;
+}
+
 function verticalScroll(steps = 40): Point[] {
 	const pts: Point[] = [];
 	for (let i = 0; i <= steps; i++) {
@@ -69,8 +110,36 @@ describe('isHeartPath', () => {
 		expect(isHeartPath(noisy)).toBe(true);
 	});
 
+	// Realistic finger-drawn hearts are lopsided, rounded, unclosed and jittery —
+	// these guard against the detector regressing into being too strict.
+	it('accepts a lopsided heart', () => {
+		expect(isHeartPath(messyHeart({ lobeSkew: 1.4 }))).toBe(true);
+		expect(isHeartPath(messyHeart({ lobeSkew: 0.7 }))).toBe(true);
+	});
+
+	it('accepts a heart with a shallow top notch', () => {
+		expect(isHeartPath(messyHeart({ dipMul: 0.4 }))).toBe(true);
+	});
+
+	it('accepts an unclosed heart (finger lifts before the loop closes)', () => {
+		expect(isHeartPath(messyHeart({ stopAt: 0.85 }))).toBe(true);
+	});
+
+	it('accepts a lopsided, shallow, jittery heart', () => {
+		expect(isHeartPath(messyHeart({ lobeSkew: 1.3, dipMul: 0.6, noise: 12 }))).toBe(true);
+	});
+
 	it('rejects a circle', () => {
 		expect(isHeartPath(circlePath())).toBe(false);
+	});
+
+	it('rejects a tall ellipse', () => {
+		const ellipse: Point[] = [];
+		for (let i = 0; i <= 80; i++) {
+			const t = (i / 80) * Math.PI * 2;
+			ellipse.push({ x: 200 + 60 * Math.cos(t), y: 200 + 100 * Math.sin(t) });
+		}
+		expect(isHeartPath(ellipse)).toBe(false);
 	});
 
 	it('rejects a vertical scroll', () => {
