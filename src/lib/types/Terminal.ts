@@ -116,6 +116,8 @@ export class Terminal {
 	executeCommand() {
 		const session = this.sessions[this.sessions.length - 1];
 		const command = session.command.trim();
+		// Match commands case-insensitively (history keeps the original casing).
+		const cmd = command.toLowerCase();
 
 		// Let an active game handle the command first (e.g. "q" to quit)
 		if (this.activeGame) {
@@ -129,12 +131,26 @@ export class Terminal {
 			return;
 		}
 
-		if (command === 'clear') {
+		if (cmd === 'clear') {
 			this.clear();
 			return;
 		}
 
-		if (command === '2048') {
+		// Hidden easter egg — deliberately kept out of COMMANDS so `help`
+		// never lists it. Prints a Moroccan-flag lead-in, then hands off to the
+		// full-page reveal (MoroccoEasterEgg island) via a window event.
+		if (cmd === 'yasmine') {
+			session.output.content = '🇲🇦 🇲🇦 🇲🇦';
+			if (typeof window !== 'undefined') {
+				window.dispatchEvent(new CustomEvent('morocco:reveal'));
+			}
+			this.history = [...this.history, command];
+			this.historyIndex = -1;
+			this.prompt();
+			return;
+		}
+
+		if (cmd === '2048') {
 			this.activeGame = new TwentyFortyEight();
 			this.activeGame.render(session.output);
 			this.history = [...this.history, command];
@@ -143,7 +159,7 @@ export class Terminal {
 			return;
 		}
 
-		const handler = COMMANDS[command];
+		const handler = COMMANDS[cmd];
 		if (handler) {
 			handler(session.output);
 		} else {

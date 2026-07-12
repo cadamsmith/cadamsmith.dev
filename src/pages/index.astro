@@ -8,6 +8,7 @@ import Timeline from '../lib/components/Timeline.svelte';
 import MusicPlayer from '../lib/components/MusicPlayer.svelte';
 import LocationMap from '../lib/components/LocationMap.svelte';
 import ProjectsWidget from '../lib/components/ProjectsWidget.svelte';
+import MoroccoEasterEgg from '../lib/components/MoroccoEasterEgg.svelte';
 import type { Skill } from '../lib/types/Skill';
 import type { TimelineItem } from '../lib/types/TimelineItem';
 import type { Project } from '../lib/types/Project';
@@ -158,6 +159,8 @@ const heroTags = heroTagEntries.sort((a, b) => a.data.order - b.data.order);
 			</div>
 		</div>
 	</section>
+
+	<MoroccoEasterEgg client:idle />
 </BaseLayout>
 
 <script>
