@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
+	import { isHeartPath, type Point } from '../heartGesture';
 
 	let visible = $state(false);
 	let prevOverflow = '';
@@ -22,12 +23,82 @@
 		if (e.key === 'Escape') close();
 	}
 
+	// Mobile trigger: the terminal (and its `yasmine` command) is hidden on small
+	// screens, so drawing a heart anywhere with one finger reveals the egg. We use
+	// touch events (not pointer events) because touchmove keeps firing during a
+	// scroll while pointer events get cancelled — and we listen passively so we
+	// never block normal scrolling; the finger's viewport path is analysed on lift.
+	let path: Point[] = [];
+	let drawing = false;
+
+	function pushPoint(x: number, y: number) {
+		const last = path[path.length - 1];
+		// Collapse near-duplicate samples; cap length to bound work.
+		if (last && Math.abs(last.x - x) < 2 && Math.abs(last.y - y) < 2) return;
+		path.push({ x, y });
+		if (path.length > 1500) path.shift();
+	}
+
+	function endStroke() {
+		if (!drawing) return;
+		drawing = false;
+		const drawn = path;
+		path = [];
+		if (isHeartPath(drawn)) open();
+	}
+
+	function onTouchStart(e: TouchEvent) {
+		if (visible || e.touches.length !== 1) {
+			drawing = false;
+			path = [];
+			return;
+		}
+		drawing = true;
+		path = [{ x: e.touches[0].clientX, y: e.touches[0].clientY }];
+	}
+
+	function onTouchMove(e: TouchEvent) {
+		if (!drawing) return;
+		if (e.touches.length !== 1) {
+			drawing = false;
+			path = [];
+			return;
+		}
+		pushPoint(e.touches[0].clientX, e.touches[0].clientY);
+	}
+
+	// Mouse handlers let the gesture be exercised on desktop too.
+	function onMouseDown(e: MouseEvent) {
+		if (visible || e.button !== 0) return;
+		drawing = true;
+		path = [{ x: e.clientX, y: e.clientY }];
+	}
+
+	function onMouseMove(e: MouseEvent) {
+		if (!drawing) return;
+		pushPoint(e.clientX, e.clientY);
+	}
+
 	onMount(() => {
 		window.addEventListener('morocco:reveal', open);
 		window.addEventListener('keydown', onKey);
+		document.addEventListener('touchstart', onTouchStart, { passive: true });
+		document.addEventListener('touchmove', onTouchMove, { passive: true });
+		document.addEventListener('touchend', endStroke, { passive: true });
+		document.addEventListener('touchcancel', endStroke, { passive: true });
+		document.addEventListener('mousedown', onMouseDown);
+		document.addEventListener('mousemove', onMouseMove);
+		document.addEventListener('mouseup', endStroke);
 		return () => {
 			window.removeEventListener('morocco:reveal', open);
 			window.removeEventListener('keydown', onKey);
+			document.removeEventListener('touchstart', onTouchStart);
+			document.removeEventListener('touchmove', onTouchMove);
+			document.removeEventListener('touchend', endStroke);
+			document.removeEventListener('touchcancel', endStroke);
+			document.removeEventListener('mousedown', onMouseDown);
+			document.removeEventListener('mousemove', onMouseMove);
+			document.removeEventListener('mouseup', endStroke);
 			document.body.style.overflow = prevOverflow;
 		};
 	});
