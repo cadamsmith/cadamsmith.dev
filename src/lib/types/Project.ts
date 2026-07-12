@@ -4,8 +4,8 @@ export interface Project {
 	description: string;
 	technologies: string[];
 	githubUrl: string;
-	liveUrl: string;
-	liveLabel: string;
+	liveUrl?: string;
+	liveLabel?: string;
 	status?: 'WIP' | 'Stable' | 'Archived';
 	order: number;
 }
