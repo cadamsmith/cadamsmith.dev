@@ -6,6 +6,18 @@
 	}
 
 	let { project }: Props = $props();
+
+	// Friendlier badge text; the enum value (WIP) stays the data + color key.
+	const statusLabels: Record<NonNullable<Project['status']>, string> = {
+		WIP: 'Building',
+		Stable: 'Stable',
+		Archived: 'Archived'
+	};
+
+	// Optional leading icon per status (construction symbol for in-progress work).
+	const statusIcons: Partial<Record<NonNullable<Project['status']>, string>> = {
+		WIP: 'mdi:hammer-wrench'
+	};
 </script>
 
 <article class="project-card">
@@ -14,7 +26,14 @@
 		<h3 class="project-name">{project.name}</h3>
 		{#if project.status}
 			<span class="status-pill status-{project.status.toLowerCase()}">
-				{project.status}
+				{#if statusIcons[project.status]}
+					<iconify-icon
+						class="status-icon"
+						icon={statusIcons[project.status]}
+						aria-hidden="true"
+					></iconify-icon>
+				{/if}
+				{statusLabels[project.status]}
 			</span>
 		{/if}
 	</div>
@@ -37,15 +56,17 @@
 			<iconify-icon class="iconify-icon" icon="mdi:code-tags"></iconify-icon>
 			<span>Code</span>
 		</a>
-		<a
-			class="action-btn live-btn"
-			href={project.liveUrl}
-			target="_blank"
-			rel="noopener noreferrer"
-		>
-			<iconify-icon class="iconify-icon" icon="mdi:open-in-new"></iconify-icon>
-			<span>{project.liveLabel}</span>
-		</a>
+		{#if project.liveUrl}
+			<a
+				class="action-btn live-btn"
+				href={project.liveUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				<iconify-icon class="iconify-icon" icon="mdi:open-in-new"></iconify-icon>
+				<span>{project.liveLabel}</span>
+			</a>
+		{/if}
 	</div>
 </article>
 
@@ -117,6 +138,9 @@
 	}
 
 	.status-pill {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.28em;
 		font-size: 0.7rem;
 		font-weight: 600;
 		letter-spacing: 0.05em;
@@ -124,6 +148,10 @@
 		padding: 0.15rem 0.5rem;
 		border-radius: 999px;
 		flex-shrink: 0;
+	}
+
+	.status-icon {
+		font-size: 0.9rem;
 	}
 
 	.status-wip {

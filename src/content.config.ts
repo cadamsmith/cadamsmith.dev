@@ -81,8 +81,8 @@ const projects = defineCollection({
 		// Consumed only by tools/resume. Falls back to `technologies` when absent.
 		resumeTechnologies: z.array(z.string()).min(1).optional(),
 		githubUrl: z.string(),
-		liveUrl: z.string(),
-		liveLabel: z.string(),
+		liveUrl: z.string().optional(),
+		liveLabel: z.string().optional(),
 		status: z.enum(['WIP', 'Stable', 'Archived']).optional(),
 		order: z.number(),
 		includeInResume: z.boolean().optional()
