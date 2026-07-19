@@ -6,6 +6,5 @@ technologies: ['TypeScript', 'React']
 githubUrl: 'https://github.com/cadamsmith/dataform-dag'
 liveUrl: 'https://marketplace.visualstudio.com/items?itemName=cadamsmith.dataform-dag'
 liveLabel: 'VS Code Marketplace'
-status: 'WIP'
 order: 5
 ---
