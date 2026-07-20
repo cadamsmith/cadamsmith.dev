@@ -132,7 +132,6 @@ const appVersion = pkg.version;
 			margin-bottom: 1em;
 			padding: 0 1em;
 			justify-content: center;
-			font-size: 0.8em;
 		}
 
 		.source-info {
@@ -142,12 +141,18 @@ const appVersion = pkg.version;
 			justify-content: space-between;
 			align-items: center;
 			gap: 0.75em;
-			font-size: 0.8em;
 		}
 
 		.versioning-info {
 			align-items: flex-start;
 			text-align: left;
+		}
+	}
+
+	@media (max-width: 700px) {
+		.info,
+		.source-info {
+			font-size: 0.8em;
 		}
 	}
 </style>
