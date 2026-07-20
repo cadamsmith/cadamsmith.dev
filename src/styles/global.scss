@@ -172,6 +172,21 @@ section.hero {
 	}
 }
 
+/* On mobile, pull the section side padding in to match the header's 1rem inset
+   so content lines up with the nav buttons instead of sitting further in. */
+@media (max-width: 700px) {
+	main > *,
+	main > .full-width {
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
+
+	/* tighten the gap above the "Adam Smith" headline on mobile */
+	main > .hero {
+		padding-top: 0.25rem;
+	}
+}
+
 .iconify-icon {
 	font-size: 1.25em;
 }

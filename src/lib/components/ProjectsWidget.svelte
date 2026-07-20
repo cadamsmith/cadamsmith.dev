@@ -138,13 +138,18 @@
 
 	.track {
 		display: flex;
-		gap: 1.25rem;
 		/* Embla drives horizontal position via transform on this element. */
+		/* Spacing lives on each slide (padding), not as flex `gap`: a `gap` is not
+		   preserved across the loop seam because Embla repositions slides by
+		   transform, so the wrapped card would butt against its neighbor. The
+		   negative margin cancels the first slide's leading padding. */
+		margin-left: -1.25rem;
 	}
 
 	.slide {
 		flex: 0 0 clamp(15rem, 80%, 19rem);
 		min-width: 0;
+		padding-left: 1.25rem;
 	}
 
 	/*

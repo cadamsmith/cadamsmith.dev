@@ -24,7 +24,7 @@
 		<img src={defaultImg} alt="" class={useDefaultProfileImg ? '' : 'hide'} />
 		<img src={altImg} class={useDefaultProfileImg ? 'hide' : ''} alt="" />
 	</div>
-	Adam Smith
+	<span class="brand-name">Adam Smith</span>
 </a>
 
 <style>
@@ -87,5 +87,36 @@
 
 	.hide {
 		visibility: hidden;
+	}
+
+	/* On mobile the header stacks right above the hero, so the wordmark would echo
+	   the big "Adam Smith" headline. Collapse the brand to just the circular
+	   avatar and float it centered over the top edge of the button bar, letting
+	   the hero own the name. (Anchored to the position:relative <header>.) */
+	@media (max-width: 700px) {
+		.brand-name {
+			display: none;
+		}
+
+		.nav-brand {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			/* nudge the avatar down so it straddles the bar edge more (25% of its
+			   own height) */
+			transform: translateX(-50%) translateY(25%);
+			z-index: 3;
+			padding: 0;
+			margin: 0;
+			background: transparent;
+			border: none;
+		}
+
+		.nav-brand .dino {
+			width: 3.75rem;
+			height: 3.75rem;
+			margin: 0;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.55);
+		}
 	}
 </style>
