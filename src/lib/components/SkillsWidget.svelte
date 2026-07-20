@@ -83,13 +83,16 @@
 		display: none;
 	}
 
+	/* Segmented control: an inset track (darker than the surface it sits on) with
+	   a sliding glass thumb behind the active tab. */
 	.rail {
 		position: relative;
-		display: flex;
-		gap: 1.6rem;
-		width: max-content;
-		min-width: 100%;
-		border-bottom: 1px solid var(--color-border);
+		display: inline-flex;
+		gap: 0.25rem;
+		padding: 0.3rem;
+		background: var(--color-b);
+		border: 1px solid var(--color-border);
+		border-radius: 999px;
 	}
 
 	.tab {
@@ -98,10 +101,14 @@
 		border: none;
 		cursor: pointer;
 		font-family: inherit;
-		font-size: 0.95rem;
-		padding: 0.2rem 0 0.7rem;
+		font-size: 0.9rem;
+		font-weight: 500;
+		padding: 0.4rem 0.95rem;
+		border-radius: 999px;
 		color: var(--color-muted);
 		white-space: nowrap;
+		position: relative;
+		z-index: 1;
 		transition: color 0.16s ease;
 	}
 
@@ -111,22 +118,26 @@
 
 	.tab.active {
 		color: var(--color-h);
+		font-weight: 600;
 	}
 
 	.tab:focus-visible {
 		outline: 2px solid var(--color-h);
 		outline-offset: 3px;
-		border-radius: 3px;
+		border-radius: 999px;
 	}
 
 	.indicator {
 		position: absolute;
+		top: 0.3rem;
+		bottom: 0.3rem;
 		left: 0;
-		bottom: -1px;
-		height: 2px;
-		background: var(--color-h);
-		border-radius: 2px;
-		box-shadow: 0 0 8px rgba(96, 208, 255, 0.7);
+		z-index: 0;
+		background: var(--color-j);
+		border-radius: 999px;
+		box-shadow:
+			inset 0 0 0 1px rgba(96, 208, 255, 0.22),
+			0 4px 14px -6px rgba(96, 208, 255, 0.4);
 		transition:
 			transform 0.28s cubic-bezier(0.4, 0, 0.2, 1),
 			width 0.28s cubic-bezier(0.4, 0, 0.2, 1);
@@ -149,6 +160,48 @@
 	@media (max-width: 600px) {
 		.skills-list {
 			grid-template-columns: repeat(4, 1fr);
+		}
+	}
+
+	/* On mobile the long labels wrap, so drop the single-row track + sliding
+	   thumb and give each group a standalone pill. The active pill keeps the
+	   same glass vocabulary as the desktop thumb (tinted fill, cyan border and
+	   glow) rather than a loud solid fill. */
+	@media (max-width: 800px) {
+		.switcher {
+			overflow-x: visible;
+		}
+
+		.rail {
+			flex-wrap: wrap;
+			width: 100%;
+			gap: 0.5rem;
+			padding: 0;
+			background: transparent;
+			border: none;
+		}
+
+		.indicator {
+			display: none;
+		}
+
+		.tab {
+			background: var(--color-i);
+			border: 1px solid var(--color-border);
+			transition:
+				color 0.16s ease,
+				background-color 0.16s ease,
+				border-color 0.16s ease,
+				box-shadow 0.16s ease;
+		}
+
+		.tab.active {
+			color: var(--color-h);
+			background: var(--color-j);
+			border-color: var(--color-h);
+			box-shadow:
+				inset 0 0 0 1px rgba(96, 208, 255, 0.2),
+				0 2px 12px -4px rgba(96, 208, 255, 0.4);
 		}
 	}
 </style>

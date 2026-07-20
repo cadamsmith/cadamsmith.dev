@@ -1,5 +1,8 @@
 <script lang="ts">
-	import { tick } from 'svelte';
+	import EmblaCarousel, {
+		type EmblaCarouselType,
+		type EmblaOptionsType
+	} from 'embla-carousel';
 	import type { Project } from '$lib/types/Project';
 	import ProjectCard from './ProjectCard.svelte';
 
@@ -9,20 +12,17 @@
 
 	let { projects }: Props = $props();
 
-	const count = projects.length;
+	const count = $derived(projects.length);
 
-	let rail = $state<HTMLDivElement>();
-	// `loop` = enough cards overflow the viewport that seamless wrapping makes sense.
-	// When true we render three copies of the set and keep the viewport parked in the
-	// middle copy, re-centering by exactly one set-width whenever scrolling settles.
-	let loop = $state(false);
+	let viewport = $state<HTMLDivElement>();
+	let emblaApi = $state<EmblaCarouselType>();
+
+	// Index of the snap currently aligned to the start edge.
 	let activeIndex = $state(0);
-
-	let settleTimer: ReturnType<typeof setTimeout> | undefined;
-	let recentering = false;
-
-	// Three copies while looping so there's a full set of runway on either side.
-	const copies = $derived(loop ? [0, 1, 2] : [0]);
+	// True only when the cards overflow the viewport — i.e. there's something to
+	// page/loop through. When everything fits, Embla reports a single snap and we
+	// hide the arrows, dots and edge fades entirely.
+	let scrollable = $state(false);
 
 	function reducedMotion(): boolean {
 		return (
@@ -31,155 +31,70 @@
 		);
 	}
 
-	// Distance from one card to the next (card width + gap) — uniform across the rail.
-	function stride(): number {
-		if (!rail) return 0;
-		const items = rail.querySelectorAll<HTMLElement>('.rail-item');
-		if (items.length < 2) return items[0]?.offsetWidth ?? 0;
-		return items[1].offsetLeft - items[0].offsetLeft;
-	}
-
-	// Width of one full copy of the project set.
-	function setWidth(): number {
-		return stride() * count;
-	}
-
-	function measure(): boolean {
-		if (!rail) return false;
-		// Width of a single set: with clones present, that's scrollWidth / copies.length;
-		// without clones it's the rail's own scrollWidth.
-		const singleSet = rail.scrollWidth / copies.length;
-		return singleSet - rail.clientWidth > 1;
-	}
-
-	async function syncLoop(): Promise<void> {
-		if (!rail) return;
-		const shouldLoop = measure();
-		if (shouldLoop === loop) {
-			updateActive();
-			return;
-		}
-		loop = shouldLoop;
-		await tick();
-		if (loop && rail) {
-			recentering = true;
-			rail.scrollLeft = setWidth();
-			recentering = false;
-		}
-		updateActive();
-	}
-
-	function updateActive(): void {
-		if (!rail) return;
-		const step = stride();
-		if (!step) return;
-		const raw = Math.round(rail.scrollLeft / step);
-		activeIndex = loop ? ((raw % count) + count) % count : raw;
-	}
-
-	// Jump back into the middle copy by a whole set-width. Seamless because every copy
-	// is identical and the jump is an integer number of card strides.
-	function recenter(): void {
-		if (!rail || !loop) return;
-		const sw = setWidth();
-		if (!sw) return;
-		const left = rail.scrollLeft;
-		let next = left;
-		if (left < sw) next = left + sw;
-		else if (left >= 2 * sw) next = left - sw;
-		if (next !== left) {
-			recentering = true;
-			rail.scrollLeft = next;
-			recentering = false;
-		}
-	}
-
-	function onScroll(): void {
-		if (recentering) return;
-		updateActive();
-		if (!loop) return;
-		clearTimeout(settleTimer);
-		settleTimer = setTimeout(recenter, 120);
-	}
-
-	function page(direction: 1 | -1): void {
-		if (!rail) return;
-		// Re-normalize into the middle copy first so rapid clicks can never outrun the
-		// settle-based recenter and hit a hard edge — keeps the loop truly seamless.
-		recenter();
-		const distance = Math.max(rail.clientWidth * 0.85, stride());
-		rail.scrollBy({
-			left: direction * distance,
-			behavior: reducedMotion() ? 'auto' : 'smooth'
-		});
-	}
-
-	// Scroll to the nearest occurrence of a project index, staying inside the middle copy.
-	function goTo(index: number): void {
-		if (!rail) return;
-		const step = stride();
-		if (!step) return;
-		if (!loop) {
-			rail.scrollTo({
-				left: index * step,
-				behavior: reducedMotion() ? 'auto' : 'smooth'
-			});
-			return;
-		}
-		recenter();
-		const base = Math.round(rail.scrollLeft / step);
-		const currentBucket = Math.floor(base / count) * count;
-		// Pick whichever copy of `index` is closest to where we are now.
-		const candidates = [
-			currentBucket + index,
-			currentBucket + index - count,
-			currentBucket + index + count
-		];
-		const target = candidates.reduce((best, c) =>
-			Math.abs(c - base) < Math.abs(best - base) ? c : best
-		);
-		rail.scrollTo({ left: target * step, behavior: reducedMotion() ? 'auto' : 'smooth' });
-	}
+	const options: EmblaOptionsType = { loop: true, align: 'start' };
 
 	$effect(() => {
-		syncLoop();
-		const onResize = () => syncLoop();
-		window.addEventListener('resize', onResize);
+		if (!viewport) return;
+
+		const api = EmblaCarousel(viewport, options);
+		emblaApi = api;
+
+		// Embla repositions the real slides via transform for a seamless wrap —
+		// there are no clones and no scroll re-centering, so there's nothing to
+		// "correct" and no jump. `select` fires once per settle, `reInit` on resize.
+		const sync = () => {
+			activeIndex = api.selectedScrollSnap();
+			scrollable = api.scrollSnapList().length > 1;
+		};
+		api.on('select', sync);
+		api.on('reInit', sync);
+		sync();
+
 		return () => {
-			window.removeEventListener('resize', onResize);
-			clearTimeout(settleTimer);
+			api.destroy();
+			emblaApi = undefined;
 		};
 	});
+
+	// The `jump` arg makes the move instant when the user prefers reduced motion.
+	function prev(): void {
+		emblaApi?.scrollPrev(reducedMotion());
+	}
+	function next(): void {
+		emblaApi?.scrollNext(reducedMotion());
+	}
+	function goTo(index: number): void {
+		emblaApi?.scrollTo(index, reducedMotion());
+	}
 </script>
 
-<div class="carousel" class:looping={loop}>
-	{#if loop}
+<div class="carousel" class:scrollable>
+	{#if scrollable}
 		<button
 			class="nav-arrow prev"
 			type="button"
-			onclick={() => page(-1)}
+			onclick={prev}
 			aria-label="Previous projects"
 		>
 			<iconify-icon class="iconify-icon" icon="mdi:chevron-left"></iconify-icon>
 		</button>
 	{/if}
 
-	<div class="rail" bind:this={rail} onscroll={onScroll}>
-		{#each copies as copy (copy)}
-			{#each projects as project (`${copy}-${project.name}`)}
-				<!-- Clone copies are inert: hidden from AT and removed from tab order -->
-				<div class="rail-item" inert={loop && copy !== 1}>
-					<ProjectCard {project} />
+	<div class="viewport" bind:this={viewport}>
+		<div class="track">
+			{#each projects as project, i (project.name)}
+				<div class="slide">
+					<ProjectCard {project} active={scrollable && i === activeIndex} />
 				</div>
 			{/each}
-		{/each}
+		</div>
 	</div>
 
-	{#if loop}
+	{#if scrollable}
 		<button
 			class="nav-arrow next"
 			type="button"
-			onclick={() => page(1)}
+			onclick={next}
 			aria-label="Next projects"
 		>
 			<iconify-icon class="iconify-icon" icon="mdi:chevron-right"></iconify-icon>
@@ -187,7 +102,7 @@
 	{/if}
 </div>
 
-{#if loop}
+{#if scrollable}
 	<div class="rail-footer">
 		<div class="dots" role="tablist" aria-label="Project positions">
 			{#each projects as project, i (project.name)}
@@ -215,30 +130,37 @@
 		margin: 0 -0.5rem;
 	}
 
-	.rail {
-		display: flex;
-		gap: 1.25rem;
-		overflow-x: auto;
-		scroll-snap-type: x mandatory;
-		scroll-padding-left: 0.5rem;
+	.viewport {
+		overflow: hidden;
+		/* breathing room so card shadows aren't clipped top/bottom */
 		padding: 0.5rem;
-		/* hide scrollbar; the arrows + dots carry the affordance */
-		scrollbar-width: none;
-		-ms-overflow-style: none;
 	}
 
-	.rail::-webkit-scrollbar {
-		display: none;
+	.track {
+		display: flex;
+		/* Embla drives horizontal position via transform on this element. */
+		/* Spacing lives on each slide (padding), not as flex `gap`: a `gap` is not
+		   preserved across the loop seam because Embla repositions slides by
+		   transform, so the wrapped card would butt against its neighbor. The
+		   negative margin cancels the first slide's leading padding. */
+		margin-left: -1.25rem;
+	}
+
+	.slide {
+		flex: 0 0 clamp(15rem, 80%, 19rem);
+		min-width: 0;
+		padding-left: 1.25rem;
 	}
 
 	/*
-	 * While looping there's always more content in both directions, so fade both edges.
-	 * These are static overlays on the (non-scrolling) carousel rather than a mask on the
-	 * rail: a mask on a scroll container forces a per-frame re-raster of the moving content
-	 * and visibly flickers sub-elements (the solid Live button, the icons) as you page.
+	 * While scrollable there's content in both directions, so fade both edges.
+	 * These are static overlays on the (non-transforming) carousel rather than a
+	 * mask on the moving track: a mask on the track forces a per-frame re-raster
+	 * of the moving content and visibly flickers sub-elements (the solid Live
+	 * button, the icons) as you page.
 	 */
-	.carousel.looping::before,
-	.carousel.looping::after {
+	.carousel.scrollable::before,
+	.carousel.scrollable::after {
 		content: '';
 		position: absolute;
 		top: 0;
@@ -248,19 +170,14 @@
 		pointer-events: none;
 	}
 
-	.carousel.looping::before {
+	.carousel.scrollable::before {
 		left: 0;
 		background: linear-gradient(to right, var(--color-surface), transparent);
 	}
 
-	.carousel.looping::after {
+	.carousel.scrollable::after {
 		right: 0;
 		background: linear-gradient(to left, var(--color-surface), transparent);
-	}
-
-	.rail-item {
-		flex: 0 0 clamp(15rem, 80%, 19rem);
-		scroll-snap-align: start;
 	}
 
 	.nav-arrow {
@@ -350,11 +267,20 @@
 	}
 
 	@media (max-width: 600px) {
-		.rail-item {
+		.slide {
 			flex-basis: 85%;
 		}
 
 		.nav-arrow {
+			display: none;
+		}
+
+		/*
+		 * Drop the left fade on mobile: with no arrows and one card centred at a
+		 * time, the active card is highlighted instead, and the fade only muddied
+		 * its leading edge. The right fade stays as a "more to come" affordance.
+		 */
+		.carousel.scrollable::before {
 			display: none;
 		}
 	}

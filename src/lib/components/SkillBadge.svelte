@@ -63,12 +63,28 @@
 	}
 
 	@media (max-width: 600px) {
+		/* Icon-only on mobile: a compact square tile with the icon centred, rather
+		   than a tiny logo lost in a wide box. Drop the inner wrapper fill so it
+		   reads as one tile, not a box inside a box. */
 		.skill-badge {
 			justify-content: center;
+			aspect-ratio: 1;
+			padding: 0;
 		}
 
 		.skill-badge span {
 			display: none;
+		}
+
+		.skill-badge-img-wrapper {
+			background-color: transparent;
+		}
+
+		.skill-badge :global(.skill-badge-icon) {
+			height: 1.75rem;
+			width: 1.75rem;
+			font-size: 1.75rem;
+			margin: 0;
 		}
 	}
 

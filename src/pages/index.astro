@@ -215,6 +215,12 @@ const heroTags = heroTagEntries.sort((a, b) => a.data.order - b.data.order);
 		border-radius: 2px;
 	}
 
+	@media (max-width: 600px) {
+		.hero h1 {
+			font-size: 2.8em;
+		}
+	}
+
 	.hero-split {
 		display: grid;
 		grid-template-columns: 1.1fr 0.9fr;
@@ -243,6 +249,7 @@ const heroTags = heroTagEntries.sort((a, b) => a.data.order - b.data.order);
 
 		.contact-split {
 			flex-direction: column;
+			gap: 1em;
 		}
 	}
 
@@ -350,5 +357,17 @@ const heroTags = heroTagEntries.sort((a, b) => a.data.order - b.data.order);
 	.contact-split .right {
 		margin-top: 1rem;
 		min-width: 350px;
+	}
+
+	/* Once the split stacks on mobile, the 350px min-width forces the player
+	   wider than the viewport and it gets clipped. Placed after the base rule
+	   so it wins on equal specificity. */
+	@media (max-width: 800px) {
+		.contact-split .right {
+			min-width: 0;
+			/* the 1rem top offset only aligns the player with the left column on
+			   desktop; once stacked it just adds dead space above the player */
+			margin-top: 0;
+		}
 	}
 </style>
