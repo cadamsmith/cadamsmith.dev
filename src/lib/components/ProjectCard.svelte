@@ -25,19 +25,20 @@
 	<div class="project-header">
 		<span class="project-emoji" aria-hidden="true">{project.emoji}</span>
 		<h3 class="project-name">{project.name}</h3>
-		{#if project.status}
-			<span class="status-pill status-{project.status.toLowerCase()}">
-				{#if statusIcons[project.status]}
-					<iconify-icon
-						class="status-icon"
-						icon={statusIcons[project.status]}
-						aria-hidden="true"
-					></iconify-icon>
-				{/if}
-				{statusLabels[project.status]}
-			</span>
-		{/if}
 	</div>
+
+	{#if project.status}
+		<span class="status-pill status-{project.status.toLowerCase()}">
+			{#if statusIcons[project.status]}
+				<iconify-icon
+					class="status-icon"
+					icon={statusIcons[project.status]}
+					aria-hidden="true"
+				></iconify-icon>
+			{/if}
+			{statusLabels[project.status]}
+		</span>
+	{/if}
 
 	<p class="project-description">{project.description}</p>
 
@@ -141,6 +142,7 @@
 	.status-pill {
 		display: inline-flex;
 		align-items: center;
+		align-self: flex-start;
 		gap: 0.28em;
 		font-size: 0.7rem;
 		font-weight: 600;
@@ -149,6 +151,7 @@
 		padding: 0.15rem 0.5rem;
 		border-radius: 999px;
 		flex-shrink: 0;
+		margin-top: -0.35rem;
 	}
 
 	.status-icon {
@@ -265,6 +268,25 @@
 
 		.project-card.active::before {
 			opacity: 1;
+		}
+
+		/*
+		 * Cards are narrow on mobile, so the name was truncating to a single
+		 * ellipsised word. With the status pill moved onto its own row, give the
+		 * name the full header width and let it wrap to two lines.
+		 */
+		.project-emoji {
+			font-size: 1.2rem;
+		}
+
+		.project-name {
+			font-size: 0.95rem;
+			white-space: normal;
+			overflow: hidden;
+			display: -webkit-box;
+			-webkit-line-clamp: 2;
+			line-clamp: 2;
+			-webkit-box-orient: vertical;
 		}
 	}
 </style>
