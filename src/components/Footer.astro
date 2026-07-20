@@ -120,9 +120,8 @@ const appVersion = pkg.version;
 		justify-content: center;
 	}
 
-	@media (max-width: 700px) {
+	@media (max-width: 800px) {
 		footer {
-			background-color: var(--color-a);
 			text-align: center;
 			flex-direction: column;
 			padding: 1rem 0 0 0;
@@ -130,22 +129,23 @@ const appVersion = pkg.version;
 		}
 
 		.info {
-			margin-bottom: 0.75em;
-			padding-left: 1em;
-			padding-right: 1em;
+			margin-bottom: 1em;
+			padding: 0 1em;
+			justify-content: center;
 		}
 
 		.source-info {
 			background-color: var(--color-b);
-			padding: 0.75em 1em 1em 1em;
+			padding: 1em;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			gap: 0.75em;
 		}
 
 		.versioning-info {
 			align-items: flex-start;
-		}
-
-		.source-info {
-			justify-content: space-between;
+			text-align: left;
 		}
 	}
 </style>

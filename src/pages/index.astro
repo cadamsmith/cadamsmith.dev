@@ -351,4 +351,13 @@ const heroTags = heroTagEntries.sort((a, b) => a.data.order - b.data.order);
 		margin-top: 1rem;
 		min-width: 350px;
 	}
+
+	/* Once the split stacks on mobile, the 350px min-width forces the player
+	   wider than the viewport and it gets clipped. Placed after the base rule
+	   so it wins on equal specificity. */
+	@media (max-width: 800px) {
+		.contact-split .right {
+			min-width: 0;
+		}
+	}
 </style>

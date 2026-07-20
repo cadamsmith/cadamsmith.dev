@@ -3,9 +3,10 @@
 
 	interface Props {
 		project: Project;
+		active?: boolean;
 	}
 
-	let { project }: Props = $props();
+	let { project, active = false }: Props = $props();
 
 	// Friendlier badge text; the enum value (WIP) stays the data + color key.
 	const statusLabels: Record<NonNullable<Project['status']>, string> = {
@@ -20,7 +21,7 @@
 	};
 </script>
 
-<article class="project-card">
+<article class="project-card" class:active>
 	<div class="project-header">
 		<span class="project-emoji" aria-hidden="true">{project.emoji}</span>
 		<h3 class="project-name">{project.name}</h3>
@@ -248,5 +249,22 @@
 		border-color: var(--color-h);
 		color: #0c0b09;
 		text-decoration: none;
+	}
+
+	/*
+	 * On mobile the carousel has no arrows or hover, so the active (centred) card
+	 * is highlighted to anchor the eye: an accent border, soft glow and the top
+	 * bar revealed. Desktop keeps hover as the only emphasis, so this is scoped
+	 * to the small viewport.
+	 */
+	@media (max-width: 600px) {
+		.project-card.active {
+			border-color: var(--color-c);
+			box-shadow: 0 8px 24px -12px rgba(64, 184, 240, 0.35);
+		}
+
+		.project-card.active::before {
+			opacity: 1;
+		}
 	}
 </style>

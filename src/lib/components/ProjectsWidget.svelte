@@ -82,9 +82,9 @@
 
 	<div class="viewport" bind:this={viewport}>
 		<div class="track">
-			{#each projects as project (project.name)}
+			{#each projects as project, i (project.name)}
 				<div class="slide">
-					<ProjectCard {project} />
+					<ProjectCard {project} active={scrollable && i === activeIndex} />
 				</div>
 			{/each}
 		</div>
@@ -267,6 +267,15 @@
 		}
 
 		.nav-arrow {
+			display: none;
+		}
+
+		/*
+		 * Drop the left fade on mobile: with no arrows and one card centred at a
+		 * time, the active card is highlighted instead, and the fade only muddied
+		 * its leading edge. The right fade stays as a "more to come" affordance.
+		 */
+		.carousel.scrollable::before {
 			display: none;
 		}
 	}
