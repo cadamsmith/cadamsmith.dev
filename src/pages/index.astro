@@ -51,7 +51,11 @@ const yearsOfWorkExperience = computeYearsOfExperience(workDateRanges, now);
 const workExperienceBreakdown = computeExperienceBreakdown(workDateRanges, now);
 
 const songEntries = await getCollection('songs', ({ data }) => data.enabled);
-const songUrls: string[] = songEntries.map((entry) => entry.data.youtubeEmbedUrl);
+const songs = songEntries.map((entry) => ({
+	title: entry.data.title,
+	artist: entry.data.artist,
+	embedUrl: entry.data.youtubeEmbedUrl
+}));
 
 const projectEntries = await getCollection('projects');
 const projects: Project[] = projectEntries
@@ -155,7 +159,7 @@ const heroTags = heroTagEntries.sort((a, b) => a.data.order - b.data.order);
 				</div>
 			</div>
 			<div class="right">
-				<MusicPlayer youTubeUrls={songUrls} client:only="svelte" />
+				<MusicPlayer tracks={songs} client:only="svelte" />
 			</div>
 		</div>
 	</section>
